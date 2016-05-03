@@ -1,7 +1,5 @@
-
 # jetbrain IDE configuration file
-/.idea/workspace.xml
-/.idea/libraries
+.idea/
 
 # mac indexing bullshit
 .DS_Store
