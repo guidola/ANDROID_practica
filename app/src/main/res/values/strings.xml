@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">eCampus</string>
+    <string name="login">Autenticación</string>
+    <string name="email">email</string>
+    <string name="password">Contraseña</string>
+    <string name="remember">Recuerdame la próxima vez</string>
+    <string name="entry">Entrar</string>
+
+
 </resources>
