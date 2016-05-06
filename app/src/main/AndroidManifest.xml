@@ -32,7 +32,8 @@
             android:name=".LoginActivity_2"
             android:label="@string/title_activity_login_activity_2" />
         <activity android:name=".Activity.SubjectActivity" />
-        <activity android:name=".Activity.StudentActivity"></activity>
+        <activity android:name=".Activity.StudentActivity" />
+        <activity android:name=".Activity.AddStudentActivity"></activity>
     </application>
 
 </manifest>

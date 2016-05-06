@@ -23,6 +23,14 @@
     <string name="themes_title">TEMARIO</string>
     <string name="students_title">ALUMNOS INSCRITOS</string>
     <string name="subejct_title">ASIGNATURAS</string>
+    <string name="add_student_form_name_hint">Nombre del alumno</string>
+    <string name="add_student_form_birthdate_hint">Fecha de nacimiento</string>
+    <string name="add_student_form_carrer_placeholder">Seleciona la titulación</string>
+    <string name="add_student_form_gender_title">Sexo</string>
+    <string name="add_student_form_photo_title">Foto</string>
+    <string name="add_student_form_submit_button">CREA</string>
+    <string name="add_student_form_male_option_label">Masculino</string>
+    <string name="add_student_form_female_option_label">Femenino</string>
 
 
 </resources>

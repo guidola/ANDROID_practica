@@ -28,7 +28,6 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/simple_padding"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_launcher"
                 android:id="@+id/profile_picture" />
 
             <LinearLayout
@@ -42,31 +41,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Large Text"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:id="@+id/textView" />
+                    android:id="@+id/student_name" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
                     android:layout_marginBottom="@dimen/xs"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/student_career" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/student_birthdate" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Small Text"
-                    android:id="@+id/textView6" />
+                    android:id="@+id/student_gender" />
             </LinearLayout>
         </LinearLayout>
 
