@@ -34,8 +34,16 @@
 
     <string name="exit">Salir</string>
     <string name="exams">Examenes</string>
-    <string name="subjectManagement">Gestionar asignaturas</string>
-    <string name="studentManagement">Gestionar alumnado</string>
+    <string name="subject_management">Gestionar asignaturas</string>
+    <string name="student_management">Gestionar alumnado</string>
+    <string name="subject_management_title">Gestión asignatuuras</string>
+    <string name="choose_subject">Selecciona una asignatura:</string>
+    <string name="student_management_title">Gestión alumnos</string>
+    <string name="choose_student">Selecciona un alumno:</string>
+
+    <string name="student_name">Nombre: </string>
+    <string name="student_age">Edad: </string>
+    <string name="student_speciality">Especialidad: </string>
 
 
 </resources>

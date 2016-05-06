@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/la_salle_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,10 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Activity.SubjectActivity" />
         <activity android:name=".Activity.StudentActivity" />
-        <activity android:name=".Activity.AddStudentActivity"></activity>
+        <activity android:name=".Activity.AddStudentActivity" />
+        <activity android:name=".Activity.SubjectManager"></activity>
+        <activity android:name=".Activity.StudentManager"></activity>
     </application>
 
 </manifest>
