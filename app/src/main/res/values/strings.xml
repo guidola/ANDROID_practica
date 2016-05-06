@@ -5,6 +5,9 @@
     <string name="password">Contraseña</string>
     <string name="remember">Recuerdame la próxima vez</string>
     <string name="entry">Entrar</string>
+    <string name="basic_information_title">INFORMACIÓN BÁSICA</string>
+    <string name="themes_title">TEMARIO</string>
+    <string name="students_title">ALUMNOS INSCRITOS</string>
 
 
 </resources>
