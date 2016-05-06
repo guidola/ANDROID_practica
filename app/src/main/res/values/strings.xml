@@ -32,5 +32,10 @@
     <string name="add_student_form_male_option_label">Masculino</string>
     <string name="add_student_form_female_option_label">Femenino</string>
 
+    <string name="exit">Salir</string>
+    <string name="exams">Examenes</string>
+    <string name="subjectManagement">Gestionar alumnado</string>
+    <string name="studentManagement">Gestionar asignaturas</string>
+
 
 </resources>
