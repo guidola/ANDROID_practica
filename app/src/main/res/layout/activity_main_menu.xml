@@ -3,14 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".Activity.MainMenu"
     android:weightSum="2">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/exit_toolbar"
+                android:layout_gravity="left"
+                />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="eCampus"
+                android:textSize="30dp"
+                android:layout_gravity="left"
+                />
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/more_toolbar"
+                android:layout_gravity="right"
+                />
+
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
 
     <LinearLayout
@@ -28,7 +66,7 @@
             android:layout_gravity="bottom"
             android:gravity="center">
             <ImageView
-                android:src="@mipmap/book"
+                android:src="@drawable/book"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"></ImageView>
@@ -46,7 +84,7 @@
             android:layout_gravity="bottom"
             android:gravity="center">
             <ImageView
-                android:src="@mipmap/student"
+                android:src="@drawable/student"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"></ImageView>
@@ -74,7 +112,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center">
             <ImageView
-                android:src="@mipmap/exam"
+                android:src="@drawable/exam"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"></ImageView>
@@ -92,7 +130,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center">
             <ImageView
-                android:src="@mipmap/exit"
+                android:src="@drawable/exit"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"></ImageView>

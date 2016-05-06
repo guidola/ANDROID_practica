@@ -5,4 +5,6 @@
     <color name="colorPrimaryLighten">#7783c9</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00eeeeee</color>
+    <color name="white">#ffffff</color>
+
 </resources>

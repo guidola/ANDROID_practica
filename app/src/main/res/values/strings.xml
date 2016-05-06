@@ -34,8 +34,8 @@
 
     <string name="exit">Salir</string>
     <string name="exams">Examenes</string>
-    <string name="subjectManagement">Gestionar alumnado</string>
-    <string name="studentManagement">Gestionar asignaturas</string>
+    <string name="subjectManagement">Gestionar asignaturas</string>
+    <string name="studentManagement">Gestionar alumnado</string>
 
 
 </resources>
