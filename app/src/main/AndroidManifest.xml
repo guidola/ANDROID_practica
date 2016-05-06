@@ -14,6 +14,7 @@
             android:theme="@style/AppThemeNo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,15 +24,15 @@
             android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity_2"
-            android:label="@string/title_activity_login_activity_2"></activity>
-
-        <activity android:name=".Activity.SubjectActivity"></activity>
-
+            android:label="@string/title_activity_login_activity_2" />
+        <activity android:name=".Activity.SubjectActivity" />
+        <activity android:name=".Activity.StudentActivity"></activity>
     </application>
 
 </manifest>
