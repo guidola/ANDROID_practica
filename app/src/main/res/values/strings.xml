@@ -62,4 +62,10 @@
 
 
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro_subject_theme">Introduce el temario de la asignatura:</string>
+    <string name="registered_students_title">Selecciona los alumnos inscritos:</string>
+    <string name="add_theme_field_hint">Nombre del tema</string>
+
+
 </resources>

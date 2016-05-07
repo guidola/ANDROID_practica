@@ -22,15 +22,17 @@
             android:name=".Activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             android:screenOrientation="portrait"
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
         <activity android:name=".Activity.SubjectActivity" />
         <activity android:name=".Activity.StudentActivity" />
         <activity android:name=".Activity.AddStudentActivity" />
+        <activity android:name=".Activity.AddSubjectActivity"></activity>
         <activity android:name=".Activity.SubjectManagerActivity" />
         <activity android:name=".Activity.StudentManagerActivity" />
         <activity android:name=".Activity.ExamsListActivity" />

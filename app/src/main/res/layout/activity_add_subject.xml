@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="domel.ecampus.Activity.AddSubjectActivity">
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/pagination_wrapper"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@id/pagination_wrapper">
+
+        <com.viewpagerindicator.TitlePageIndicator
+            android:id="@+id/pagination"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimaryLighten"
+            android:paddingLeft="@dimen/half_padding"
+            android:paddingRight="@dimen/half_padding"
+            android:layout_marginRight="@dimen/simple_padding"
+            android:layout_marginEnd="@dimen/simple_padding"
+            android:visibility="gone"
+            android:src="@drawable/ic_chevron_right_primary_24dp"/>
+
+            <!-- ^^^ make visible when last page ^^^ -->
+
+    </RelativeLayout>
+
+</RelativeLayout>
