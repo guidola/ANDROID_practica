@@ -13,7 +13,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical"
-        tools:context="domel.ecampus.Activity.SubjectActivity">
+        tools:context=".Activity.SubjectActivity">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"

@@ -10,7 +10,7 @@ import domel.ecampus.Adapters.SubjectManagerAdapter;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.R;
 
-public class SubjectManager extends AppCompatActivity {
+public class SubjectManagerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class SubjectManager extends AppCompatActivity {
 
         ArrayList<Subject> subjects = new ArrayList<Subject>();
 
-        SubjectManagerAdapter subjectAdapter = new SubjectManagerAdapter(SubjectManager.this, R.layout.adapter_subject_manager, subjects);
+        SubjectManagerAdapter subjectAdapter = new SubjectManagerAdapter(SubjectManagerActivity.this, R.layout.adapter_subject_manager, subjects);
         listView.setAdapter(subjectAdapter);
     }
 }

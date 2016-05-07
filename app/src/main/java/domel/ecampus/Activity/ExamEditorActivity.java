@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import domel.ecampus.R;
 
-public class ExamEditor extends AppCompatActivity {
+public class ExamEditorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import domel.ecampus.R;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

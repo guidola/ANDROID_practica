@@ -10,7 +10,7 @@ import domel.ecampus.Adapters.StudentManagerAdapter;
 import domel.ecampus.Model.Student;
 import domel.ecampus.R;
 
-public class StudentManager extends AppCompatActivity {
+public class StudentManagerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class StudentManager extends AppCompatActivity {
 
         ArrayList<Student> products = new ArrayList<Student>();
 
-        final StudentManagerAdapter studentAdapter = new StudentManagerAdapter(StudentManager.this, R.layout.adapter_student_manager, products);
+        final StudentManagerAdapter studentAdapter = new StudentManagerAdapter(StudentManagerActivity.this, R.layout.adapter_student_manager, products);
         listView.setAdapter(studentAdapter);
 
     }

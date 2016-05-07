@@ -10,7 +10,7 @@ import domel.ecampus.Adapters.ExamListAdapter;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.R;
 
-public class ExamsList extends AppCompatActivity {
+public class ExamsListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ExamsList extends AppCompatActivity {
 
         ArrayList<Exam> exams = new ArrayList<Exam>();
 
-        ExamListAdapter examsAdapter = new ExamListAdapter(ExamsList.this, R.layout.adapter_exam_list, exams);
+        ExamListAdapter examsAdapter = new ExamListAdapter(ExamsListActivity.this, R.layout.adapter_exam_list, exams);
         listView.setAdapter(examsAdapter);
 
     }

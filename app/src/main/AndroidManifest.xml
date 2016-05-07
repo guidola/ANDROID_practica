@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.MainMenu"
+            android:name=".Activity.MainMenuActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,10 +31,10 @@
         <activity android:name=".Activity.SubjectActivity" />
         <activity android:name=".Activity.StudentActivity" />
         <activity android:name=".Activity.AddStudentActivity" />
-        <activity android:name=".Activity.SubjectManager" />
-        <activity android:name=".Activity.StudentManager" />
-        <activity android:name=".Activity.ExamsList" />
-        <activity android:name=".Activity.ExamEditor"></activity>
+        <activity android:name=".Activity.SubjectManagerActivity" />
+        <activity android:name=".Activity.StudentManagerActivity" />
+        <activity android:name=".Activity.ExamsListActivity" />
+        <activity android:name=".Activity.ExamEditorActivity"></activity>
     </application>
 
 </manifest>
