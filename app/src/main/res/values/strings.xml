@@ -45,6 +45,21 @@
     <string name="student_age">Edad: </string>
     <string name="student_speciality">Especialidad: </string>
     <string name="exams_list_title">Listado examenes</string>
+    <string name="exam_editor_title">Editor examen</string>
+    <string name="exam_new_title">Nuevo examen</string>
+    <string name="prompt_student_name">Nombre alumno</string>
+    <string name="prompt_born_date">Fecha de nacimiento</string>
+    <string name="career">Carrera</string>
+    <string name="save">Guardar</string>
+    <string name="subject">Asignatura</string>
+    <string name="class_spinner">Aula</string>
+
+
+
+
+
+
+
 
 
 </resources>

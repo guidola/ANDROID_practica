@@ -33,7 +33,8 @@
         <activity android:name=".Activity.AddStudentActivity" />
         <activity android:name=".Activity.SubjectManager" />
         <activity android:name=".Activity.StudentManager" />
-        <activity android:name=".Activity.ExamsList"></activity>
+        <activity android:name=".Activity.ExamsList" />
+        <activity android:name=".Activity.ExamEditor"></activity>
     </application>
 
 </manifest>
