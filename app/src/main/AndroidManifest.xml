@@ -31,8 +31,9 @@
         <activity android:name=".Activity.SubjectActivity" />
         <activity android:name=".Activity.StudentActivity" />
         <activity android:name=".Activity.AddStudentActivity" />
-        <activity android:name=".Activity.SubjectManager"></activity>
-        <activity android:name=".Activity.StudentManager"></activity>
+        <activity android:name=".Activity.SubjectManager" />
+        <activity android:name=".Activity.StudentManager" />
+        <activity android:name=".Activity.ExamsList"></activity>
     </application>
 
 </manifest>

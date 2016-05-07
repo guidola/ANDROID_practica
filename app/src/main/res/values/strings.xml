@@ -44,6 +44,7 @@
     <string name="student_name">Nombre: </string>
     <string name="student_age">Edad: </string>
     <string name="student_speciality">Especialidad: </string>
+    <string name="exams_list_title">Listado examenes</string>
 
 
 </resources>
