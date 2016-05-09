@@ -86,9 +86,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_born_date"
-                    android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/prompt_born_date"
                     android:imeOptions="actionUnspecified"
+                    android:imeActionId="@+id/login"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -127,6 +127,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/class_spinner"/>
             <Spinner
+
                 android:layout_weight="1"
                 android:id="@+id/class_spinner"
                 android:layout_marginTop="@dimen/simple_padding"
