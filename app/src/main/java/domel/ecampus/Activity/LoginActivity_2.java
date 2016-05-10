@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -59,7 +60,7 @@ public class LoginActivity_2 extends AppCompatActivity implements LoaderCallback
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AppCompatEditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -67,9 +68,9 @@ public class LoginActivity_2 extends AppCompatActivity implements LoaderCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_activity_2);
+        setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (AppCompatEditText) findViewById(R.id.email);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -84,7 +85,7 @@ public class LoginActivity_2 extends AppCompatActivity implements LoaderCallback
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.submit_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +93,7 @@ public class LoginActivity_2 extends AppCompatActivity implements LoaderCallback
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
@@ -278,7 +278,6 @@ public class LoginActivity_2 extends AppCompatActivity implements LoaderCallback
                 new ArrayAdapter<>(LoginActivity_2.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
     }
 
 
