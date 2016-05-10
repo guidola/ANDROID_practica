@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/delete"
-            android:background="transparent"
+            android:background="@color/transparent"
             android:layout_weight="1"/>
     </LinearLayout>
 

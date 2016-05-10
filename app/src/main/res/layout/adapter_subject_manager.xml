@@ -44,7 +44,7 @@
                 android:maxLines="2"/>
         </LinearLayout>
         <android.support.v7.widget.AppCompatImageButton
-            android:background="transparent"
+            android:background="@color/transparent"
             android:layout_gravity="center_vertical|right|end"
             android:id="@+id/delete_subject"
             android:padding="5dp"

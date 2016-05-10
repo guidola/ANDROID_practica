@@ -46,7 +46,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatImageButton
-                android:background="transparent"
+                android:background="@color/transparent"
                 android:id="@+id/add_toolbar"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

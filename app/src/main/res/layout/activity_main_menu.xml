@@ -54,7 +54,8 @@
         android:layout_gravity="center"
         android:layout_margin="10dp">
         <LinearLayout
-            android:id="@+id/subject"
+            android:id="@+id/linear_subjects"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -73,7 +74,8 @@
                 android:text="@string/subject_management"></android.support.v7.widget.AppCompatTextView>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/student"
+            android:id="@+id/linear_students"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -102,7 +104,8 @@
         android:layout_gravity="center|center_vertical|center_horizontal"
         android:layout_margin="10dp">
         <LinearLayout
-            android:id="@+id/exam"
+            android:id="@+id/linear_exam"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -121,7 +124,8 @@
                 android:text="@string/exams"></android.support.v7.widget.AppCompatTextView>
     </LinearLayout>
         <LinearLayout
-            android:id="@+id/logout"
+            android:id="@+id/linear_logout"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
