@@ -46,7 +46,6 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,16 +61,16 @@
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:gravity="center">
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/book"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="10dp"></ImageView>
-            <TextView
+                android:layout_margin="10dp"></android.support.v7.widget.AppCompatImageView>
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/subject_management"></TextView>
+                android:text="@string/subject_management"></android.support.v7.widget.AppCompatTextView>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/student"
@@ -81,16 +80,16 @@
             android:layout_weight="1"
             android:layout_gravity="bottom"
             android:gravity="center">
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/student"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="10dp"></ImageView>
-            <TextView
+                android:layout_margin="10dp"></android.support.v7.widget.AppCompatImageView>
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/student_management"></TextView>
+                android:text="@string/student_management"></android.support.v7.widget.AppCompatTextView>
         </LinearLayout>
 
     </LinearLayout>
@@ -110,16 +109,16 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:gravity="center">
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/exam"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="10dp"></ImageView>
-            <TextView
+                android:layout_margin="10dp"></android.support.v7.widget.AppCompatImageView>
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/exams"></TextView>
+                android:text="@string/exams"></android.support.v7.widget.AppCompatTextView>
     </LinearLayout>
         <LinearLayout
             android:id="@+id/logout"
@@ -129,16 +128,16 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:gravity="center">
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/exit"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_margin="10dp"></ImageView>
-            <TextView
+                android:layout_margin="10dp"></android.support.v7.widget.AppCompatImageView>
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/exit"></TextView>
+                android:text="@string/exit"></android.support.v7.widget.AppCompatTextView>
         </LinearLayout>
 
     </LinearLayout>

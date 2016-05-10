@@ -45,10 +45,11 @@
                     android:layout_gravity="left" />
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatImageView
+            <android.support.v7.widget.AppCompatImageButton
+                android:background="transparent"
                 android:id="@+id/add_toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/add_toolbar"
                 android:layout_gravity="right" />
         </android.support.v7.widget.Toolbar>
