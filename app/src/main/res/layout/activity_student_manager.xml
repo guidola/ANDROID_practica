@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activity.StudentManagerActivity"
+    android:background="@color/colorPrimaryLighten5"
+
     android:orientation="vertical">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -18,7 +20,8 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:layout_marginBottom="10dp">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/close"
@@ -83,4 +86,4 @@
         android:layout_height="wrap_content"
         />
 
-</LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

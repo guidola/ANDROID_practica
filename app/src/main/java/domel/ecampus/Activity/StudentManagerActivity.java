@@ -21,6 +21,8 @@ public class StudentManagerActivity extends AppCompatActivity {
 
         ArrayList<Student> products = new ArrayList<Student>();
 
+
+
         final StudentManagerAdapter studentAdapter = new StudentManagerAdapter(StudentManagerActivity.this, R.layout.adapter_student_manager, products);
         listView.setAdapter(studentAdapter);
 

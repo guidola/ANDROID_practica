@@ -30,9 +30,7 @@ public class ExamListAdapter extends ArrayAdapter {
     public void populateList(ArrayList<Exam> arrayExams){
 
         exams.clear();
-
-        Log.d("DEBUG", "on populateList method");
-        for(Exam j : arrayExams) exams.add(j);
+        exams.addAll(arrayExams);
     }
 
     public int getCount(){

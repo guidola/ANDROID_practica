@@ -29,9 +29,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
     public void populateList(ArrayList<Student> arrayStudents){
 
         students.clear();
-
-        Log.d("DEBUG", "on populateList method");
-        for(Student j : arrayStudents) students.add(j);
+        students.addAll(arrayStudents);
     }
 
     public int getCount(){

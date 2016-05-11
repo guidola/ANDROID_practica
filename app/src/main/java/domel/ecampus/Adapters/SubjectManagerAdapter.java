@@ -28,9 +28,7 @@ public class SubjectManagerAdapter extends ArrayAdapter {
     public void populateList(ArrayList<Subject> arraySubjects){
 
         subjects.clear();
-
-        Log.d("DEBUG", "on populateList method");
-        for(Subject j : arraySubjects) subjects.add(j);
+        subjects.addAll(arraySubjects);
     }
 
     public int getCount(){
