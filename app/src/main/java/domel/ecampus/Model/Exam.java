@@ -1,27 +1,44 @@
 package domel.ecampus.Model;
 
 
+import java.util.Date;
+
 public class Exam {
 
-    public String subject;
-    public int hour;
-    public int date;
-    public int nClass;
-    public int nStudens;
+    private Date date;
+    private int assigned_class;
+    private Subject subject;
 
-    public Exam(String subject, int hour, int date, int nClass, int nStudens){
-        this.subject = subject;
-        this.hour = hour;
+    public Exam() {
+    }
+
+    public Exam(Date date, int assigned_class, Subject subject) {
         this.date = date;
-        this.nClass = nClass;
-        this.nStudens = nStudens;
+        this.assigned_class = assigned_class;
+        this.subject = subject;
     }
 
-    public String getSubject(Exam exam){
-        return exam.subject;
+    public Date getDate() {
+        return date;
     }
-    public int getHour(Exam exam){return  exam.hour;}
-    public int getDate(Exam exam){return  exam.date;}
-    public int getnClass(Exam exam){return  exam.nClass;}
-    public int getnStudens(Exam exam){return  exam.nStudens;}
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getAssigned_class() {
+        return assigned_class;
+    }
+
+    public void setAssigned_class(int assigned_class) {
+        this.assigned_class = assigned_class;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 }
