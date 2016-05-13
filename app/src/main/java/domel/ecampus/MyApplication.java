@@ -21,6 +21,9 @@ public class MyApplication extends Application {
 
 
     public MyApplication() {
+        students = new ArrayList<>();
+        subjects = new ArrayList<>();
+        exams = new ArrayList<>();
     }
 
     public MyApplication(ArrayList<Subject> subjects, ArrayList<Student> students, ArrayList<Exam> exams) {
@@ -60,6 +63,11 @@ public class MyApplication extends Application {
         subject.unrollStudent(student);
     }
 
+    public void enroll(Student student, Subject subject){
+        student.enrollSubject(subject);
+        subject.enrollStudent(student);
+    }
+
     public void deleteSubject(Subject subject){
         for (Student s: subject.getStudents()){
             s.unrollSubject(subject);
@@ -68,8 +76,17 @@ public class MyApplication extends Application {
         subjects.remove(subject);
     }
 
+    public void addExam(Exam exam, Subject subject){
+        exams.add(exam);
+        exam.setSubject(subject);
+        subject.scheduleExam(exam);
+    }
 
-
+    public void deleteExam(Exam exam){
+        exam.getSubject().getExams().remove(exam);
+        exam.setSubject(null);
+        exams.remove(exam);
+    }
 
 
     public ArrayList<Subject> getSubjects() {

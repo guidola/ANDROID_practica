@@ -81,4 +81,21 @@ public class Subject {
     public void suspendExams(){
         this.exams.clear();
     }
+
+    public void unrollStudent(Student student) {
+        this.students.remove(student);
+    }
+
+    public void enrollStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public void scheduleExam(Exam exam){
+        exam.setSubject(this);
+        this.exams.add(exam);
+    }
+
+    public void suspendExam(Exam exam){
+        this.exams.remove(exam);
+    }
 }

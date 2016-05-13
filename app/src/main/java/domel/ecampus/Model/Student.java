@@ -64,4 +64,12 @@ public class Student {
     public void setSubjects(ArrayList<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    public void unrollSubject(Subject subject) {
+        this.subjects.remove(subject);
+    }
+
+    public void enrollSubject(Subject subject) {
+        this.subjects.add(subject);
+    }
 }
