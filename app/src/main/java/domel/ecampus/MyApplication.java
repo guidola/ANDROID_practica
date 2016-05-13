@@ -1,7 +1,12 @@
 package domel.ecampus;
 
 import android.app.Application;
+import android.content.Context;
+import android.util.Log;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import domel.ecampus.Model.Exam;
@@ -12,6 +17,9 @@ import domel.ecampus.Model.Subject;
  * Created by Guillermo on 10/5/16.
  */
 public class MyApplication extends Application {
+
+    private static final String APP_STATUS_FILENAME = "persisted_data.json";
+    private static final String APP_STATUS_DEFAULT_FILENAME = "default_data.json";
 
     private static ArrayList<Subject> subjects;
 
@@ -34,6 +42,27 @@ public class MyApplication extends Application {
 
     public void persist(){
         //here we define persisting logic of MyApplication information.
+        if(Tools.isExternalStorageWritable()){
+
+        }
+    }
+
+    public void loadStatusFromDisk(){
+        if(Tools.isExternalStorageReadable()){
+
+            if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
+                //load previous data
+                try{
+                    FileInputStream fos = openFileInput(APP_STATUS_FILENAME);
+                }catch (FileNotFoundException e){
+                    Log.w("LOAD_DATA", "Status file not found");
+                }
+
+            }else if (Tools.fileExists(getApplicationContext(), APP_STATUS_DEFAULT_FILENAME)){
+                //load default data
+            }
+
+        }
     }
 
     public void addStudent(Student student){
