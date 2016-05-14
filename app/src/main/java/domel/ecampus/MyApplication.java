@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -60,6 +61,19 @@ public class MyApplication extends Application{
         //here we define persisting logic of MyApplication information.
         if(Tools.isExternalStorageWritable()){
 
+            Gson g = new Gson();
+            try {
+                OutputStreamWriter osw = new OutputStreamWriter(
+                        openFileOutput(APP_STATUS_FILENAME, 0),
+                        "UTF-8"
+                );
+
+                osw.write(g.toJson(this));
+                osw.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -76,7 +90,6 @@ public class MyApplication extends Application{
                     );
 
                     initializeData(g.fromJson(isr, MyApplication.class));
-
                     isr.close();
 
                 }catch (FileNotFoundException e){
@@ -95,7 +108,6 @@ public class MyApplication extends Application{
                     );
 
                     initializeData(g.fromJson(isr, MyApplication.class));
-
                     isr.close();
 
                 } catch (IOException e) {
