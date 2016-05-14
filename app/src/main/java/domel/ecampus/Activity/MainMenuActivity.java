@@ -21,45 +21,53 @@ public class MainMenuActivity extends AppCompatActivity {
         LinearLayout exam = (LinearLayout)this.findViewById(R.id.linear_exam);
         LinearLayout logout = (LinearLayout)this.findViewById(R.id.linear_logout);
 
-        subject.setOnClickListener(new View.OnClickListener() {
-            //go to subject manager activity
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, SubjectManagerActivity.class);
-                startActivity(intent);
+        if (subject != null) {
+            subject.setOnClickListener(new View.OnClickListener() {
+                //go to subject manager activity
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainMenuActivity.this, SubjectManagerActivity.class);
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
 
-        student.setOnClickListener(new View.OnClickListener() {
-            //go to subject manager activity
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, StudentManagerActivity.class);
-                startActivity(intent);
+        if (student != null) {
+            student.setOnClickListener(new View.OnClickListener() {
+                //go to student manager activity
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainMenuActivity.this, StudentManagerActivity.class);
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
 
-        exam.setOnClickListener(new View.OnClickListener() {
-            //go to subject manager activity
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenuActivity.this, ExamsListActivity.class);
-                startActivity(intent);
+        if (exam != null) {
+            exam.setOnClickListener(new View.OnClickListener() {
+                //go to subject manager activity
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainMenuActivity.this, ExamsListActivity.class);
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //logout
-                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+        if (logout != null) {
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //logout
+                    Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
 
-            }
-        });
+                }
+            });
+        }
     }
 }

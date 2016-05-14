@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -18,6 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import domel.ecampus.Base.BaseActivity;
+import domel.ecampus.Model.User;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class LoginActivity  extends BaseActivity {
@@ -35,7 +38,7 @@ public class LoginActivity  extends BaseActivity {
     private View v_form;
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "administrador@salleurl.edu:123qwe"
     };
 
     @Override
@@ -44,6 +47,8 @@ public class LoginActivity  extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
+        v_form = findViewById(R.id.login_form);
+        v_progress = findViewById(R.id.login_progress);
         et_email = (AppCompatEditText) findViewById(R.id.email);
         et_password = (AppCompatEditText) findViewById(R.id.password);
         et_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -152,8 +157,10 @@ public class LoginActivity  extends BaseActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            AppCompatCheckBox checkbox = (AppCompatCheckBox)findViewById(R.id.rememberme);
             showProgress(true);
-            mAuthTask = new UserLoginTask(user, password);
+            mAuthTask = new UserLoginTask(user, password,
+                    checkbox != null && checkbox.isChecked());
             mAuthTask.execute((Void) null);
         }
     }
@@ -165,7 +172,7 @@ public class LoginActivity  extends BaseActivity {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 5;
     }
 
     /**
@@ -176,10 +183,12 @@ public class LoginActivity  extends BaseActivity {
 
         private final String email;
         private final String password;
+        private final boolean remembered;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, boolean remembered) {
             this.email = email;
             this.password = password;
+            this.remembered = remembered;
         }
 
         @Override
@@ -211,6 +220,9 @@ public class LoginActivity  extends BaseActivity {
             showProgress(false);
 
             if (success) {
+                // we store a user with all the info but on a real situation that would be just a
+                // UserPasswordToken to authenticate against DB
+                MyApplication.setUser(new User(this.email, this.password, this.remembered));
                 Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                 startActivity(intent);
                 finish();

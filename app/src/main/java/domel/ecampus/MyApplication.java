@@ -25,6 +25,7 @@ import java.util.List;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
+import domel.ecampus.Model.User;
 
 /**
  * Created by Guillermo on 10/5/16.
@@ -43,6 +44,8 @@ public class MyApplication extends Application{
 
     @SerializedName("ex")
     private static ArrayList<Exam> exams;
+
+    private static User user;
 
 
     public MyApplication() {
@@ -202,7 +205,11 @@ public class MyApplication extends Application{
         MyApplication.exams = exams;
     }
 
+    public static User getUser() {
+        return user;
+    }
 
-
-
+    public static void setUser(User user) {
+        MyApplication.user = user;
+    }
 }
