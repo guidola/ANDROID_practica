@@ -1,5 +1,6 @@
 package domel.ecampus.Activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +38,7 @@ public class SubjectActivity extends AppCompatActivity {
             subject.getThemes().add(new SubjectTheme(i, "Dummy theme"));
         }
         for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student("John Doe", R.mipmap.la_salle_logo, 19, "Paleontologist"));
+            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, 19, "Paleontologist"));
         }
 
         if (name != null) {
@@ -103,6 +104,19 @@ public class SubjectActivity extends AppCompatActivity {
                 student_image.setImageResource(student.getImage());
                 student_name.setText(student.getName());
                 student_spec.setText(student.getSpecialty());
+
+                v.setTag(student.getId());
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(SubjectActivity.this, StudentActivity.class);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.putExtra("item", (int)v.getTag());
+                        startActivity(intent);
+                        //((Activity)getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
+                    }
+                });
 
                 if (students_wrapper != null) {
                     students_wrapper.addView(v);

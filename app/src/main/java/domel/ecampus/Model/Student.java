@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Student {
 
+    private int id;
     private String name;
     private int image;
     private int age;
@@ -12,6 +13,13 @@ public class Student {
 
     private ArrayList<Subject> subjects;
 
+    public Student(int id, String name, int image, int age, String specialty) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.age = age;
+        this.specialty = specialty;
+    }
 
     public Student(String name, int image, int age, String specialty){
         this.name = name;
@@ -71,5 +79,13 @@ public class Student {
 
     public void enrollSubject(Subject subject) {
         this.subjects.add(subject);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
