@@ -1,15 +1,27 @@
 package domel.ecampus.Adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
+import domel.ecampus.Activity.StudentActivity;
+import domel.ecampus.Activity.SubjectActivity;
 import domel.ecampus.Model.Student;
+import domel.ecampus.Model.Subject;
 import domel.ecampus.R;
 
 
@@ -53,6 +65,61 @@ public class StudentManagerAdapter extends ArrayAdapter{
             row = inflater.inflate(R.layout.adapter_student_manager, parent, false);
             row.setClickable(true);
         }
+        //set the info of the students
+        AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.student_image);
+        AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.student_name);
+        AppCompatTextView age = (AppCompatTextView) row.findViewById(R.id.student_age);
+        AppCompatTextView speciality = (AppCompatTextView) row.findViewById(R.id.student_speciality);
+        AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_student);
+        Student student = getItem(position);
+
+        image.setImageResource(student.getImage());
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        name.setText(StringUtils.capitalize(student.getName()));
+        age.setText(StringUtils.capitalize(student.getAgeString()));
+        speciality.setText(StringUtils.capitalize(student.getSpecialty()));
+
+        //if click teh row go to the student preview
+        row.setClickable(true);
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), StudentActivity.class);
+                intent.putExtra("item", position);
+                getContext().startActivity(intent);
+            }
+        });
+
+
+        //delete button
+        bin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //launch alert dialog to ask for deletion.
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(getContext().getResources().getString(R.string.alert_delete_title));
+                builder.setMessage(getContext().getResources().getString(R.string.alert_delete_msg_student));
+                builder.setCancelable(true);
+                builder.setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //MyApplication.deleteSubject(getItem(position)); //this is what should go for data consistance and stuff
+                        students.remove(position);
+                        notifyDataSetChanged();
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton(getContext().getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
+
 
         return row;
     }

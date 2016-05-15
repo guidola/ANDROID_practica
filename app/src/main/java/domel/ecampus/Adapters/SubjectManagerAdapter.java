@@ -97,7 +97,7 @@ public class SubjectManagerAdapter extends ArrayAdapter {
                 //launch alert dialog to ask for deletion.
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(getContext().getResources().getString(R.string.alert_delete_title));
-                builder.setMessage(getContext().getResources().getString(R.string.alert_delete_msg));
+                builder.setMessage(getContext().getResources().getString(R.string.alert_delete_msg_subject));
                 builder.setCancelable(true);
                 builder.setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override

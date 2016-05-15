@@ -3,6 +3,8 @@ package domel.ecampus.Model;
 
 import java.util.ArrayList;
 
+import domel.ecampus.R;
+
 public class Student {
 
     private int id;
@@ -19,6 +21,7 @@ public class Student {
         this.image = image;
         this.age = age;
         this.specialty = specialty;
+        this.subjects = new ArrayList<>();
     }
 
     public Student(String name, int image, int age, String specialty){
@@ -53,13 +56,13 @@ public class Student {
         return age;
     }
 
+    public String getAgeString() {return " " + age + " años";}
+
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getSpecialty() {
-        return specialty;
-    }
+    public String getSpecialty() {return " " +specialty;}
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
@@ -87,5 +90,15 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public static ArrayList<Student> getTestCollection(){
+        ArrayList<Student> s = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            Student st = new Student(i ,"test student",R.mipmap.la_salle_logo, 21, "Computer engineering\n");
+            st.getSubjects().add(new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text "));
+            s.add(st);
+        }
+        return s;
     }
 }

@@ -58,11 +58,14 @@
     <string name="add_theme_field_hint">Nombre del tema</string>
     <string name="title_activity_login">Autentificación</string>
     <string name="alert_delete_title">Estas seguro de lo que estas haciendo?</string>
-    <string name="alert_delete_msg">Para eliminar la asignatura de manera definitiva presiona \"Si\" en caso contrario apreta \"No\" o fuera del dialogo para cancelar la acción.</string>
+    <string name="alert_delete_msg_subject">Para eliminar la asignatura de manera definitiva presiona \"Si\" en caso contrario apreta \"No\" o fuera del dialogo para cancelar la acción.</string>
+    <string name="alert_delete_msg_student">Para eliminar al alumno de manera definitiva presiona \"Si\" en caso contrario apreta \"No\" o fuera del dialogo para cancelar la acción.</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="no_themes_for_subject">Esta asignatura no tiene ningún tema</string>
     <string name="no_students_for_subject">No hay ningún alumno inscrito a esta asignatura</string>
+
+    <string name="years"> años</string>
 
 
 </resources>

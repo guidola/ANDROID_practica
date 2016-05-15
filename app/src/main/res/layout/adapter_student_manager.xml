@@ -9,16 +9,17 @@
         android:id="@+id/linear_subject"
         android:orientation="horizontal"
         android:dividerPadding="5dp"
+        android:padding="@dimen/half_padding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10">
         <!--StudentInfo-->
         <android.support.v7.widget.AppCompatImageView
             android:layout_gravity="center_vertical"
-            android:id="@+id/subject_image"
+            android:id="@+id/student_image"
             android:padding="5dp"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_weight="1"/>
         <!--StudentName-->
         <LinearLayout
