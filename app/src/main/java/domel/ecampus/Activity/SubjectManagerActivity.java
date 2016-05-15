@@ -19,9 +19,12 @@ public class SubjectManagerActivity extends AppCompatActivity {
 
         ListView listView = (ListView)  findViewById(R.id.listv_subject);
 
-        ArrayList<Subject> subjects = new ArrayList<Subject>();
+        ArrayList<Subject> subjects = Subject.getTestCollection();
+
 
         SubjectManagerAdapter subjectAdapter = new SubjectManagerAdapter(SubjectManagerActivity.this, R.layout.adapter_subject_manager, subjects);
-        listView.setAdapter(subjectAdapter);
+        if (listView != null) {
+            listView.setAdapter(subjectAdapter);
+        }
     }
 }

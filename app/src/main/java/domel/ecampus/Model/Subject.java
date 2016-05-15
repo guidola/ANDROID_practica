@@ -3,6 +3,8 @@ package domel.ecampus.Model;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import domel.ecampus.R;
+
 public class Subject {
 
     private String name;
@@ -97,5 +99,15 @@ public class Subject {
 
     public void suspendExam(Exam exam){
         this.exams.remove(exam);
+    }
+
+    public static ArrayList<Subject> getTestCollection(){
+        ArrayList<Subject> s = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            Subject sub = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
+            sub.getThemes().add(new SubjectTheme(i, "Dummy Theme"));
+            s.add(sub);
+        }
+        return s;
     }
 }

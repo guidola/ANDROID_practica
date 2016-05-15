@@ -7,5 +7,7 @@
     <color name="transparent">#00eeeeee</color>
     <color name="white">#ffffff</color>
     <color name="colorPrimaryLighten5">#abafc6</color>
+    <color name="colorPrimaryLighten2">#818bbf</color>
+    <color name="grey">#cecdcd</color>
 
 </resources>

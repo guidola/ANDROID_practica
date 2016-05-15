@@ -45,6 +45,7 @@ public class MyApplication extends Application{
     @SerializedName("ex")
     private static ArrayList<Exam> exams;
 
+    @SerializedName("us")
     private static User user;
 
 
@@ -121,46 +122,46 @@ public class MyApplication extends Application{
         }
     }
 
-    private void initializeData(MyApplication myApplication) {
+    private static void initializeData(MyApplication myApplication) {
         MyApplication.students = myApplication.getStudents();
         MyApplication.subjects = myApplication.getSubjects();
         MyApplication.exams = myApplication.getExams();
     }
 
 
-    public void addStudent(Student student){
+    public static void addStudent(Student student){
         students.add(student);
     }
 
-    public void deleteStudent(Student student){
+    public static void deleteStudent(Student student){
         for (Subject s : student.getSubjects()){
             s.unrollStudent(student);
         }
         students.remove(student);
     }
 
-    public void addSubject(Subject subject){
+    public static void addSubject(Subject subject){
         subjects.add(subject);
     }
 
-    public void suspendExams(Subject subject){
+    public static void suspendExams(Subject subject){
         for (Exam e: subject.getExams()){
             exams.remove(e);
         }
         subject.suspendExams();
     }
 
-    public void unroll(Student student, Subject subject){
+    public static void unroll(Student student, Subject subject){
         student.unrollSubject(subject);
         subject.unrollStudent(student);
     }
 
-    public void enroll(Student student, Subject subject){
+    public static void enroll(Student student, Subject subject){
         student.enrollSubject(subject);
         subject.enrollStudent(student);
     }
 
-    public void deleteSubject(Subject subject){
+    public static void deleteSubject(Subject subject){
         for (Student s: subject.getStudents()){
             s.unrollSubject(subject);
         }
@@ -168,13 +169,13 @@ public class MyApplication extends Application{
         subjects.remove(subject);
     }
 
-    public void addExam(Exam exam, Subject subject){
+    public static void addExam(Exam exam, Subject subject){
         exams.add(exam);
         exam.setSubject(subject);
         subject.scheduleExam(exam);
     }
 
-    public void deleteExam(Exam exam){
+    public static void deleteExam(Exam exam){
         exam.getSubject().getExams().remove(exam);
         exam.setSubject(null);
         exams.remove(exam);

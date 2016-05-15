@@ -9,16 +9,14 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Autentificación</string>
+    <string name="action_sign_in_short">Log in</string>
+    <string name="error_invalid_email">La dirección de email no es correcta</string>
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="error_incorrect_password">La contraseña introducida no es correcta</string>
+    <string name="error_field_required">Este campo no debería estar vacio</string>
+
     <string name="basic_information_title">INFORMACIÓN BÁSICA</string>
     <string name="themes_title">TEMARIO</string>
     <string name="students_title">ALUMNOS INSCRITOS</string>
@@ -36,7 +34,7 @@
     <string name="exams">Examenes</string>
     <string name="subject_management">Gestionar asignaturas</string>
     <string name="student_management">Gestionar alumnado</string>
-    <string name="subject_management_title">Gestión asignatuuras</string>
+    <string name="subject_management_title">Gestión asignaturas</string>
     <string name="choose_subject">Selecciona una asignatura:</string>
     <string name="student_management_title">Gestión alumnos</string>
     <string name="choose_student">Selecciona un alumno:</string>
@@ -55,11 +53,16 @@
     <string name="class_spinner">Aula</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="intro_subject_theme">Introduce el temario de la asignatura:</string>
     <string name="registered_students_title">Selecciona los alumnos inscritos:</string>
     <string name="add_theme_field_hint">Nombre del tema</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Autentificación</string>
+    <string name="alert_delete_title">Estas seguro de lo que estas haciendo?</string>
+    <string name="alert_delete_msg">Para eliminar la asignatura de manera definitiva presiona \"Si\" en caso contrario apreta \"No\" o fuera del dialogo para cancelar la acción.</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="no_themes_for_subject">Esta asignatura no tiene ningún tema</string>
+    <string name="no_students_for_subject">No hay ningún alumno inscrito a esta asignatura</string>
 
 
 </resources>
