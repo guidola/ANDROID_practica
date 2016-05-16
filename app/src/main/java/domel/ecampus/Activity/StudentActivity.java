@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.widget.ImageView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        Student st = new Student(99 ,"test student",R.drawable.student, new GregorianCalendar(1999,11,29 + 4), "ADE", "Hombre");
+        Student st = new Student(99 ,"test student",R.drawable.student, new DateTime(1991,2,23,0,0), "ADE", "Hombre");
 
         //set the info
         AppCompatImageView image = (AppCompatImageView) findViewById(R.id.profile_picture);
@@ -36,7 +37,7 @@ public class StudentActivity extends AppCompatActivity {
 
         image.setImageResource(st.getImage());
         name.setText(StringUtils.capitalize(st.getName()));
-        age.setText(StringUtils.capitalize(st.getDate()));
+        age.setText(StringUtils.capitalize(st.getAgeString()));
         speciality.setText(StringUtils.capitalize(st.getSpecialty()));
         gender.setText(StringUtils.capitalize(st.getGender()));
 

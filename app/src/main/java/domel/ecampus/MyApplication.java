@@ -10,6 +10,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -59,6 +61,12 @@ public class MyApplication extends Application{
         MyApplication.subjects = subjects;
         MyApplication.students = students;
         MyApplication.exams = exams;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        JodaTimeAndroid.init(this);
     }
 
     public void persist(){

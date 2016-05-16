@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class SubjectActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new GregorianCalendar(30,1,99), "Paleontologist", "Hombre"));
+            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new DateTime(1991,2,23,0,0), "Paleontologist", "Hombre"));
         }
 
         if (name != null) {
