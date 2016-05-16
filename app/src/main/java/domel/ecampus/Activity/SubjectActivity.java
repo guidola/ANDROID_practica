@@ -16,6 +16,8 @@ import android.widget.ListView;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.zip.Inflater;
 
 import domel.ecampus.Adapters.StudentManagerAdapter;
@@ -34,11 +36,13 @@ public class SubjectActivity extends AppCompatActivity {
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) findViewById(R.id.subject_description);
         Subject subject = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
+
         for (int i = 0; i < 10; i++) {
             subject.getThemes().add(new SubjectTheme(i, "Dummy theme"));
         }
+
         for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, 19, "Paleontologist"));
+            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new GregorianCalendar(30,1,99), "Paleontologist", "Hombre"));
         }
 
         if (name != null) {

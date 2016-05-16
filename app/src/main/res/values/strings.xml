@@ -68,4 +68,9 @@
     <string name="years"> años</string>
 
 
+    <string name="add_student_title"> Nuevo alumno</string>
+    <string name="view_student_title"> Visualizar alumno</string>
+    <string name="add_subject_title"> Nueva asignatura</string>
+    <string name="view_subject_title"> Visualizar asignatura</string>
+
 </resources>
