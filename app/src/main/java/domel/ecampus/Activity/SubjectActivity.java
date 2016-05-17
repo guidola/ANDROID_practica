@@ -11,6 +11,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +35,23 @@ public class SubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
 
+
+        //logout button
+        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
+        closeSesionButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                //logout
+                Intent intent = new Intent(SubjectActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
+
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) findViewById(R.id.subject_description);
         Subject subject = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
@@ -43,7 +61,7 @@ public class SubjectActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new DateTime(1991,2,23,0,0), "Paleontologist", "Hombre"));
+            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new DateTime(1991, 2, 23, 0, 0), "Paleontologist", "Hombre"));
         }
 
         if (name != null) {
@@ -56,16 +74,16 @@ public class SubjectActivity extends AppCompatActivity {
 
         ViewGroup themes_wrapper = (ViewGroup) findViewById(R.id.themes_wrapper);
 
-        if(subject.getThemes().size() > 0){
+        if (subject.getThemes().size() > 0) {
 
             int index = 1;
 
-            for (SubjectTheme t : subject.getThemes()){
+            for (SubjectTheme t : subject.getThemes()) {
 
                 AppCompatTextView theme_row = new AppCompatTextView(this);
                 String row_text = index++ + ". " + StringUtils.capitalize(t.getName());
                 theme_row.setText(row_text);
-                theme_row.setPadding(16,8,8,8);
+                theme_row.setPadding(16, 8, 8, 8);
                 theme_row.setGravity(Gravity.CENTER_VERTICAL);
 
 
@@ -77,12 +95,12 @@ public class SubjectActivity extends AppCompatActivity {
                 }
 
             }
-        }else{
+        } else {
 
             AppCompatTextView no_themes = new AppCompatTextView(this);
             no_themes.setText(R.string.no_themes_for_subject);
             no_themes.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-            no_themes.setPadding(0,32,0,0);
+            no_themes.setPadding(0, 32, 0, 0);
             no_themes.setGravity(Gravity.CENTER_HORIZONTAL);
 
             if (themes_wrapper != null) {
@@ -96,9 +114,9 @@ public class SubjectActivity extends AppCompatActivity {
 
         ViewGroup students_wrapper = (ViewGroup) findViewById(R.id.students_wrapper);
         int index = 1;
-        if(subject.getStudents().size() > 0){
+        if (subject.getStudents().size() > 0) {
 
-            for (Student student: subject.getStudents()){
+            for (Student student : subject.getStudents()) {
 
                 View v = getLayoutInflater().inflate(R.layout.row_enrolled_students, students_wrapper, false);
 
@@ -116,7 +134,7 @@ public class SubjectActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(SubjectActivity.this, StudentActivity.class);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        intent.putExtra("item", (int)v.getTag());
+                        intent.putExtra("item", (int) v.getTag());
                         startActivity(intent);
                         //((Activity)getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
@@ -129,24 +147,25 @@ public class SubjectActivity extends AppCompatActivity {
 
             }
 
-        }else{
+        } else {
 
             AppCompatTextView no_themes = new AppCompatTextView(this);
             no_themes.setText(R.string.no_students_for_subject);
             no_themes.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-            no_themes.setPadding(0,32,0,0);
+            no_themes.setPadding(0, 32, 0, 0);
             no_themes.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        if (students_wrapper != null) {
-            students_wrapper.addView(no_themes, students_wrapper.getChildCount(), new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            ));
+            if (students_wrapper != null) {
+                students_wrapper.addView(no_themes, students_wrapper.getChildCount(), new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                ));
+            }
+
         }
-
     }
 
-    }
+
 
 
     @Override

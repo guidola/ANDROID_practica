@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -28,7 +29,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainMenuActivity.this, SubjectManagerActivity.class);
                     startActivity(intent);
-
                 }
             });
         }
@@ -40,7 +40,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainMenuActivity.this, StudentManagerActivity.class);
                     startActivity(intent);
-
                 }
             });
         }
@@ -52,7 +51,6 @@ public class MainMenuActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainMenuActivity.this, ExamsListActivity.class);
                     startActivity(intent);
-
                 }
             });
         }
@@ -61,13 +59,27 @@ public class MainMenuActivity extends AppCompatActivity {
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //logout
-                    Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    //close the app
+                    finish();
 
                 }
             });
         }
+
+        //logout button
+        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
+        closeSesionButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                //logout
+                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -40,6 +41,22 @@ public class StudentManagerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(StudentManagerActivity.this, AddStudentActivity.class);
                 startActivity(intent);
+
+            }
+
+        });
+
+        //logout button
+        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
+        closeSesionButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                //logout
+                Intent intent = new Intent(StudentManagerActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
 
             }
 
