@@ -131,11 +131,11 @@ public class SubjectActivity extends AppCompatActivity {
 
         }else{
 
-        AppCompatTextView no_themes = new AppCompatTextView(this);
-        no_themes.setText(R.string.no_students_for_subject);
-        no_themes.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-        no_themes.setPadding(0,32,0,0);
-        no_themes.setGravity(Gravity.CENTER_HORIZONTAL);
+            AppCompatTextView no_themes = new AppCompatTextView(this);
+            no_themes.setText(R.string.no_students_for_subject);
+            no_themes.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+            no_themes.setPadding(0,32,0,0);
+            no_themes.setGravity(Gravity.CENTER_HORIZONTAL);
 
         if (students_wrapper != null) {
             students_wrapper.addView(no_themes, students_wrapper.getChildCount(), new ViewGroup.LayoutParams(

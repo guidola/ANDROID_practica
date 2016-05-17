@@ -1,7 +1,10 @@
 package domel.ecampus.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,12 +25,26 @@ public class StudentManagerActivity extends AppCompatActivity {
 
         ArrayList<Student> students = Student.getTestCollection();
 
+        ImageButton addStudentButton = (ImageButton) findViewById(R.id.addStudent_toolbar);
+
 
 
         final StudentManagerAdapter studentAdapter = new StudentManagerAdapter(StudentManagerActivity.this, R.layout.adapter_student_manager, students);
         if (listView != null) {
             listView.setAdapter(studentAdapter);
         }
+
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StudentManagerActivity.this, AddStudentActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
 
     }
 }

@@ -1,10 +1,13 @@
 package domel.ecampus.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,9 +40,10 @@ public class StudentActivity extends AppCompatActivity {
 
         image.setImageResource(st.getImage());
         name.setText(StringUtils.capitalize(st.getName()));
-        age.setText(StringUtils.capitalize(st.getAgeString()));
+        age.setText(StringUtils.capitalize(st.getBithdateString()));
         speciality.setText(StringUtils.capitalize(st.getSpecialty()));
         gender.setText(StringUtils.capitalize(st.getGender()));
+
 
 
     }

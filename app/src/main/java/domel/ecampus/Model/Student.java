@@ -5,6 +5,8 @@ import android.util.Log;
 
 import org.joda.time.DateTime;
 import org.joda.time.Years;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -109,6 +111,13 @@ public class Student {
 
     public DateTime getBirthdate() {
         return birthdate;
+    }
+
+    public String getBithdateString(){
+
+        DateTimeFormatter timeFormat = DateTimeFormat.forPattern("dd/MM/yyyy");
+        String str = timeFormat.print(birthdate);
+        return str;
     }
 
     public void setBirthdate(DateTime birthdate) {

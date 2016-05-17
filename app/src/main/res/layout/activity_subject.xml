@@ -59,7 +59,7 @@
                     android:id="@+id/add_toolbar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/add_toolbar"
+                    android:src="@drawable/delete"
                     android:layout_gravity="right" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>

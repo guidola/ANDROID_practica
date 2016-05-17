@@ -87,6 +87,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
                 Intent intent = new Intent(getContext(), StudentActivity.class);
                 intent.putExtra("item", position);
                 getContext().startActivity(intent);
+
             }
         });
 
