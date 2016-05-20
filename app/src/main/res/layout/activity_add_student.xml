@@ -27,7 +27,7 @@
                 android:paddingRight="24dp">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/close"
+                        android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/exit_toolbar"
@@ -107,7 +107,8 @@
                     android:imeOptions="actionNext"
                     android:inputType="date"
                     android:maxLines="1"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:layout_marginBottom="@dimen/double_margin"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -116,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/carreer"
                 android:prompt="@string/add_student_form_carrer_placeholder"
-                android:layout_marginBottom="@dimen/simple_padding"
+                android:layout_marginBottom="@dimen/double_margin"
                 />
 
             <android.support.v7.widget.AppCompatTextView
@@ -144,11 +145,10 @@
                     android:text="@string/add_student_form_female_option_label"
                     android:id="@+id/female_radio" />
 
-                <!-- preguntar a christian si nos mata si ponemos opciones extra (mucho + number phone)-->
-
             </RadioGroup>
 
             <android.support.v7.widget.AppCompatTextView
+                android:layout_marginTop="@dimen/double_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"

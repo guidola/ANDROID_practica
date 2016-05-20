@@ -54,7 +54,7 @@
             android:padding="@dimen/double_margin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/delete"
+            android:src="@drawable/delete_32"
             android:layout_weight="1"/>
     </LinearLayout>
 
