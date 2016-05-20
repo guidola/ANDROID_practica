@@ -19,6 +19,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:inputType="text"
+            android:hint="@string/subject_name"
             android:id="@+id/subject_name" />
 
     </android.support.design.widget.TextInputLayout>
@@ -35,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
-
+            android:gravity="top"
+            android:hint="@string/subject_description"
             android:id="@+id/subject_description"
             />
 

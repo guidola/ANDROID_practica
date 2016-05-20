@@ -28,14 +28,13 @@ import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class SubjectManagerAdapter extends ArrayAdapter {
+
     private ArrayList<Subject> subjects;
 
     public SubjectManagerAdapter(Context context, int resource, ArrayList<Subject> arraySubjects) {
 
         super(context, resource);
-        subjects = new ArrayList<Subject>();
-
-        populateList(arraySubjects);
+        subjects = arraySubjects;
     }
 
     public void populateList(ArrayList<Subject> arraySubjects){
@@ -102,8 +101,7 @@ public class SubjectManagerAdapter extends ArrayAdapter {
                 builder.setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //MyApplication.deleteSubject(getItem(position)); //this is what should go for data consistance and stuff
-                        subjects.remove(position);
+                        MyApplication.deleteSubject(getItem(position));
                         notifyDataSetChanged();
                         dialog.cancel();
                     }

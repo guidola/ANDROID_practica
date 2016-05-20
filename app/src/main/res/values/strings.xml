@@ -72,5 +72,7 @@
     <string name="view_student_title"> Visualizar alumno</string>
     <string name="add_subject_title"> Nueva asignatura</string>
     <string name="view_subject_title"> Visualizar asignatura</string>
+    <string name="subject_name">Nombre de la asignatura</string>
+    <string name="subject_description">Descripción de la asignatura</string>
 
 </resources>

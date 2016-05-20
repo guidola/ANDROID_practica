@@ -54,6 +54,8 @@
                 android:layout_width="match_parent"
                 android:hint="@string/add_theme_field_hint"
                 android:id="@+id/add_theme_input"
+                android:lines="1"
+                android:singleLine="true"
                 android:layout_height="wrap_content" />
 
         </android.support.design.widget.TextInputLayout>

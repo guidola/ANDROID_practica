@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="domel.ecampus.Activity.AddSubjectActivity">
 
-    <android.support.v4.view.ViewPager
+    <domel.ecampus.Component.RestrictiveViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -24,11 +25,15 @@
         android:layout_alignParentBottom="true"
         android:id="@id/pagination_wrapper">
 
-        <com.viewpagerindicator.TitlePageIndicator
+        <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/pagination"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_centerVertical="true"
+            app:fillColor="@color/colorPrimaryDark"
+            app:strokeColor="@color/colorPrimaryLighten5"
+            app:paddingEnd="@dimen/simple_padding"
+            app:paddingStart="@dimen/simple_padding"
             />
 
         <android.support.v7.widget.AppCompatImageButton

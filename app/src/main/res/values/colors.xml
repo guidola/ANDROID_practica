@@ -9,5 +9,6 @@
     <color name="colorPrimaryLighten5">#abafc6</color>
     <color name="colorPrimaryLighten2">#818bbf</color>
     <color name="grey">#cecdcd</color>
+    <color name="red">#af1010</color>
 
 </resources>

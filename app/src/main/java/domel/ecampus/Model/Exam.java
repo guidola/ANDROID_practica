@@ -1,28 +1,30 @@
 package domel.ecampus.Model;
 
 
+import org.joda.time.DateTime;
+
 import java.util.Date;
 
 public class Exam {
 
-    private Date date;
+    private DateTime date;
     private int assigned_class;
     private Subject subject;
 
     public Exam() {
     }
 
-    public Exam(Date date, int assigned_class, Subject subject) {
+    public Exam(DateTime date, int assigned_class, Subject subject) {
         this.date = date;
         this.assigned_class = assigned_class;
         this.subject = subject;
     }
 
-    public Date getDate() {
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 

@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import org.joda.time.DateTime;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -67,6 +69,22 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
         JodaTimeAndroid.init(this);
+        //for now initializing model with ahrdcoded information to start working with it the good way
+        for (int i = 0 ; i < 4; i++){
+            addStudent(new Student(i, "Menganito", R.mipmap.la_salle_logo, new DateTime("1990-12-12"), "Magisterio", "Mucho"));
+        }
+        for (int i = 0 ; i < 4; i++){
+            addSubject(new Subject("Pinta y colorea", R.mipmap.la_salle_logo, "Pinta dentro de los bordes, no te salgas!"));
+        }
+        for(Subject s : getSubjects()){
+            addExam(new Exam(new DateTime("2016-08-22"), 1, s), s);
+
+        }
+        for (Subject s: getSubjects()){
+            for (Student student : getStudents()){
+                enroll(student, s);
+            }
+        }
     }
 
     public void persist(){
