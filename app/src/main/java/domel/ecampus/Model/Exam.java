@@ -2,6 +2,8 @@ package domel.ecampus.Model;
 
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
 
@@ -24,12 +26,22 @@ public class Exam {
         this.subject = subject;
     }
 
-    public DateTime getDate() {
-        return date;
-    }
 
     public void setDate(DateTime date) {
         this.date = date;
+    }
+
+    public String getDate(){
+
+        DateTimeFormatter timeFormat = DateTimeFormat.forPattern("dd/MM/yyyy");
+        String str = timeFormat.print(date);
+        return str;
+    }
+
+    public String getHour(){
+        DateTimeFormatter timeFormat = DateTimeFormat.forPattern("HH:mm");
+        String str = timeFormat.print(date);
+        return str;
     }
 
     public int getAssigned_class() {

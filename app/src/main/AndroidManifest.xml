@@ -62,6 +62,8 @@
             android:name=".Activity.ExamEditorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <uses-feature android:name="android.hardware.camera"
+            android:required="true" />
     </application>
 
 </manifest>

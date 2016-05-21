@@ -4,16 +4,19 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import domel.ecampus.Adapters.ExamListAdapter;
+import domel.ecampus.Adapters.StudentManagerAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.R;
 
-public class ExamsListActivity extends AppCompatActivity {
+public class ExamsListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,29 @@ public class ExamsListActivity extends AppCompatActivity {
 
         ListView listView = (ListView)  findViewById(R.id.listv_exams);
 
-        ArrayList<Exam> exams = new ArrayList<Exam>();
 
-        ExamListAdapter examsAdapter = new ExamListAdapter(ExamsListActivity.this, R.layout.adapter_exam_list, exams);
-        listView.setAdapter(examsAdapter);
+        ExamListAdapter examAdapter = new ExamListAdapter(
+                ExamsListActivity.this,
+                R.layout.adapter_exam_list,
+                getApp().getExams()
+        );
+
+        if (listView != null) {
+            listView.setAdapter(examAdapter);
+        }
+
+        //add button
+        ImageButton addStudentButton = (ImageButton) findViewById(R.id.add_toolbar);
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ExamsListActivity.this, ExamEditorActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
 
         //logout button
         ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
