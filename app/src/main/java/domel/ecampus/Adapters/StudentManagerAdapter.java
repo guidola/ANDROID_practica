@@ -86,7 +86,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), StudentActivity.class);
-                intent.putExtra("item", position);
+                intent.putExtra("position", position);
                 getContext().startActivity(intent);
 
             }

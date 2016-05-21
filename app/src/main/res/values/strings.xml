@@ -77,5 +77,6 @@
     <string name="subject_create_success">La asignatura se ha creado satisfactóriamente</string>
     <string name="error_theme_required">La asignatura debe tener almenos un  tema</string>
     <string name="theme_numeration">%d.</string>
+    <string name="student_date">  %3$s\n/%2$s\n/%1$s </string>
 
 </resources>

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -31,11 +32,16 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-
+/*
         Student st = new Student("test student",R.drawable.student, new DateTime(1991,2,23,0,0), "ADE", "Hombre");
         for(int i = 0; i<10;i++){
             st.getSubjects().add(new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text "));
         }
+*/
+
+        int nStudent = (int) getIntent().getExtras().getSerializable("position");
+        ArrayList<Student> sts = Student.getTestCollection();
+        Student st = sts.get(nStudent);
 
 
         //set the info

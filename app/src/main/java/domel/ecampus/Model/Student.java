@@ -8,6 +8,7 @@ import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.GregorianCalendar;
 
 import domel.ecampus.R;
 
-public class Student {
+public class Student{
 
     private static int auto_inc_id = 0;
 
