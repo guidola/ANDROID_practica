@@ -39,6 +39,7 @@ public class AddSubjectActivity extends AppCompatActivity {
     private final static int LAST_PAGE = 2;
     private int last_page = -1;
     private float last_position = -1;
+    private boolean not_processing = true;
 
     private RestrictiveViewPager pager;
     private AddStudentFragmentAdapter adapter;
@@ -84,8 +85,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                         last_page = position;
                         Log.d("position_modified_to", Integer.toString(last_page));
 
-                    }else if (position == LAST_PAGE && last_page == LAST_PAGE){
+                    }else if (position == LAST_PAGE && last_page == LAST_PAGE && not_processing){
 
+                        not_processing = false;
                         AddSubjectThirdStepFragment thirdStepFragment =  (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
                         SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
                                 ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
@@ -103,6 +105,7 @@ public class AddSubjectActivity extends AppCompatActivity {
                             AppCompatEditText input = (AppCompatEditText)(thirdStepFragment.getView().findViewById(R.id.add_theme_input));
                             input.setError(getString(R.string.error_theme_required));
                             input.requestFocus();
+                            not_processing = true;
                         }
 
                     }
@@ -157,8 +160,8 @@ public class AddSubjectActivity extends AppCompatActivity {
         Subject subject = new Subject();
 
         //process data from first fragment
-        AppCompatTextView name = (AppCompatTextView) firstStepFragment.getView().findViewById(R.id.subject_name);
-        AppCompatTextView description = (AppCompatTextView) firstStepFragment.getView().findViewById(R.id.subject_description);
+        AppCompatEditText name = (AppCompatEditText) firstStepFragment.getView().findViewById(R.id.subject_name);
+        AppCompatEditText description = (AppCompatEditText) firstStepFragment.getView().findViewById(R.id.subject_description);
         subject.setName(name.getText().toString());
         subject.setDescription(description.getText().toString());
 
