@@ -57,11 +57,11 @@ public class SubjectActivity extends AppCompatActivity {
         Subject subject = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
 
         for (int i = 0; i < 10; i++) {
-            subject.getThemes().add(new SubjectTheme(i, "Dummy theme"));
+            subject.getThemes().add(new SubjectTheme("Dummy theme"));
         }
 
         for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student(i, "John Doe", R.mipmap.la_salle_logo, new DateTime(1991, 2, 23, 0, 0), "Paleontologist", "Hombre"));
+            subject.getStudents().add(new Student("John Doe", R.mipmap.la_salle_logo, new DateTime(1991, 2, 23, 0, 0), "Paleontologist", "Hombre"));
         }
 
         if (name != null) {

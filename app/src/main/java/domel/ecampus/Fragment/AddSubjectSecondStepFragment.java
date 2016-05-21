@@ -3,10 +3,12 @@ package domel.ecampus.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.ListViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import domel.ecampus.Adapters.RegisteredStudentsAdapter;
 import domel.ecampus.R;
 
 /**
@@ -24,7 +26,13 @@ public class AddSubjectSecondStepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_subject_second_step, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_subject_second_step, container, false);
+
+        ListViewCompat list = (ListViewCompat) view.findViewById(R.id.list_students);
+        RegisteredStudentsAdapter adapter = new RegisteredStudentsAdapter(getContext(), R.layout.adapter_registered_students);
+        list.setAdapter(adapter);
+
+        return view;
     }
 
 }

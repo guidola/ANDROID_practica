@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public class User {
 
+    private static int auto_inc_id = 0;
+
+    private int id;
+
     @SerializedName("email")
     private String email;
 
@@ -20,6 +24,7 @@ public class User {
     }
 
     public User(String email, String password, boolean remembered) {
+        this.id = auto_inc_id++;
         this.email = email;
         this.password = password;
         this.remembered = remembered;

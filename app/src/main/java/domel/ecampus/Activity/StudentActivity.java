@@ -32,7 +32,7 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        Student st = new Student(99 ,"test student",R.drawable.student, new DateTime(1991,2,23,0,0), "ADE", "Hombre");
+        Student st = new Student("test student",R.drawable.student, new DateTime(1991,2,23,0,0), "ADE", "Hombre");
         for(int i = 0; i<10;i++){
             st.getSubjects().add(new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text "));
         }

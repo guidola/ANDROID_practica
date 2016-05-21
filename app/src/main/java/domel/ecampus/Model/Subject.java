@@ -2,11 +2,15 @@ package domel.ecampus.Model;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import domel.ecampus.R;
 
 public class Subject {
 
+    private static int auto_inc_id = 0;
+
+    private int id;
     private String name;
     private int image;
     private  String description;
@@ -18,12 +22,14 @@ public class Subject {
 
 
     public Subject() {
+        this.id = auto_inc_id++;
         this.students = new ArrayList<>();
         this.exams = new ArrayList<>();
         this.themes = new ArrayList<>();
     }
 
     public Subject(String name, int image, String description){
+        this.id = auto_inc_id++;
         this.name = name;
         this.image = image;
         this.description = description;
@@ -105,9 +111,13 @@ public class Subject {
         ArrayList<Subject> s = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             Subject sub = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
-            sub.getThemes().add(new SubjectTheme(i, "Dummy Theme"));
+            sub.getThemes().add(new SubjectTheme("Dummy Theme"));
             s.add(sub);
         }
         return s;
+    }
+
+    public void addThemes(Collection<SubjectTheme> themes){
+        this.themes.addAll(themes);
     }
 }

@@ -71,7 +71,7 @@ public class MyApplication extends Application{
         JodaTimeAndroid.init(this);
         //for now initializing model with ahrdcoded information to start working with it the good way
         for (int i = 0 ; i < 4; i++){
-            addStudent(new Student(i, "Menganito", R.mipmap.la_salle_logo, new DateTime("1990-12-12"), "Magisterio", "Mucho"));
+            addStudent(new Student("Menganito", R.mipmap.la_salle_logo, new DateTime("1990-12-12"), "Magisterio", "Mucho"));
         }
         for (int i = 0 ; i < 4; i++){
             addSubject(new Subject("Pinta y colorea", R.mipmap.la_salle_logo, "Pinta dentro de los bordes, no te salgas!"));
@@ -208,27 +208,27 @@ public class MyApplication extends Application{
     }
 
 
-    public ArrayList<Subject> getSubjects() {
+    public static ArrayList<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(ArrayList<Subject> subjects) {
+    public static void setSubjects(ArrayList<Subject> subjects) {
         MyApplication.subjects = subjects;
     }
 
-    public ArrayList<Student> getStudents() {
+    public static ArrayList<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(ArrayList<Student> students) {
+    public static void setStudents(ArrayList<Student> students) {
         MyApplication.students = students;
     }
 
-    public ArrayList<Exam> getExams() {
+    public static ArrayList<Exam> getExams() {
         return exams;
     }
 
-    public void setExams(ArrayList<Exam> exams) {
+    public static void setExams(ArrayList<Exam> exams) {
         MyApplication.exams = exams;
     }
 

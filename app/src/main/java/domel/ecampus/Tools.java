@@ -2,6 +2,8 @@ package domel.ecampus;
 
 import android.content.Context;
 import android.os.Environment;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -32,6 +34,14 @@ public class Tools{
     public static boolean fileExists(Context context, String fname){
         File file = context.getFileStreamPath(fname);
         return file.exists();
+    }
+
+    public static void toast(Context context, String str){
+
+        Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 16);
+        toast.show();
+
     }
 
 }

@@ -5,16 +5,17 @@ package domel.ecampus.Model;
  */
 public class SubjectTheme {
 
+    private static int auto_inc_id = 0;
     private int id;
-
     private String name;
 
 
     public SubjectTheme() {
+        this.id = auto_inc_id++;
     }
 
-    public SubjectTheme(int id, String name) {
-        this.id = id;
+    public SubjectTheme(String name) {
+        this.id = auto_inc_id++;
         this.name = name;
     }
 

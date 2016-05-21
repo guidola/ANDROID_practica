@@ -1,6 +1,8 @@
 package domel.ecampus.Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.SubjectTheme;
@@ -20,20 +23,12 @@ public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
 
     private ArrayList<SubjectTheme> themes;
 
-    public SubjectThemeAdapter(Context context, int resource, ArrayList<SubjectTheme> arrayStudents) {
+    public SubjectThemeAdapter(Context context, int resource) {
 
         super(context, resource);
         themes = new ArrayList<>();
 
-        populateList(arrayStudents);
-    }
 
-    public void populateList(ArrayList<SubjectTheme> arrayStudents){
-
-        themes.clear();
-
-        Log.d("DEBUG", "on populateList method");
-        themes.addAll(arrayStudents);
     }
 
     public int getCount(){
@@ -58,7 +53,66 @@ public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
             row.setClickable(true);
         }
 
+
+        AppCompatTextView number = (AppCompatTextView) row.findViewById(R.id.numeration);
+        AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.theme_name);
+        SubjectTheme theme = getItem(position);
+
+        number.setText(getContext().getString(R.string.theme_numeration, position));
+        name.setText(theme.getName());
+
+        AppCompatImageButton up = (AppCompatImageButton) row.findViewById(R.id.button_up);
+        AppCompatImageButton down = (AppCompatImageButton) row.findViewById(R.id.button_down);
+        AppCompatImageButton delete = (AppCompatImageButton) row.findViewById(R.id.button_delete);
+
+        up.setTag(position);
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = (int)v.getTag();
+                if(pos != 0) {
+                    Collections.swap(themes, pos, pos - 1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        down.setTag(position);
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = (int)v.getTag();
+                if(pos != themes.size() - 1){
+                    Collections.swap(themes, pos, pos + 1);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        delete.setTag(position);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = (int)v.getTag();
+                themes.remove(pos);
+                notifyDataSetChanged();
+            }
+        });
+
         return row;
     }
 
+    public ArrayList<SubjectTheme> getThemes() {
+        return themes;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return themes.isEmpty();
+    }
+
+    @Override
+    public void add(SubjectTheme object) {
+        themes.add(object);
+    }
 }

@@ -2,11 +2,13 @@ package domel.ecampus.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.ListViewCompat;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,18 +18,27 @@ import android.widget.ImageView;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
+import java.util.ArrayList;
+
 import domel.ecampus.Adapters.AddStudentFragmentAdapter;
+import domel.ecampus.Adapters.RegisteredStudentsAdapter;
+import domel.ecampus.Adapters.SubjectManagerAdapter;
+import domel.ecampus.Adapters.SubjectThemeAdapter;
 import domel.ecampus.Component.RestrictiveViewPager;
 import domel.ecampus.Fragment.AddSubjectFirstStepFragment;
 import domel.ecampus.Fragment.AddSubjectSecondStepFragment;
 import domel.ecampus.Fragment.AddSubjectThirdStepFragment;
+import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
     private final static int LAST_PAGE = 2;
     private int last_page = -1;
+    private float last_position = -1;
 
     private RestrictiveViewPager pager;
     private AddStudentFragmentAdapter adapter;
@@ -40,7 +51,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         //Set the pager with an adapter
         pager = (RestrictiveViewPager) findViewById(R.id.pager);
         if (pager != null) {
-            adapter= new AddStudentFragmentAdapter(getSupportFragmentManager());
+            adapter = new AddStudentFragmentAdapter(getSupportFragmentManager());
             pager.setAdapter(adapter);
         }
 
@@ -74,8 +85,26 @@ public class AddSubjectActivity extends AppCompatActivity {
                         Log.d("position_modified_to", Integer.toString(last_page));
 
                     }else if (position == LAST_PAGE && last_page == LAST_PAGE){
-                        //submit the data and close the application
-                        submitFormData();
+
+                        AddSubjectThirdStepFragment thirdStepFragment =  (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
+                        SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
+                                ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
+                                        .getAdapter();
+                        if(!theme_adapter.isEmpty()){
+                            //submit the data and close the application
+                            submitFormData();
+                            Intent intent = new Intent(AddSubjectActivity.this, SubjectManagerActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            Tools.toast(getApplicationContext(), getString(R.string.subject_create_success));
+                            finish();
+
+                        }else{
+                            AppCompatEditText input = (AppCompatEditText)(thirdStepFragment.getView().findViewById(R.id.add_theme_input));
+                            input.setError(getString(R.string.error_theme_required));
+                            input.requestFocus();
+                        }
+
                     }
                 }
 
@@ -90,37 +119,6 @@ public class AddSubjectActivity extends AppCompatActivity {
                 }
             });
 
-            pager.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-
-
-
-                    if(pager.getCurrentItem() == 0){
-
-                        AddSubjectFirstStepFragment f = (AddSubjectFirstStepFragment) adapter.getRegisteredFragment(0);
-                        AppCompatEditText name = (AppCompatEditText) f.getView().findViewById(R.id.subject_name);
-                        AppCompatEditText description = (AppCompatEditText) f.getView().findViewById(R.id.subject_description);
-
-                        if(name.getText().length() == 0){
-                            name.setError(getString(R.string.error_field_required));
-                            name.requestFocus();
-                            pager.setAllow_swipe(false);
-                            return false;
-                        }else if(description.getText().length() == 0){
-                            description.setError(getString(R.string.error_field_required));
-                            description.requestFocus();
-                            pager.setAllow_swipe(false);
-                            return false;
-                        }else{
-                            pager.setAllow_swipe(true);
-                            return false;
-                        }
-                    }
-
-                    return false;
-                }
-            });
         }
 
         //Bind the title indicator to the adapter
@@ -159,10 +157,29 @@ public class AddSubjectActivity extends AppCompatActivity {
         Subject subject = new Subject();
 
         //process data from first fragment
-
-        //process data from second fragment
+        AppCompatTextView name = (AppCompatTextView) firstStepFragment.getView().findViewById(R.id.subject_name);
+        AppCompatTextView description = (AppCompatTextView) firstStepFragment.getView().findViewById(R.id.subject_description);
+        subject.setName(name.getText().toString());
+        subject.setDescription(description.getText().toString());
 
         //process data from third fragment
+        SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
+                ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
+                        .getAdapter();
+        subject.addThemes(theme_adapter.getThemes());
+
+        //At this point the subject itself is fully filled. Persist
+        MyApplication.addSubject(subject);
+
+        //process data from second fragment
+        RegisteredStudentsAdapter adapter = (RegisteredStudentsAdapter)
+                ((ListViewCompat)secondStepFragment.getView().findViewById(R.id.list_students))
+                        .getAdapter();
+
+        ArrayList<Student> reg_students = adapter.getSelectedStudents();
+        for(Student s : reg_students){
+            MyApplication.enroll(s, subject);
+        }
 
 
     }

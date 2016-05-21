@@ -11,7 +11,6 @@
         android:layout_marginEnd="@dimen/simple_padding"
         android:layout_marginRight="@dimen/simple_padding"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1. "
         android:layout_centerVertical="true"/>
 
     <android.support.v7.widget.AppCompatTextView
@@ -23,8 +22,7 @@
         android:layout_toStartOf="@+id/buttonPanel"
         android:layout_centerVertical="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Large Text"
-        android:id="@+id/student_name" />
+        android:id="@+id/theme_name" />
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
@@ -38,23 +36,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
-            android:layout_marginEnd="@dimen/half_padding"
-            android:layout_marginRight="@dimen/half_padding"
+            android:layout_marginEnd="@dimen/simple_padding"
+            android:layout_marginRight="@dimen/simple_padding"
+            android:id="@+id/button_up"
             android:src="@drawable/ic_expand_less_primary_24dp"/>
 
         <android.support.v7.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
-            android:layout_marginEnd="@dimen/half_padding"
-            android:layout_marginRight="@dimen/half_padding"
+            android:layout_marginEnd="@dimen/simple_padding"
+            android:layout_marginRight="@dimen/simple_padding"
+            android:id="@+id/button_down"
             android:src="@drawable/ic_expand_more_primary_24dp"/>
 
         <android.support.v7.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
-            android:src="@drawable/delete"/>
+            android:id="@+id/button_delete"
+            android:src="@drawable/ic_delete_red_24dp"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 

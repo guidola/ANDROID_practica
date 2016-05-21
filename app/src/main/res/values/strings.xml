@@ -74,5 +74,8 @@
     <string name="view_subject_title"> Visualizar asignatura</string>
     <string name="subject_name">Nombre de la asignatura</string>
     <string name="subject_description">Descripción de la asignatura</string>
+    <string name="subject_create_success">La asignatura se ha creado satisfactóriamente</string>
+    <string name="error_theme_required">La asignatura debe tener almenos un  tema</string>
+    <string name="theme_numeration">%d.</string>
 
 </resources>

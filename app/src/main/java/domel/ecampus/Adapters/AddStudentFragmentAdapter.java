@@ -16,9 +16,17 @@ public class AddStudentFragmentAdapter extends SmartFragmentStatePagerAdapter {
 
     private static int NUM_ITEMS = 3;
 
+    private AddSubjectFirstStepFragment firstStepFragment;
+    private AddSubjectSecondStepFragment secondStepFragment;
+    private AddSubjectThirdStepFragment thirdStepFragment;
+
     public AddStudentFragmentAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
+        firstStepFragment = new AddSubjectFirstStepFragment();
+        secondStepFragment = new AddSubjectSecondStepFragment();
+        thirdStepFragment = new AddSubjectThirdStepFragment();
     }
+
 
     // Returns total number of pages
     @Override
@@ -31,11 +39,11 @@ public class AddStudentFragmentAdapter extends SmartFragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment
-                return new AddSubjectFirstStepFragment();
+                return firstStepFragment;
             case 1: // Fragment # 0 - This will show FirstFragment different title
-                return new AddSubjectSecondStepFragment();
+                return secondStepFragment;
             case 2: // Fragment # 1 - This will show SecondFragment
-                return new AddSubjectThirdStepFragment();
+                return thirdStepFragment;
             default:
                 return null;
         }

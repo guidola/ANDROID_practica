@@ -7,6 +7,9 @@ import java.util.Date;
 
 public class Exam {
 
+    private static int auto_inc_id = 0;
+
+    private int id;
     private DateTime date;
     private int assigned_class;
     private Subject subject;
@@ -15,6 +18,7 @@ public class Exam {
     }
 
     public Exam(DateTime date, int assigned_class, Subject subject) {
+        this.id = auto_inc_id++;
         this.date = date;
         this.assigned_class = assigned_class;
         this.subject = subject;

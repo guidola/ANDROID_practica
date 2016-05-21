@@ -19,6 +19,8 @@ import domel.ecampus.R;
 
 public class Student {
 
+    private static int auto_inc_id = 0;
+
     private int id;
     private String name;
     private int image;
@@ -28,26 +30,15 @@ public class Student {
     private ArrayList<Subject> subjects;
 
 
-    public Student(int id, String name, int image, DateTime birthdate, String specialty, String gender) {
-        this.id = id;
+    public Student(String name, int image, DateTime birthdate, String specialty, String gender) {
+        this.id = auto_inc_id++;
         this.name = name;
         this.image = image;
         this.birthdate = birthdate;
-
-        Log.d("DEBUG", "Date --> " + this.birthdate.toString());
         this.specialty = specialty;
         this.gender = gender;
         this.subjects = new ArrayList<>();
     }
-/*
-    public Student(String name, int image, Calendar date, String specialty, String gender){
-        this.name = name;
-        this.image = image;
-        this.date = date;
-        this.specialty = specialty;
-        this.gender = gender;
-        this.subjects = new ArrayList<>();
-    }*/
 
     public String getGender() {return gender;}
 
@@ -129,7 +120,7 @@ public class Student {
 
         for (int i = 0; i < 9; i++) {
 
-            Student st = new Student(i ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre");
+            Student st = new Student("test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre");
             st.getSubjects().add(new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text "));
             s.add(st);
         }
