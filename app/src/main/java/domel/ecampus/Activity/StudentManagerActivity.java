@@ -11,11 +11,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import domel.ecampus.Adapters.StudentManagerAdapter;
+import domel.ecampus.Adapters.SubjectManagerAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.R;
 
-public class StudentManagerActivity extends AppCompatActivity {
+public class StudentManagerActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +26,26 @@ public class StudentManagerActivity extends AppCompatActivity {
 
         ListView listView = (ListView)  findViewById(R.id.listv_student);
 
-        ArrayList<Student> students = Student.getTestCollection();
-
-        ImageButton addStudentButton = (ImageButton) findViewById(R.id.addStudent_toolbar);
 
 
+        StudentManagerAdapter studentAdapter = new StudentManagerAdapter(
+                StudentManagerActivity.this,
+                R.layout.adapter_subject_manager,
+                getApp().getStudents()
+        );
 
-        final StudentManagerAdapter studentAdapter = new StudentManagerAdapter(StudentManagerActivity.this, R.layout.adapter_student_manager, students);
         if (listView != null) {
             listView.setAdapter(studentAdapter);
         }
 
+        //add button
+        ImageButton addStudentButton = (ImageButton) findViewById(R.id.addStudent_toolbar);
         addStudentButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StudentManagerActivity.this, AddStudentActivity.class);
                 startActivity(intent);
-
             }
 
         });

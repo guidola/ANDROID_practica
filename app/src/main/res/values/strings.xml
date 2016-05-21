@@ -79,4 +79,7 @@
     <string name="theme_numeration">%d.</string>
     <string name="student_date">  %3$s\n/%2$s\n/%1$s </string>
 
+    <string name="add_degree"> Carrera </string>
+
+
 </resources>

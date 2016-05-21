@@ -31,9 +31,7 @@ import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.User;
 
-/**
- * Created by Guillermo on 10/5/16.
- */
+
 public class MyApplication extends Application{
 
 

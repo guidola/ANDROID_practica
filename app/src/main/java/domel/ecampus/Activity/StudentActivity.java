@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -21,67 +26,84 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.R;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends BaseActivity {
+    private boolean zoomOut =  false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
-/*
-        Student st = new Student("test student",R.drawable.student, new DateTime(1991,2,23,0,0), "ADE", "Hombre");
-        for(int i = 0; i<10;i++){
-            st.getSubjects().add(new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text "));
-        }
-*/
+
 
         int nStudent = (int) getIntent().getExtras().getSerializable("position");
-        ArrayList<Student> sts = Student.getTestCollection();
+        ArrayList<Student> sts = getApp().getStudents();
         Student st = sts.get(nStudent);
 
 
-        //set the info
-        AppCompatImageView image = (AppCompatImageView) findViewById(R.id.profile_picture);
+        //id of the info to the layout
+        final AppCompatImageView image = (AppCompatImageView) findViewById(R.id.profile_picture);
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.student_name);
         AppCompatTextView age = (AppCompatTextView) findViewById(R.id.student_birthdate);
         AppCompatTextView speciality = (AppCompatTextView) findViewById(R.id.student_career);
         AppCompatTextView gender = (AppCompatTextView) findViewById(R.id.student_gender);
 
-
-        image.setImageResource(st.getImage());
-        name.setText(StringUtils.capitalize(st.getName()));
-        age.setText(StringUtils.capitalize(st.getBithdateString()));
-        speciality.setText(StringUtils.capitalize(st.getSpecialty()));
-        gender.setText(StringUtils.capitalize(st.getGender()));
+        //set the info
+        if(image != null) image.setImageResource(st.getImage());
+        if(name != null) name.setText(StringUtils.capitalize(st.getName()));
+        if (age != null) age.setText(StringUtils.capitalize(st.getBithdateString()));
+        if(speciality != null) speciality.setText(StringUtils.capitalize(st.getSpecialty()));
+        if(gender != null) gender.setText(StringUtils.capitalize(st.getGender()));
 
         ViewGroup subjects_wrapper = (ViewGroup) findViewById(R.id.subject_wrapper);
 
-        if(st.getSubjects().size() > 0){
+        int index = 1;
 
-            int index = 1;
+        for (Subject t : st.getSubjects()){
 
-            for (Subject t : st.getSubjects()){
-
-                AppCompatTextView subject_row = new AppCompatTextView(this);
-                String row_text = index++ + ". " + StringUtils.capitalize(t.getName());
-                subject_row.setText(row_text);
-                subject_row.setPadding(16,8,8,8);
-                subject_row.setGravity(Gravity.CENTER_VERTICAL);
+            AppCompatTextView subject_row = new AppCompatTextView(this);
+            String row_text = index++ + ". " + StringUtils.capitalize(t.getName());
+            subject_row.setText(row_text);
+            subject_row.setPadding(16,8,8,8);
+            subject_row.setGravity(Gravity.CENTER_VERTICAL);
 
 
-                if (subjects_wrapper != null) {
-                    subjects_wrapper.addView(subject_row, subjects_wrapper.getChildCount(), new ViewGroup.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                    ));
+            if (subjects_wrapper != null) {
+                subjects_wrapper.addView(subject_row, subjects_wrapper.getChildCount(), new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                ));
+            }
+
+        }
+
+
+        if (image != null) {
+            image.setOnClickListener(new View.OnClickListener() {
+                //go to student manager activity
+                @Override
+                public void onClick(View view) {
+
+
+                    /*
+                    *
+                    * IMAGE ZOOM!!!!!
+                    *
+                    * */
+
+
                 }
 
-            }
+            });
         }
+
+
 
         //logout button
         ImageView closeSesionButton = (ImageView) findViewById(R.id.close);

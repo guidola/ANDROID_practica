@@ -116,6 +116,7 @@ public class Student{
         this.birthdate = birthdate;
     }
 
+    /*
     public static ArrayList<Student> getTestCollection(){
         ArrayList<Student> s = new ArrayList<>();
 
@@ -126,5 +127,5 @@ public class Student{
             s.add(st);
         }
         return s;
-    }
+    }*/
 }

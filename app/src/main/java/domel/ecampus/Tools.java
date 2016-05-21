@@ -7,9 +7,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
-/**
- * Created by jorgemt94 on 13/5/16.
- */
+
 public class Tools{
 
     /* Checks if external storage is available for read and write */
