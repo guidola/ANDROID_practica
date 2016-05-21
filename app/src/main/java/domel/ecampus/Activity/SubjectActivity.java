@@ -26,6 +26,7 @@ import domel.ecampus.Adapters.StudentManagerAdapter;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class SubjectActivity extends AppCompatActivity {
@@ -54,15 +55,7 @@ public class SubjectActivity extends AppCompatActivity {
 
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) findViewById(R.id.subject_description);
-        Subject subject = new Subject("test subject", R.mipmap.la_salle_logo, "this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text this is some dummy text ");
-
-        for (int i = 0; i < 10; i++) {
-            subject.getThemes().add(new SubjectTheme("Dummy theme"));
-        }
-
-        for (int i = 0; i < 10; i++) {
-            subject.getStudents().add(new Student("John Doe", R.mipmap.la_salle_logo, new DateTime(1991, 2, 23, 0, 0), "Paleontologist", "Hombre"));
-        }
+        Subject subject = MyApplication.getSubjectById((int)getIntent().getExtras().getInt("id"));
 
         if (name != null) {
             name.setText(StringUtils.capitalize(subject.getName()));
@@ -134,7 +127,7 @@ public class SubjectActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(SubjectActivity.this, StudentActivity.class);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        intent.putExtra("item", (int) v.getTag());
+                        intent.putExtra("position", (int) v.getTag());
                         startActivity(intent);
                         //((Activity)getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.

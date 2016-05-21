@@ -94,13 +94,17 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="@dimen/simple_padding"
+                android:layout_marginStart="@dimen/simple_padding"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:id="@+id/subject_name" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/simple_padding"
+                android:layout_marginStart="@dimen/simple_padding"
                 android:id="@+id/subject_description" />
 
             <LinearLayout

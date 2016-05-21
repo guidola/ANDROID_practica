@@ -120,4 +120,12 @@ public class Subject {
     public void addThemes(Collection<SubjectTheme> themes){
         this.themes.addAll(themes);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

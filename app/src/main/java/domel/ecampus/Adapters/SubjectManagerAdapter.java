@@ -77,12 +77,13 @@ public class SubjectManagerAdapter extends ArrayAdapter {
         description.setText(StringUtils.capitalize(subject.getDescription()));
 
         row.setClickable(true);
+        row.setTag(subject.getId());
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SubjectActivity.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("item", position); //since we work all time with the same collections we can use the position
+                intent.putExtra("id", (int)v.getTag()); //since we work all time with the same collections we can use the position
                                                    //this should be replaced with some id to query for the real item on a more real situation
                 getContext().startActivity(intent);
                 //((Activity)getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -58,7 +58,6 @@ public class SubjectManagerActivity extends BaseActivity {
                     //logout
                     Intent intent = new Intent(SubjectManagerActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
                     finish();
 
                 }

@@ -239,4 +239,13 @@ public class MyApplication extends Application{
     public static void setUser(User user) {
         MyApplication.user = user;
     }
+
+    public static Subject getSubjectById(int id) {
+
+        for (Subject s : subjects){
+            if(s.getId() == id) return s;
+        }
+
+        return null;
+    }
 }

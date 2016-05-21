@@ -39,7 +39,7 @@ public class StudentActivity extends AppCompatActivity {
         }
 */
 
-        int nStudent = (int) getIntent().getExtras().getSerializable("position");
+        int nStudent = getIntent().getExtras().getInt("position");
         ArrayList<Student> sts = Student.getTestCollection();
         Student st = sts.get(nStudent);
 
