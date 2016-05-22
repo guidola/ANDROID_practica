@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +32,7 @@ import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class StudentActivity extends BaseActivity {
@@ -42,20 +45,26 @@ public class StudentActivity extends BaseActivity {
         setContentView(R.layout.activity_student);
 
 
-        int nStudent = getIntent().getExtras().getInt("position");
-        ArrayList<Student> sts = Student.getTestCollection();
-        Student st = sts.get(nStudent);
+        int nStudent = getIntent().getExtras().getInt("id");
+        Student st = MyApplication.getStudentById(nStudent);
 
 
         //id of the info to the layout
-        final AppCompatImageView image = (AppCompatImageView) findViewById(R.id.profile_picture);
+        AppCompatImageView image = (AppCompatImageView) findViewById(R.id.profile_picture);
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.student_name);
         AppCompatTextView age = (AppCompatTextView) findViewById(R.id.student_birthdate);
         AppCompatTextView speciality = (AppCompatTextView) findViewById(R.id.student_career);
         AppCompatTextView gender = (AppCompatTextView) findViewById(R.id.student_gender);
 
         //set the info
-        if(image != null) image.setImageResource(st.getImage());
+
+        //for compatibily while whole app refactor is done
+        if(st.getPath() == null){
+            if(image != null) image.setImageResource(st.getImage());
+        }else{
+            if(image != null) image.setImageURI(st.getPath());
+        }
+
         if(name != null) name.setText(StringUtils.capitalize(st.getName()));
         if (age != null) age.setText(StringUtils.capitalize(st.getBithdateString()));
         if(speciality != null) speciality.setText(StringUtils.capitalize(st.getSpecialty()));
@@ -89,38 +98,60 @@ public class StudentActivity extends BaseActivity {
                 //go to student manager activity
                 @Override
                 public void onClick(View view) {
+                    Log.d("fullscren", "open");
+                    View v = findViewById(R.id.full_screen_wrapper);
+                    AppCompatImageView image = (AppCompatImageView) findViewById(R.id.full_screen_image);
+                    //for compatibily while whole app refactor is done
+                    AppCompatImageView miniature = (AppCompatImageView) view;
+                    image.setImageDrawable(miniature.getDrawable());
+                    /*Animation bottomDown = AnimationUtils.loadAnimation(StudentActivity.this,
+                            R.anim.zoom_in);
+                    if (v != null) {
+                        v.startAnimation(bottomDown);
+                        v.setVisibility(View.VISIBLE);
+                    }*/
+                    v.setVisibility(View.VISIBLE);
+
+                }
+            });
+        }
+
+        View close_but = findViewById(R.id.btnClose);
+        if (close_but != null) {
+            close_but.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("fullscren", "close");
+                    View v = findViewById(R.id.full_screen_wrapper);
+                    /*Animation bottomDown = AnimationUtils.loadAnimation(StudentActivity.this,
+                            R.anim.zoom_out);
+                    if (v != null) {
+                        v.startAnimation(bottomDown);
+                        v.setVisibility(View.GONE);
+                    }*/
+                    v.setVisibility(View.GONE);
+                }
+            });
+        }
 
 
-                    /*
-                    *
-                    * IMAGE ZOOM!!!!!
-                    *
-                    * */
+        //logout button
+        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
+        if (closeSesionButton != null) {
+            closeSesionButton.setOnClickListener(new View.OnClickListener() {
 
+                @Override
+                public void onClick(View view) {
+                    //logout
+                    Intent intent = new Intent(StudentActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
 
                 }
 
             });
         }
-
-
-
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        closeSesionButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                //logout
-                Intent intent = new Intent(StudentActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-
-            }
-
-        });
-
 
 
     }

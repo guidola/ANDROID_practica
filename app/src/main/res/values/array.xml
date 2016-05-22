@@ -2,6 +2,7 @@
 <resources>
 
     <string-array name="degrees">
+        <item>Selecciona una titulación</item>
         <item>Informàtica</item>
         <item>Telemàtica</item>
         <item>Telecomunicaciones</item>

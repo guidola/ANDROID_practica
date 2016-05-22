@@ -1,6 +1,7 @@
 package domel.ecampus.Model;
 
 
+import android.net.Uri;
 import android.util.Log;
 
 import org.joda.time.DateTime;
@@ -28,6 +29,7 @@ public class Student{
     private DateTime birthdate;
     private String specialty;
     private String gender;
+    private Uri path;
     private ArrayList<Subject> subjects;
 
 
@@ -39,6 +41,7 @@ public class Student{
         this.specialty = specialty;
         this.gender = gender;
         this.subjects = new ArrayList<>();
+        this.path = null;
     }
 
     public String getGender() {return gender;}
@@ -47,6 +50,8 @@ public class Student{
 
 
     public Student() {
+        this.id = auto_inc_id++;
+        this.path = null;
         this.subjects = new ArrayList<>();
     }
 
@@ -116,7 +121,15 @@ public class Student{
         this.birthdate = birthdate;
     }
 
-    /*
+    public Uri getPath() {
+        return path;
+    }
+
+    public void setPath(Uri path) {
+        this.path = path;
+    }
+
+/*
     public static ArrayList<Student> getTestCollection(){
         ArrayList<Student> s = new ArrayList<>();
 

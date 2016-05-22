@@ -18,6 +18,7 @@
             android:layout_gravity="center_vertical"
             android:id="@+id/student_image"
             android:padding="5dp"
+            android:scaleType="fitCenter"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"/>
@@ -84,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:text="@string/student_speciality"/>
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/student_speciality"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"

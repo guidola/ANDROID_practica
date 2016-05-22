@@ -10,5 +10,7 @@
     <color name="colorPrimaryLighten2">#818bbf</color>
     <color name="grey">#cecdcd</color>
     <color name="red">#af1010</color>
+    <color name="black_75">#df000000</color>
+    <color name="black_15">#30000000</color>
 
 </resources>

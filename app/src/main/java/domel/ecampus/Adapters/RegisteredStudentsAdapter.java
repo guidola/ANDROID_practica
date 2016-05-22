@@ -70,7 +70,12 @@ public class RegisteredStudentsAdapter extends ArrayAdapter<Student> {
             }
         });
 
-        image.setImageResource(student.getImage());
+        //for compatibily while whole app refactor is done
+        if(student.getPath() == null){
+            if(image != null) image.setImageResource(student.getImage());
+        }else{
+            if(image != null) image.setImageURI(student.getPath());
+        }
         name.setText(student.getName());
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -3,7 +3,9 @@
     package="domel.ecampus">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".MyApplication"
@@ -61,9 +63,7 @@
         <activity
             android:name=".Activity.ExamEditorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <uses-feature android:name="android.hardware.camera"
-            android:required="true" />
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

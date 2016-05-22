@@ -117,7 +117,12 @@ public class SubjectActivity extends AppCompatActivity {
                 AppCompatTextView student_name = (AppCompatTextView) v.findViewById(R.id.textView2);
                 AppCompatTextView student_spec = (AppCompatTextView) v.findViewById(R.id.textView3);
 
-                student_image.setImageResource(student.getImage());
+                //for compatibily while whole app refactor is done
+                if(student.getPath() == null){
+                    if(student_image != null) student_image.setImageResource(student.getImage());
+                }else{
+                    if(student_image != null) student_image.setImageURI(student.getPath());
+                }
                 student_name.setText(student.getName());
                 student_spec.setText(student.getSpecialty());
 

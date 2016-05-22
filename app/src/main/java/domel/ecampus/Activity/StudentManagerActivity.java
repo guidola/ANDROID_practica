@@ -15,6 +15,7 @@ import domel.ecampus.Adapters.SubjectManagerAdapter;
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class StudentManagerActivity extends BaseActivity {
@@ -26,12 +27,9 @@ public class StudentManagerActivity extends BaseActivity {
 
         ListView listView = (ListView)  findViewById(R.id.listv_student);
 
-
-
         StudentManagerAdapter studentAdapter = new StudentManagerAdapter(
                 StudentManagerActivity.this,
-                R.layout.adapter_subject_manager,
-                getApp().getStudents()
+                R.layout.adapter_subject_manager
         );
 
         if (listView != null) {

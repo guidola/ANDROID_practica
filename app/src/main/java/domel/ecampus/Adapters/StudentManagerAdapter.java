@@ -23,6 +23,7 @@ import domel.ecampus.Activity.StudentActivity;
 import domel.ecampus.Activity.SubjectActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 
@@ -31,18 +32,10 @@ public class StudentManagerAdapter extends ArrayAdapter{
 
     private ArrayList<Student> students;
 
-    public StudentManagerAdapter(Context context, int resource, ArrayList<Student> arrayStudents) {
+    public StudentManagerAdapter(Context context, int resource) {
 
         super(context, resource);
-        students = new ArrayList<Student>();
-
-        populateList(arrayStudents);
-    }
-
-    public void populateList(ArrayList<Student> arrayStudents){
-
-        students.clear();
-        students.addAll(arrayStudents);
+        students = MyApplication.getStudents();
     }
 
     public int getCount(){
@@ -74,19 +67,25 @@ public class StudentManagerAdapter extends ArrayAdapter{
         AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_student);
         Student student = getItem(position);
 
-        image.setImageResource(student.getImage());
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        //for compatibily while whole app refactor is done
+        if(student.getPath() == null){
+            if(image != null) image.setImageResource(student.getImage());
+        }else{
+            if(image != null) image.setImageURI(student.getPath());
+        }
+
         name.setText(StringUtils.capitalize(student.getName()));
         age.setText(StringUtils.capitalize(student.getAgeString()));
         speciality.setText(StringUtils.capitalize(student.getSpecialty()));
 
         //if click teh row go to the student preview
         row.setClickable(true);
+        row.setTag(student.getId());
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), StudentActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("id", (int)v.getTag());
                 getContext().startActivity(intent);
 
             }
