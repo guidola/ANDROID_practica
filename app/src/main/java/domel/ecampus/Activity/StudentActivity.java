@@ -30,6 +30,7 @@ import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
+import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class StudentActivity extends BaseActivity {
@@ -42,9 +43,7 @@ public class StudentActivity extends BaseActivity {
         setContentView(R.layout.activity_student);
 
 
-        int nStudent = getIntent().getExtras().getInt("position");
-        ArrayList<Student> sts = Student.getTestCollection();
-        Student st = sts.get(nStudent);
+        Student st = MyApplication.getStudentById((int)getIntent().getExtras().getInt("id"));
 
 
         //id of the info to the layout
@@ -93,7 +92,11 @@ public class StudentActivity extends BaseActivity {
 
                     /*
                     *
+                    *
+                    *
                     * IMAGE ZOOM!!!!!
+                    *
+                    *
                     *
                     * */
 

@@ -78,6 +78,10 @@
     <string name="error_theme_required">La asignatura debe tener almenos un  tema</string>
     <string name="theme_numeration">%d.</string>
     <string name="student_date">  %3$s\n/%2$s\n/%1$s </string>
+    <string name="prompt_exam_date">  Fecha del examen </string>
+    <string name="prompt_exam_name">  Nombre del examen </string>
+
+
 
     <string name="add_degree"> Carrera </string>
 

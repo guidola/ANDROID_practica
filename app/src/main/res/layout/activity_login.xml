@@ -37,7 +37,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/simple_padding"
-                android:src="@mipmap/la_salle_logo"/>
+                android:src="@drawable/logo_black"/>
 
             <android.support.v7.widget.AppCompatTextView
                 android:text="@string/login"

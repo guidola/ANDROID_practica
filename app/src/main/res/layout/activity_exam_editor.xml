@@ -20,15 +20,22 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:paddingLeft="24dp"
                 android:paddingRight="24dp">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/exit_toolbar"
+                    android:src="@drawable/back_toolbar"
                     android:layout_gravity="left" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo"
+                    android:layout_gravity="left" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,13 +69,13 @@
 
                 <EditText
                     android:layout_weight="1"
-                    android:id="@+id/student_name"
+                    android:id="@+id/exam_name"
                     android:layout_marginTop="@dimen/simple_padding"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_student_name"
+                    android:hint="@string/prompt_exam_name"
                     android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/prompt_student_name"
+                    android:imeActionLabel="@string/prompt_exam_name"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -82,11 +89,11 @@
 
                 <EditText
                     android:layout_weight="1"
-                    android:id="@+id/student_born_date"
+                    android:id="@+id/exam_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_born_date"
-                    android:imeActionLabel="@string/prompt_born_date"
+                    android:hint="@string/prompt_exam_date"
+                    android:imeActionLabel="@string/prompt_exam_date"
                     android:imeOptions="actionUnspecified"
                     android:imeActionId="@+id/login"
                     android:maxLines="1"

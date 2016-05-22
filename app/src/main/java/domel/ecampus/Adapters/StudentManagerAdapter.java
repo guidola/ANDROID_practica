@@ -72,7 +72,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
         AppCompatTextView age = (AppCompatTextView) row.findViewById(R.id.student_age);
         AppCompatTextView speciality = (AppCompatTextView) row.findViewById(R.id.student_speciality);
         AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_student);
-        Student student = getItem(position);
+        final Student student = getItem(position);
 
         image.setImageResource(student.getImage());
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -85,8 +85,9 @@ public class StudentManagerAdapter extends ArrayAdapter{
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getContext(), StudentActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("id", student.getId());
                 getContext().startActivity(intent);
 
             }

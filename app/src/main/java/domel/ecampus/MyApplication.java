@@ -246,4 +246,22 @@ public class MyApplication extends Application{
 
         return null;
     }
+
+    public static Student getStudentById(int id) {
+
+        for (Student s : students){
+            if(s.getId() == id) return s;
+        }
+
+        return null;
+    }
+
+    public static Exam getExamById(int id) {
+
+        for (Exam s : exams){
+            if(s.getId() == id) return s;
+        }
+
+        return null;
+    }
 }
