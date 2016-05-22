@@ -45,8 +45,7 @@ public class StudentActivity extends BaseActivity {
         setContentView(R.layout.activity_student);
 
 
-        int nStudent = getIntent().getExtras().getInt("id");
-        Student st = MyApplication.getStudentById(nStudent);
+        Student st = MyApplication.getStudentById((int)getIntent().getExtras().getInt("id"));
 
 
         //id of the info to the layout

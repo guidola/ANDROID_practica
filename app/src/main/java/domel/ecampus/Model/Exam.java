@@ -44,6 +44,11 @@ public class Exam {
         return str;
     }
 
+    public int getId() {
+        return id;
+    }
+
+
     public int getAssigned_class() {
         return assigned_class;
     }

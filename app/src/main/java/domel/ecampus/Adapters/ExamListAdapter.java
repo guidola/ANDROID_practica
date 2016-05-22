@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
+import domel.ecampus.Activity.ExamEditorActivity;
 import domel.ecampus.Activity.StudentActivity;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.Model.Student;
@@ -62,28 +63,28 @@ public class ExamListAdapter extends ArrayAdapter {
             row = inflater.inflate(R.layout.adapter_exam_list, parent, false);
             row.setClickable(true);
         }
-
+//copy of student
         //set the info of the students
         AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.student_image);
         AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.student_name);
         AppCompatTextView age = (AppCompatTextView) row.findViewById(R.id.student_age);
         AppCompatTextView speciality = (AppCompatTextView) row.findViewById(R.id.student_speciality);
         AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_student);
-        Exam exam = getItem(position);
-/*
+        final Exam exam = getItem(position);
+        /*
         image.setImageResource(exam.getImage());
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         name.setText(StringUtils.capitalize(exam.getName()));
         age.setText(StringUtils.capitalize(exam.getAgeString()));
-        speciality.setText(StringUtils.capitalize(exam.getSpecialty()));
-*/
+        speciality.setText(StringUtils.capitalize(exam.getSpecialty()));*/
+
         //if click teh row go to the student preview
         row.setClickable(true);
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), StudentActivity.class);
-                intent.putExtra("position", position);
+                Intent intent = new Intent(getContext(), ExamEditorActivity.class);
+                intent.putExtra("id", exam.getId());
                 getContext().startActivity(intent);
 
             }

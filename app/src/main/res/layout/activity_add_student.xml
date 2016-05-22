@@ -27,10 +27,17 @@
                 android:paddingRight="24dp">
 
                 <android.support.v7.widget.AppCompatImageView
-                        android:id="@+id/close"
+                    android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/exit_toolbar"
+                    android:src="@drawable/back_toolbar"
+                    android:layout_gravity="left" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo"
                     android:layout_gravity="left" />
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -173,11 +180,11 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:id="@+id/photo"
                     android:layout_weight="1.5"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/la_salle_logo"/>
+                    android:src="@drawable/add_image"/>
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="0dp"

@@ -84,6 +84,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getContext(), StudentActivity.class);
                 intent.putExtra("id", (int)v.getTag());
                 getContext().startActivity(intent);
