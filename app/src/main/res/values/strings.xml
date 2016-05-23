@@ -87,5 +87,10 @@
     <string name="pick_image_intent_text">Seleciona un método</string>
     <string name="error_must_select_carreer">Selecciona una titulación</string>
 
+    <string name="assigned_class"> Aula </string>
+    <string name="students"> Alumnos </string>
+
+
+
 
 </resources>

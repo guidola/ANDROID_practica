@@ -22,9 +22,9 @@ public class ExamEditorActivity extends AppCompatActivity {
         AppCompatTextView title = (AppCompatTextView) findViewById(R.id.editor_or_new);
 
 
-        //Exam editorExam = MyApplication.getExamById((int)getIntent().getExtras().getInt("id"));
+        Exam editorExam = MyApplication.getExamById((int)getIntent().getExtras().getInt("id"));
 
-        if(title == null){
+        if(editorExam == null){
             //editor exam
             title.setText(getString(R.string.exam_editor_title));
 

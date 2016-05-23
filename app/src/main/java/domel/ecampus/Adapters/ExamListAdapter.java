@@ -65,18 +65,20 @@ public class ExamListAdapter extends ArrayAdapter {
         }
 //copy of student
         //set the info of the students
-        AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.student_image);
-        AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.student_name);
-        AppCompatTextView age = (AppCompatTextView) row.findViewById(R.id.student_age);
-        AppCompatTextView speciality = (AppCompatTextView) row.findViewById(R.id.student_speciality);
-        AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_student);
+        AppCompatTextView date = (AppCompatTextView) row.findViewById(R.id.exam_date);
+        AppCompatTextView hour = (AppCompatTextView) row.findViewById(R.id.exam_hour);
+        AppCompatTextView subjectName = (AppCompatTextView) row.findViewById(R.id.exam_subject);
+        AppCompatTextView assigned_class = (AppCompatTextView) row.findViewById(R.id.exam_class);
+        AppCompatTextView numberStudents = (AppCompatTextView) row.findViewById(R.id.exam_number_students);
+
         final Exam exam = getItem(position);
-        /*
-        image.setImageResource(exam.getImage());
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        name.setText(StringUtils.capitalize(exam.getName()));
-        age.setText(StringUtils.capitalize(exam.getAgeString()));
-        speciality.setText(StringUtils.capitalize(exam.getSpecialty()));*/
+        date.setText(StringUtils.capitalize(exam.getDate()));
+        hour.setText(StringUtils.capitalize(exam.getHour()));
+        subjectName.setText(StringUtils.capitalize(exam.getSubjectName()));
+        assigned_class.setText(StringUtils.capitalize(exam.getAssigned_class()));
+        numberStudents.setText(StringUtils.capitalize(exam.getSubject().getStudents().size() + ""));
+
+
 
         //if click teh row go to the student preview
         row.setClickable(true);

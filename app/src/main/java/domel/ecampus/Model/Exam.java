@@ -49,8 +49,8 @@ public class Exam {
     }
 
 
-    public int getAssigned_class() {
-        return assigned_class;
+    public String getAssigned_class() {
+        return assigned_class + "";
     }
 
     public void setAssigned_class(int assigned_class) {
@@ -59,6 +59,10 @@ public class Exam {
 
     public Subject getSubject() {
         return subject;
+    }
+
+    public String getSubjectName() {
+        return subject.getName();
     }
 
     public void setSubject(Subject subject) {
