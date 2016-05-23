@@ -75,7 +75,7 @@ public class MyApplication extends Application{
             addSubject(new Subject("Pinta y colorea", R.mipmap.la_salle_logo, "Pinta dentro de los bordes, no te salgas!"));
         }
         for(Subject s : getSubjects()){
-            addExam(new Exam(new DateTime("2016-08-22"), 1, s), s);
+            addExam(new Exam(new DateTime("2016-08-22"), "20:00", "Aula 1", s, "Multimedia"), s);
 
         }
         for (Subject s: getSubjects()){
@@ -264,4 +264,9 @@ public class MyApplication extends Application{
 
         return null;
     }
+
+    public static void addExam(Exam exam){
+        exams.add(exam);
+    }
+
 }

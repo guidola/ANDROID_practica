@@ -23,7 +23,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:paddingLeft="24dp"
                 android:paddingRight="24dp">
 
                 <android.support.v7.widget.AppCompatImageView
@@ -86,7 +85,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/simple_padding"
-                android:id="@+id/view" >
+                android:id="@+id/view"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
@@ -95,8 +96,8 @@
                     android:hint="@string/add_student_form_name_hint"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:imeOptions="flagNoExtractUi"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -104,18 +105,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/simple_padding"
-                android:id="@+id/view2" >
+                android:id="@+id/view2"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/birthdate"
                     android:hint="@string/add_student_form_birthdate_hint"
-                    android:imeOptions="actionNext"
                     android:inputType="date"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginBottom="@dimen/double_margin"/>
+                    android:layout_marginBottom="@dimen/double_margin"
+                    android:imeOptions="flagNoExtractUi"/>
 
             </android.support.design.widget.TextInputLayout>
 

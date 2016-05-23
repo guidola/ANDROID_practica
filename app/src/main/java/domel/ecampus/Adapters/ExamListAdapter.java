@@ -72,11 +72,13 @@ public class ExamListAdapter extends ArrayAdapter {
         AppCompatTextView numberStudents = (AppCompatTextView) row.findViewById(R.id.exam_number_students);
 
         final Exam exam = getItem(position);
+
+
         date.setText(StringUtils.capitalize(exam.getDate()));
         hour.setText(StringUtils.capitalize(exam.getHour()));
         subjectName.setText(StringUtils.capitalize(exam.getSubjectName()));
         assigned_class.setText(StringUtils.capitalize(exam.getAssigned_class()));
-        numberStudents.setText(StringUtils.capitalize(exam.getSubject().getStudents().size() + ""));
+        numberStudents.setText(StringUtils.capitalize(exam.getNumberSubjects()));
 
 
 

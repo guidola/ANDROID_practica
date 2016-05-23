@@ -1,11 +1,15 @@
 package domel.ecampus.Model;
 
 
+import android.content.Context;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
+
+import domel.ecampus.R;
 
 public class Exam {
 
@@ -13,17 +17,28 @@ public class Exam {
 
     private int id;
     private DateTime date;
-    private int assigned_class;
+    private String assigned_class;
     private Subject subject;
+    private String speciality;
+    private String hour;
+
 
     public Exam() {
     }
 
-    public Exam(DateTime date, int assigned_class, Subject subject) {
+    public Exam(DateTime date, String hour, String assigned_class, Subject subject) {
         this.id = auto_inc_id++;
         this.date = date;
         this.assigned_class = assigned_class;
         this.subject = subject;
+    }
+    public Exam(DateTime date, String hour, String assigned_class, Subject subject, String speciality) {
+        this.id = auto_inc_id++;
+        this.date = date;
+        this.assigned_class = assigned_class;
+        this.subject = subject;
+        this.speciality = speciality;
+        this.hour = hour;
     }
 
 
@@ -37,12 +52,36 @@ public class Exam {
         String str = timeFormat.print(date);
         return str;
     }
+    public String getSpecialty() {return " " + speciality;}
 
-    public String getHour(){
+    public void setSpecialty(String specialty) {
+        this.speciality = specialty;
+    }
+
+   /* public String getHour(){
         DateTimeFormatter timeFormat = DateTimeFormat.forPattern("HH:mm");
         String str = timeFormat.print(date);
         return str;
+    }*/
+
+
+
+
+    public int getDay(){
+        return date.getDayOfMonth();
     }
+
+    public int getMonth(){
+        return date.getMonthOfYear();
+    }
+
+    public int getYear(){
+        return date.getYear();
+    }
+
+    public String getHour(){ return hour;}
+
+    public void setHour(String hour){ this.hour = hour;}
 
     public int getId() {
         return id;
@@ -50,10 +89,10 @@ public class Exam {
 
 
     public String getAssigned_class() {
-        return assigned_class + "";
+        return assigned_class ;
     }
 
-    public void setAssigned_class(int assigned_class) {
+    public void setAssigned_class(String assigned_class) {
         this.assigned_class = assigned_class;
     }
 
@@ -63,6 +102,14 @@ public class Exam {
 
     public String getSubjectName() {
         return subject.getName();
+    }
+
+    public String getNumberSubjects(){
+        if(subject.getStudents().size() != 1) {
+            return subject.getStudents().size() + " Alumnos";
+        }else{
+            return subject.getStudents().size() + " Alumno";
+        }
     }
 
     public void setSubject(Subject subject) {

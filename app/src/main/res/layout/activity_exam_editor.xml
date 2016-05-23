@@ -23,7 +23,7 @@
                 android:paddingRight="24dp">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/close"
+                    android:id="@+id/back_toolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/back_toolbar"
@@ -68,39 +68,41 @@
             android:weightSum="6">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
                 <EditText
                     android:layout_weight="1"
-                    android:id="@+id/exam_name"
+                    android:id="@+id/exam_date"
                     android:layout_marginTop="@dimen/simple_padding"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_exam_name"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/prompt_exam_name"
-                    android:imeOptions="actionUnspecified"
+                    android:hint="@string/prompt_exam_date"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="date"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:layout_marginBottom="@dimen/double_margin" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_marginTop="@dimen/simple_padding"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
                 <EditText
                     android:layout_weight="1"
-                    android:id="@+id/exam_date"
+                    android:id="@+id/exam_hour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_exam_date"
-                    android:imeActionLabel="@string/prompt_exam_date"
-                    android:imeOptions="actionUnspecified"
-                    android:imeActionId="@+id/login"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:hint="@string/prompt_exam_hour"
+                    android:imeActionLabel="@string/prompt_exam_hour"
+                    android:imeOptions="flagNoExtractUi"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 

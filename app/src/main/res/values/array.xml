@@ -2,13 +2,20 @@
 <resources>
 
     <string-array name="degrees">
-        <item>Selecciona una titulación</item>
         <item>Informàtica</item>
         <item>Telemàtica</item>
         <item>Telecomunicaciones</item>
         <item>Multimedia</item>
         <item>Animación</item>
         <item>Magisterio</item>
+    </string-array>
+
+    <string-array name="assigned_class">
+        <item>Aula 0</item>
+        <item>Aula 1</item>
+        <item>Aula 2</item>
+        <item>Aula 3</item>
+        <item>Aula 4</item>
     </string-array>
 
 

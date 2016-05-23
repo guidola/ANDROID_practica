@@ -59,6 +59,9 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
     public static File _dir;
     public static Bitmap bitmap;
     private String photo_temp_path;
+    private int year;
+    private int monthOfYear;
+    private int dayOfMonth;
 
 
     @Override
@@ -67,7 +70,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         setContentView(R.layout.activity_add_student);
 
         //set name
-        EditText setNameEditText = (EditText) findViewById(R.id.birthdate);
+        EditText setNameEditText = (EditText) findViewById(R.id.name);
 
         //Set the birthdate
         setDateEditText = (EditText) findViewById(R.id.birthdate);
@@ -179,26 +182,13 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
             return null;
         }
 
-        if(carreer.getSelectedItemPosition() == 0){
-            date.setError(getString(R.string.error_must_select_carreer));
-            carreer.requestFocus();
-            return null;
-        }
 
         AppCompatRadioButton gender = (AppCompatRadioButton) findViewById(sex.getCheckedRadioButtonId());
         Student student = new Student();
         student.setName(name.getText().toString());
         student.setGender(gender.getText().toString());
-        /*String[] date_parts = date.getText().toString().split("/");
-        student.setBirthdate(new DateTime(
-                Integer.parseInt(date_parts[2]),
-                Integer.parseInt(date_parts[1].substring(0,2)),
-                Integer.parseInt(date_parts[0]),
-                0,
-                0
-        ));*/
 
-        student.setBirthdate(new DateTime("1996-04-06"));
+        student.setBirthdate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         student.setSpecialty(carreer.getSelectedItem().toString());
 
         if(photo.getTag() != null){
@@ -214,7 +204,9 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
         setDateEditText.setText(getString(R.string.student_date, year, monthOfYear, dayOfMonth));
-
+        this.year = year;
+        this.monthOfYear = monthOfYear;
+        this.dayOfMonth = dayOfMonth;
     }
 
     private File createImageFile() throws IOException {

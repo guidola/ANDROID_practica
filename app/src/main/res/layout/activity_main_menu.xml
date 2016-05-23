@@ -20,14 +20,18 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:layout_gravity="left"
+            android:gravity="left">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/close"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/back_toolbar"
-                android:layout_gravity="left" />
+                android:layout_gravity="left"
+                android:gravity="left"
+                />
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/logo"
