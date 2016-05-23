@@ -93,7 +93,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
 
         //choose image of the galery
         final ImageView chooseImage = (ImageView) findViewById(R.id.photo);
-        if (chooseImage != null) {
+        /*if (chooseImage != null) {
             chooseImage.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -103,7 +103,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
                     startActivityForResult(photoPickerIntent, SELECT_PHOTO);
                 }
             });
-        }
+        }*/
 
         //add photo of the camara
         ImageButton newPhoto = (ImageButton) findViewById(R.id.photo_button);
