@@ -130,15 +130,14 @@ public class AddSubjectActivity extends AppCompatActivity {
             titleIndicator.setViewPager(pager);
         }
 
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
+        //back toolbar button, go to main menu activity
+        ImageView closeSesionButton = (ImageView) findViewById(R.id.back_toolbar);
         if (closeSesionButton != null) {
             closeSesionButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    //logout
-                    Intent intent = new Intent(AddSubjectActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(AddSubjectActivity.this, MainMenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
@@ -151,11 +150,11 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     }
 
-    public void submitFormData(){
+    public void submitFormData() {
 
-        AddSubjectFirstStepFragment firstStepFragment =  (AddSubjectFirstStepFragment) adapter.getRegisteredFragment(0);
-        AddSubjectSecondStepFragment secondStepFragment =  (AddSubjectSecondStepFragment) adapter.getRegisteredFragment(1);
-        AddSubjectThirdStepFragment thirdStepFragment =  (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
+        AddSubjectFirstStepFragment firstStepFragment = (AddSubjectFirstStepFragment) adapter.getRegisteredFragment(0);
+        AddSubjectSecondStepFragment secondStepFragment = (AddSubjectSecondStepFragment) adapter.getRegisteredFragment(1);
+        AddSubjectThirdStepFragment thirdStepFragment = (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
 
         Subject subject = new Subject();
 
@@ -167,7 +166,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         //process data from third fragment
         SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
-                ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
+                ((ListViewCompat) thirdStepFragment.getView().findViewById(R.id.list_themes))
                         .getAdapter();
         subject.addThemes(theme_adapter.getThemes());
 
@@ -176,15 +175,19 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         //process data from second fragment
         RegisteredStudentsAdapter adapter = (RegisteredStudentsAdapter)
-                ((ListViewCompat)secondStepFragment.getView().findViewById(R.id.list_students))
+                ((ListViewCompat) secondStepFragment.getView().findViewById(R.id.list_students))
                         .getAdapter();
 
         ArrayList<Student> reg_students = adapter.getSelectedStudents();
-        for(Student s : reg_students){
+        for (Student s : reg_students) {
             MyApplication.enroll(s, subject);
         }
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }

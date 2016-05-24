@@ -113,7 +113,6 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         if(editor){
             //editor exam
             title.setText(getString(R.string.exam_editor_title));
-            MyApplication.getExams().remove(editorExam);
 
         }else{
             //create exam
@@ -143,13 +142,12 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         }
 
 
-        //back
+        //back toolbar go to main menu activity
         ImageView backButton = (ImageView) findViewById(R.id.back_toolbar);
         backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //logout
                 Intent intent = new Intent(ExamEditorActivity.this, MainMenuActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -217,9 +215,17 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         exam.setHour(hour);
 
         MyApplication.addExam(exam);
+        MyApplication.getExams().remove(editorExam);
+
 
 
         return exam;
+    }
 
+    //finish this activity going back
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

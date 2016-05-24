@@ -135,9 +135,9 @@ public class StudentActivity extends BaseActivity {
 
 
         //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        if (closeSesionButton != null) {
-            closeSesionButton.setOnClickListener(new View.OnClickListener() {
+        ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
+        if (backToolbarButton != null) {
+            backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -159,8 +159,7 @@ public class StudentActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
         finish();
     }
+
 }

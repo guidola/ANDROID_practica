@@ -143,20 +143,18 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         }
 
 
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        if (closeSesionButton != null) {
-            closeSesionButton.setOnClickListener(new View.OnClickListener() {
+        //back tolbar button
+        ImageView  backToolbarButton= (ImageView) findViewById(R.id.back_toolbar);
+        if (backToolbarButton != null) {
+            backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View view) {
-                    //logout
-                    Intent intent = new Intent(AddStudentActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(AddStudentActivity.this, MainMenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
-
                 }
             });
         }
@@ -266,7 +264,10 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
             }
         }
     }
-
-
-
+    //finish this activity going back
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

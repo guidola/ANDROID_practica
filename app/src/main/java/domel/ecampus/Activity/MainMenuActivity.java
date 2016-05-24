@@ -66,20 +66,13 @@ public class MainMenuActivity extends AppCompatActivity {
             });
         }
 
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        closeSesionButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                //logout
-                Intent intent = new Intent(MainMenuActivity.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-
-            }
-
-        });
+    }
+    //finish this activity going back
+    public void onBackPressed() {
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
     }
 }

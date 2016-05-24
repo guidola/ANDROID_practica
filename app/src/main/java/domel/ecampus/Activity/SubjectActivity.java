@@ -37,14 +37,13 @@ public class SubjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_subject);
 
 
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        closeSesionButton.setOnClickListener(new View.OnClickListener() {
+        //go to main menu activity
+        ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
+        backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //logout
-                Intent intent = new Intent(SubjectActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SubjectActivity.this, MainMenuActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
@@ -163,14 +162,11 @@ public class SubjectActivity extends AppCompatActivity {
         }
     }
 
-
-
-
+    //finish this activity going back
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
         finish();
     }
+
 }

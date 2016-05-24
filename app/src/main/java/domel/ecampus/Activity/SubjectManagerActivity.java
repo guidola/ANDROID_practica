@@ -48,21 +48,26 @@ public class SubjectManagerActivity extends BaseActivity {
             listView.setAdapter(subjectAdapter);
         }
 
-        //logout button
-        ImageView closeSesionButton = (ImageView) findViewById(R.id.close);
-        if (closeSesionButton != null) {
-            closeSesionButton.setOnClickListener(new View.OnClickListener() {
+        //back button
+        ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
+        if (backToolbarButton != null) {
+            backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    //logout
-                    Intent intent = new Intent(SubjectManagerActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SubjectManagerActivity.this, MainMenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
-
                 }
 
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
