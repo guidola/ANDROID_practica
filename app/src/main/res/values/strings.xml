@@ -92,6 +92,7 @@
     <string name="assigned_class"> Aula </string>
     <string name="students"> Alumnos </string>
     <string name="time_picker_result_value">%1$s:%2$s</string>
+    <string name="logout"> logout </string>
 
 
 

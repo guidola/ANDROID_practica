@@ -12,18 +12,20 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:paddingRight="@dimen/simple_padding"
             android:paddingEnd="@dimen/simple_padding"
             android:layout_gravity="left"
-            android:gravity="left">
+            android:gravity="left"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 
             <android.support.v7.widget.AppCompatImageView
@@ -42,12 +44,7 @@
                 android:textSize="@dimen/title_toolbar"
                 />
 
-            <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/more_options"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/more_toolbar"
-                android:layout_gravity="right" />
+
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
