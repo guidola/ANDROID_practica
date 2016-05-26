@@ -28,16 +28,16 @@ public class MainMenuActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 switch (item.getItemId()) {
-                    case R.id.student_manager:
-                        Intent intent_st = new Intent(MainMenuActivity.this, StudentManagerActivity.class);
+                    case R.id.add_student:
+                        Intent intent_st = new Intent(MainMenuActivity.this, AddStudentActivity.class);
                         startActivity(intent_st);
                         return true;
-                    case R.id.subject_manager:
-                        Intent intent_sbj = new Intent(MainMenuActivity.this, SubjectManagerActivity.class);
+                    case R.id.add_subject:
+                        Intent intent_sbj = new Intent(MainMenuActivity.this, AddSubjectActivity.class);
                         startActivity(intent_sbj);
                         return true;
-                    case R.id.exam:
-                        Intent intent_ex = new Intent(MainMenuActivity.this, ExamsListActivity.class);
+                    case R.id.add_exam:
+                        Intent intent_ex = new Intent(MainMenuActivity.this, ExamEditorActivity.class);
                         startActivity(intent_ex);
                         return true;
                     case R.id.logout:
