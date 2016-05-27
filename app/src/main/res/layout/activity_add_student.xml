@@ -61,13 +61,6 @@
                         android:layout_gravity="left" />
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatImageButton
-                    android:background="@color/transparent"
-                    android:id="@+id/add_toolbar"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/add_toolbar"
-                    android:layout_gravity="right" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -186,14 +179,13 @@
                     android:layout_height="100dp"
                     android:id="@+id/photo"
                     android:layout_weight="1.5"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/add_image"/>
+                    android:scaleType="fitCenter"/>
 
                 <android.support.v7.widget.AppCompatImageButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:src="@drawable/camara_image"
+                    android:src="@drawable/add_photo"
                     android:layout_gravity="center_vertical"
                     android:background="@color/transparent"
                     android:id="@+id/photo_button"/>

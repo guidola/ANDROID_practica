@@ -134,7 +134,7 @@ public class StudentActivity extends BaseActivity {
         }
 
 
-        //logout button
+        //go to main menu button
         ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
         if (backToolbarButton != null) {
             backToolbarButton.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +142,8 @@ public class StudentActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     //logout
-                    Intent intent = new Intent(StudentActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(StudentActivity.this, MainMenuActivity
+                            .class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
