@@ -48,6 +48,7 @@ import domel.ecampus.ImagePicker;
 import domel.ecampus.Model.Student;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class AddStudentActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener{
 
@@ -135,6 +136,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
                         Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
                         finish();
                     }
 
@@ -191,6 +193,8 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
 
         if(photo.getTag() != null){
             student.setPath((Uri)photo.getTag());
+        }else{
+            student.setImage(R.drawable.student);
         }
 
         MyApplication.addStudent(student);

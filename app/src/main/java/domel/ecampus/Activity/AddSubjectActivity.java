@@ -49,6 +49,9 @@ public class AddSubjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_subject);
 
+        AppCompatTextView title = (AppCompatTextView) findViewById(R.id.number_page);
+        title.setText(getString(R.string.page_number) + 1 + getString(R.string.page_number_aux));
+
         //Set the pager with an adapter
         pager = (RestrictiveViewPager) findViewById(R.id.pager);
         if (pager != null) {
@@ -114,6 +117,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                 @Override
                 public void onPageSelected(int position) {
 
+                    AppCompatTextView title = (AppCompatTextView) findViewById(R.id.number_page);
+
+                    title.setText(getString(R.string.page_number) + " " +(position + 1) + getString(R.string.page_number_aux));
                 }
 
                 @Override
@@ -169,6 +175,9 @@ public class AddSubjectActivity extends AppCompatActivity {
                 ((ListViewCompat) thirdStepFragment.getView().findViewById(R.id.list_themes))
                         .getAdapter();
         subject.addThemes(theme_adapter.getThemes());
+
+        //add image
+        subject.setImage(R.mipmap.la_salle_logo);
 
         //At this point the subject itself is fully filled. Persist
         MyApplication.addSubject(subject);

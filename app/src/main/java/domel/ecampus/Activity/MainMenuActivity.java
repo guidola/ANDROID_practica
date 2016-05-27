@@ -40,10 +40,8 @@ public class MainMenuActivity extends AppCompatActivity {
                         Intent intent_ex = new Intent(MainMenuActivity.this, ExamEditorActivity.class);
                         startActivity(intent_ex);
                         return true;
-                    case R.id.logout:
-                        Intent intent_log = new Intent(MainMenuActivity.this, LoginActivity.class);
-                        intent_log.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent_log);
+                    case R.id.exit:
+                        //close the app
                         finish();
                         return true;
                     default:
@@ -96,7 +94,10 @@ public class MainMenuActivity extends AppCompatActivity {
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //close the app
+                    //logout
+                    Intent intent_log = new Intent(MainMenuActivity.this, LoginActivity.class);
+                    intent_log.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent_log);
                     finish();
 
                 }

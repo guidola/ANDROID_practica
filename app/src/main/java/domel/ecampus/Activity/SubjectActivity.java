@@ -131,7 +131,7 @@ public class SubjectActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(SubjectActivity.this, StudentActivity.class);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        intent.putExtra("position", (int) v.getTag());
+                        intent.putExtra("id", (int) v.getTag());
                         startActivity(intent);
                         //((Activity)getContext()).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
