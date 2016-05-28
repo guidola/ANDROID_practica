@@ -51,6 +51,7 @@ import domel.ecampus.ImagePicker;
 import domel.ecampus.Model.Student;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class AddStudentActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener {
 
@@ -141,12 +142,13 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
                         Student student = processForm();
                         if (student != null) {
 
-                            // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
-                            Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            finish();
-                        }
+                        // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
+                        Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
+                        finish();
+                    }
 
                     }
                 });
@@ -199,8 +201,10 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         student.setBirthdate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         student.setSpecialty(carreer.getSelectedItem().toString());
 
-        if (photo.getTag() != null) {
+        if(photo.getTag() != null){
             student.setPath((String)photo.getTag());
+        }else{
+            student.setImage(R.drawable.student);
         }
 
         getApp().addStudent(student);

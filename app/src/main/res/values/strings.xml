@@ -92,7 +92,16 @@
     <string name="assigned_class"> Aula </string>
     <string name="students"> Alumnos </string>
     <string name="time_picker_result_value">%1$s:%2$s</string>
-    <string name="logout"> logout </string>
+    <string name="logout"> Logout </string>
+
+    <string name="page_number"> Nueva asignatura </string>
+    <string name="page_number_aux"> /3 </string>
+    <string name="student_create_success">El alumno se ha creado satisfactóriamente</string>
+
+
+
+
+
 
 
 

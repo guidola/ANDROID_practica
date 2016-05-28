@@ -32,7 +32,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/add_theme_form"
-        android:padding="@dimen/simple_padding">
+        android:paddingLeft="@dimen/simple_padding"
+        android:paddingRight="@dimen/simple_padding"
+        android:paddingTop="@dimen/simple_padding">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"

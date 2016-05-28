@@ -10,6 +10,6 @@
     <item android:id="@+id/add_exam"
         android:title="@string/exam_new_title" />
 
-    <item android:id="@+id/logout"
-        android:title="@string/logout" />
+    <item android:id="@+id/exit"
+        android:title="@string/exit" />
 </menu>
