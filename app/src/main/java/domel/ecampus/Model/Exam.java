@@ -128,11 +128,6 @@ public class Exam implements Comparable<Exam>  {
 
     @Override
     public int compareTo(Exam exam) {
-       if( this.date.compareTo(exam.getDateTime()) == 0){
-           return 1;
-
-       }else{
-           return -1;
-       }
+       return this.date.compareTo(exam.getDateTime());
     }
 }
