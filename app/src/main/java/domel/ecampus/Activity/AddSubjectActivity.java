@@ -1,12 +1,15 @@
 package domel.ecampus.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.ListViewCompat;
 import android.util.Log;
@@ -92,25 +95,7 @@ public class AddSubjectActivity extends BaseActivity {
                     }else if (position == LAST_PAGE && last_page == LAST_PAGE && not_processing){
 
                         not_processing = false;
-                        AddSubjectThirdStepFragment thirdStepFragment =  (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
-                        SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
-                                ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
-                                        .getAdapter();
-                        if(!theme_adapter.isEmpty()){
-                            //submit the data and close the application
-                            submitFormData();
-                            Intent intent = new Intent(AddSubjectActivity.this, SubjectManagerActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            Tools.toast(getApplicationContext(), getString(R.string.subject_create_success));
-                            finish();
-
-                        }else{
-                            AppCompatEditText input = (AppCompatEditText)(thirdStepFragment.getView().findViewById(R.id.add_theme_input));
-                            input.setError(getString(R.string.error_theme_required));
-                            input.requestFocus();
-                            not_processing = true;
-                        }
+                        submitLastPage();
 
                     }
                 }
@@ -121,6 +106,13 @@ public class AddSubjectActivity extends BaseActivity {
                     AppCompatTextView title = (AppCompatTextView) findViewById(R.id.number_page);
 
                     title.setText(getString(R.string.page_number) + " " +(position + 1) + getString(R.string.page_number_aux));
+                    if(position == 2){
+                        AppCompatImageButton submitButton = (AppCompatImageButton) findViewById(R.id.submit_button);
+                        submitButton.setVisibility(View.VISIBLE);
+                    }else{
+                        AppCompatImageButton submitButton = (AppCompatImageButton) findViewById(R.id.submit_button);
+                        submitButton.setVisibility(View.GONE);
+                    }
                 }
 
                 @Override
@@ -128,6 +120,17 @@ public class AddSubjectActivity extends BaseActivity {
 
                 }
             });
+            //if click the button
+            AppCompatImageButton submitButton = (AppCompatImageButton)findViewById(R.id.submit_button);
+            if (submitButton != null) {
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        submitLastPage();
+
+                    }
+                });
+            }
 
         }
 
@@ -198,6 +201,49 @@ public class AddSubjectActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private void submitLastPage(){
+
+        //launch alert dialog to ask for deletion.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(this.getResources().getString(R.string.submit_add_subject_title));
+        builder.setMessage(this.getResources().getString(R.string.submit_add_subject));
+        builder.setCancelable(true);
+        builder.setPositiveButton(this.getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AddSubjectThirdStepFragment thirdStepFragment =  (AddSubjectThirdStepFragment) adapter.getRegisteredFragment(2);
+                SubjectThemeAdapter theme_adapter = (SubjectThemeAdapter)
+                        ((ListViewCompat)thirdStepFragment.getView().findViewById(R.id.list_themes))
+                                .getAdapter();
+                if(!theme_adapter.isEmpty()){
+                    //submit the data and close the application
+                    submitFormData();
+                    Intent intent = new Intent(AddSubjectActivity.this, SubjectManagerActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    Tools.toast(getApplicationContext(), getString(R.string.subject_create_success));
+                    finish();
+
+                }else{
+                    AppCompatEditText input = (AppCompatEditText)(thirdStepFragment.getView().findViewById(R.id.add_theme_input));
+                    input.setError(getString(R.string.error_theme_required));
+                    input.requestFocus();
+                    not_processing = true;
+                }
+                dialog.cancel();
+            }
+        });
+        builder.setNegativeButton(this.getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.create().show();
+
     }
 
 }

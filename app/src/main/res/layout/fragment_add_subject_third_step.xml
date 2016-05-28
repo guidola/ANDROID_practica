@@ -32,16 +32,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/add_theme_form"
-        android:paddingLeft="@dimen/simple_padding"
-        android:paddingRight="@dimen/simple_padding"
+        android:paddingLeft="@dimen/xs"
+        android:paddingRight="@dimen/xs"
         android:paddingTop="@dimen/simple_padding">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_marginRight="@dimen/simple_padding"
-            android:layout_marginEnd="@dimen/simple_padding"
+            android:layout_marginRight="@dimen/xs"
+            android:layout_marginEnd="@dimen/xs"
+
             android:id="@+id/add_theme_enumeration"
             android:layout_gravity="center_vertical"
             android:text="5."/>
@@ -50,8 +51,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:layout_marginRight="@dimen/simple_padding"
-            android:layout_marginEnd="@dimen/simple_padding"
+            android:layout_marginRight="@dimen/xs"
+            android:layout_marginEnd="@dimen/xs"
             android:id="@+id/view3">
 
             <android.support.v7.widget.AppCompatEditText

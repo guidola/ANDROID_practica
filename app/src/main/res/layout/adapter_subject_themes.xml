@@ -21,6 +21,8 @@
         android:layout_toLeftOf="@+id/buttonPanel"
         android:layout_toStartOf="@+id/buttonPanel"
         android:layout_centerVertical="true"
+        android:maxLines="3"
+        android:ellipsize="end"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/theme_name" />
 

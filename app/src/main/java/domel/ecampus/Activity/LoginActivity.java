@@ -18,6 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.User;
 import domel.ecampus.MyApplication;
@@ -144,7 +147,7 @@ public class LoginActivity  extends BaseActivity {
             et_email.setError(getString(R.string.error_field_required));
             focusView = et_email;
             cancel = true;
-        } else if (!isUserValid(user)) {
+        } else if (!isEmailValid(user)) {
             et_email.setError(getString(R.string.error_invalid_email));
             focusView = et_email;
             cancel = true;
@@ -165,13 +168,7 @@ public class LoginActivity  extends BaseActivity {
         }
     }
 
-    private boolean isUserValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 5;
     }
 
@@ -236,6 +233,27 @@ public class LoginActivity  extends BaseActivity {
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    public boolean isEmailValid(String email)
+    {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
     }
 
 }

@@ -12,11 +12,10 @@ import android.util.Log;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-//import com.fasterxml.jackson.datatype.joda.JodaModule;
 
-import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.joda.time.DateTime;
+import org.joda.time.JodaTimePermission;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,7 +68,6 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        JodaTimeAndroid.init(this);
         remembered = false;
         //for now initializing model with ahrdcoded information to start working with it the good way
         /*for (int i = 0 ; i < 4; i++){

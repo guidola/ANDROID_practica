@@ -2,43 +2,26 @@ package domel.ecampus.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
-import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class StudentActivity extends BaseActivity {
     private boolean zoomOut =  false;
+    private boolean back_fullscreen =  false;
 
 
     @Override
@@ -131,6 +114,8 @@ public class StudentActivity extends BaseActivity {
                         v.setVisibility(View.GONE);
                     }*/
                     v.setVisibility(View.GONE);
+                    back_fullscreen = false;
+
                 }
             });
         }
@@ -161,8 +146,14 @@ public class StudentActivity extends BaseActivity {
     //finish this activity going back
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+       if(!back_fullscreen) {
+           super.onBackPressed();
+           finish();
+       }else{
+           View v = findViewById(R.id.full_screen_wrapper);
+           v.setVisibility(View.GONE);
+           back_fullscreen = false;
+       }
     }
 
 }

@@ -103,7 +103,9 @@
             android:layout_marginRight="@dimen/simple_padding"
             android:layout_marginEnd="@dimen/simple_padding"
             android:visibility="gone"
-            android:src="@drawable/ic_chevron_right_primary_24dp"/>
+            android:src="@drawable/ic_chevron_right_primary_24dp"
+            android:id="@+id/submit_button"/>
+
 
             <!-- ^^^ make visible when last page ^^^ -->
 

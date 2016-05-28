@@ -97,6 +97,11 @@
     <string name="page_number"> Nueva asignatura </string>
     <string name="page_number_aux"> /3 </string>
     <string name="student_create_success">El alumno se ha creado satisfactóriamente</string>
+    <string name="submit_add_subject_title">Finalizar registro</string>
+    <string name="submit_add_subject">Para registrar la asignatura de manera definitiva presiona \"Si\" en caso contrario apreta \"No\" o fuera del dialogo para cancelar la acción. </string>
+
+
+    <string name="action_settings"> Settings </string>
 
 
 
