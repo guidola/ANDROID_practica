@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     private int monthOfYear;
     private int dayOfMonth;
     private String hour;
+    private Spinner spinnerDegree;
+    private Spinner spinnerSubject;
 
     private Exam editorExam;
 
@@ -90,24 +93,46 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
 
         //degree spinner
-        Spinner spinnerDegree = (Spinner) findViewById(R.id.career_spinner);
+        spinnerDegree = (Spinner) findViewById(R.id.career_spinner);
         ArrayAdapter<CharSequence> adapterDegree = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
         spinnerDegree.setAdapter(adapterDegree);
 
+        //subject spinner
+        spinnerSubject = (Spinner) findViewById(R.id.subject_spinner);
         ArrayList<String> subjectsName = new ArrayList<>();
-        for(int i = 0; i < getApp().getSubjects().size(); i++){
-            subjectsName.add(getApp().getSubjects().get(i).getName());
+        for (int i = 0; i < getApp().getSubjects().size(); i++) {
+            if (spinnerDegree.getSelectedItem().toString().equals(getApp().getSubjects().get(i).getDegree())){
+                subjectsName.add(getApp().getSubjects().get(i).getName());
+            }
         }
 
-        //subject spinner
-        Spinner spinnerSubject = (Spinner) findViewById(R.id.subject_spinner);
-        ArrayAdapter<CharSequence> adapterSubject =  new ArrayAdapter(this,  android.R.layout.simple_spinner_dropdown_item, subjectsName);
+        ArrayAdapter<CharSequence> adapterSubject = new ArrayAdapter(ExamEditorActivity.this, android.R.layout.simple_spinner_dropdown_item, subjectsName);
         spinnerSubject.setAdapter(adapterSubject);
+
+        //filter subjects for the degree selected
+        spinnerDegree.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+                        ArrayList<String> subjectsName = new ArrayList<>();
+                        for (int i = 0; i < getApp().getSubjects().size(); i++) {
+                            if (spinnerDegree.getSelectedItem().toString().equals(getApp().getSubjects().get(i).getDegree())){
+                                subjectsName.add(getApp().getSubjects().get(i).getName());
+                            }
+                        }
+                        ArrayAdapter<CharSequence> adapterSubject = new ArrayAdapter(ExamEditorActivity.this, android.R.layout.simple_spinner_dropdown_item, subjectsName);
+                        spinnerSubject.setAdapter(adapterSubject);
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
 
         //class spinner
         Spinner spinnerClass = (Spinner) findViewById(R.id.class_spinner);
         ArrayAdapter<CharSequence> adapterClass = ArrayAdapter.createFromResource(this, R.array.assigned_class, android.R.layout.simple_spinner_dropdown_item);
         spinnerClass.setAdapter(adapterClass);
+
+
 
         //view if we are going to edit or create an exam
         if(editor){
@@ -144,19 +169,20 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
         //back toolbar go to main menu activity
         ImageView backButton = (ImageView) findViewById(R.id.back_toolbar);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        if (backButton != null) {
+            backButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExamEditorActivity.this, MainMenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ExamEditorActivity.this, MainMenuActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
 
-            }
+                }
 
-        });
-
+            });
+        }
 
 
     }
@@ -223,6 +249,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
         return exam;
     }
+
 
     //finish this activity going back
     @Override

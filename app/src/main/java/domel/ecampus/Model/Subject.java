@@ -19,6 +19,7 @@ public class Subject {
     private String name;
     private int image;
     private  String description;
+    private String degree;
 
     //@JsonManagedReference
     private ArrayList<Student> students;
@@ -36,7 +37,7 @@ public class Subject {
         this.themes = new ArrayList<>();
     }
 
-    public Subject(String name, int image, String description){
+    public Subject(String name, int image, String description, String degree){
         this.id = auto_inc_id++;
         this.name = name;
         this.image = image;
@@ -44,6 +45,7 @@ public class Subject {
         this.students = new ArrayList<>();
         this.exams = new ArrayList<>();
         this.themes = new ArrayList<>();
+        this.degree = degree;
     }
 
     public String getName() {
@@ -115,6 +117,7 @@ public class Subject {
         this.exams.remove(exam);
     }
 
+    /*
     public static ArrayList<Subject> getTestCollection(){
         ArrayList<Subject> s = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
@@ -123,7 +126,7 @@ public class Subject {
             s.add(sub);
         }
         return s;
-    }
+    }*/
 
     public void addThemes(Collection<SubjectTheme> themes){
         this.themes.addAll(themes);
@@ -135,5 +138,13 @@ public class Subject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 }

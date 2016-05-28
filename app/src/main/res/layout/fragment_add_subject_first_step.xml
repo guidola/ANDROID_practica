@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view1"
+        android:layout_above="@+id/degree_wrapper"
         android:layout_marginBottom="@dimen/simple_padding"
-        android:layout_alignParentBottom="true"
         android:id="@+id/view2" >
 
         <android.support.v7.widget.AppCompatEditText
@@ -42,5 +42,29 @@
             />
 
     </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/xs"
+        android:layout_alignParentBottom="true"
+        android:id="@id/degree_wrapper">
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/add_degree"
+            android:id="@+id/spinner_title"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/student_degree"
+            android:prompt="@string/add_student_form_carrer_placeholder"
+            />
+
+    </LinearLayout>
+
 
 </RelativeLayout>

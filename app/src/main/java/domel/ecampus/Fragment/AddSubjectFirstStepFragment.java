@@ -9,6 +9,8 @@ import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.zip.Inflater;
 
@@ -37,6 +39,10 @@ public class AddSubjectFirstStepFragment extends Fragment {
 
         AppCompatEditText name = (AppCompatEditText) view.findViewById(R.id.subject_name);
         AppCompatEditText description = (AppCompatEditText) view.findViewById(R.id.subject_description);
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.student_degree);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         name.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(name)});
         description.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(description)});

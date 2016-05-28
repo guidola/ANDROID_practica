@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
@@ -171,6 +172,10 @@ public class AddSubjectActivity extends BaseActivity {
         //process data from first fragment
         AppCompatEditText name = (AppCompatEditText) firstStepFragment.getView().findViewById(R.id.subject_name);
         AppCompatEditText description = (AppCompatEditText) firstStepFragment.getView().findViewById(R.id.subject_description);
+        Spinner spinnerDegree = (Spinner) findViewById(R.id.student_degree);
+        if (spinnerDegree != null) {
+            subject.setDegree(spinnerDegree.getSelectedItem().toString());
+        }
         subject.setName(name.getText().toString());
         subject.setDescription(description.getText().toString());
 
