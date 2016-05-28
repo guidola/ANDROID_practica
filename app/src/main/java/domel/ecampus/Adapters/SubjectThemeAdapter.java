@@ -8,24 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.R;
 
-/**
- * Created by Guillermo on 8/5/16.
- */
+
 public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
 
     private ArrayList<SubjectTheme> themes;
+    private BaseActivity activity;
 
-    public SubjectThemeAdapter(Context context, int resource) {
+    public SubjectThemeAdapter(Context context, int resource, BaseActivity activity) {
 
         super(context, resource);
+        this.activity = activity;
         themes = new ArrayList<>();
 
 
@@ -58,7 +60,7 @@ public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
         AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.theme_name);
         SubjectTheme theme = getItem(position);
 
-        number.setText(getContext().getString(R.string.theme_numeration, position));
+        number.setText(getContext().getString(R.string.theme_numeration, position + 1));
         name.setText(theme.getName());
 
         AppCompatImageButton up = (AppCompatImageButton) row.findViewById(R.id.button_up);
@@ -96,6 +98,10 @@ public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
                 int pos = (int)v.getTag();
                 themes.remove(pos);
                 notifyDataSetChanged();
+                if ((activity.findViewById(R.id.add_theme_enumeration)) != null) {
+                    ((AppCompatTextView)activity.findViewById(R.id.add_theme_enumeration))
+                            .setText(activity.getString(R.string.theme_numeration, getCount() + 1));
+                }
             }
         });
 
@@ -115,4 +121,6 @@ public class SubjectThemeAdapter extends ArrayAdapter<SubjectTheme> {
     public void add(SubjectTheme object) {
         themes.add(object);
     }
+
+
 }

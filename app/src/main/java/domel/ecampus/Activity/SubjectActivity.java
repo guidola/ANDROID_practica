@@ -1,12 +1,15 @@
 package domel.ecampus.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.Gravity;
@@ -41,22 +44,24 @@ public class SubjectActivity extends BaseActivity {
 
         //go to main menu activity
         ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
-        backToolbarButton.setOnClickListener(new View.OnClickListener() {
+        if (backToolbarButton != null) {
+            backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SubjectActivity.this, MainMenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(SubjectActivity.this, MainMenuActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
 
-            }
+                }
 
-        });
+            });
+        }
 
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) findViewById(R.id.subject_description);
-        Subject subject = getApp().getSubjectById((int)getIntent().getExtras().getInt("id"));
+        final Subject subject = getApp().getSubjectById((int)getIntent().getExtras().getInt("id"));
 
         if (name != null) {
             name.setText(StringUtils.capitalize(subject.getName()));
@@ -162,6 +167,41 @@ public class SubjectActivity extends BaseActivity {
             }
 
         }
+
+        //delete subject
+        AppCompatImageButton bin = (AppCompatImageButton) findViewById(R.id.delete_toolbar);
+        if (bin != null) {
+            bin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //launch alert dialog to ask for deletion.
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SubjectActivity.this);
+                    builder.setTitle(getApplicationContext().getResources().getString(R.string.alert_delete_title));
+                    builder.setMessage(getApplicationContext().getResources().getString(R.string.alert_delete_msg_subject));
+                    builder.setCancelable(true);
+
+                    builder.setPositiveButton(getApplicationContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getApp().deleteSubject(subject);
+                            Intent intent = new Intent(SubjectActivity.this, SubjectManagerActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                            dialog.cancel();
+                        }
+                    });
+                    builder.setNegativeButton(getApplicationContext().getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.create().show();
+                }
+            });
+        }
+
     }
 
     //finish this activity going back

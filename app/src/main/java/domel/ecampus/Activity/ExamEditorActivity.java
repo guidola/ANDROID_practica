@@ -200,6 +200,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
 
         String subjectName = spinnerSubject.getSelectedItem().toString();
+
+
         //found the subject
         Subject subjectToAdd = new Subject();
         ArrayList<Subject> subjects = new ArrayList<>();

@@ -15,6 +15,7 @@ import domel.ecampus.Adapters.StudentManagerAdapter;
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class ExamsListActivity extends BaseActivity {
 
@@ -38,30 +39,38 @@ public class ExamsListActivity extends BaseActivity {
 
         //add button
         ImageButton addStudentButton = (ImageButton) findViewById(R.id.add_toolbar);
-        addStudentButton.setOnClickListener(new View.OnClickListener() {
+        if (addStudentButton != null) {
+            addStudentButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExamsListActivity.this, ExamEditorActivity.class);
-                startActivity(intent);
-            }
+                @Override
+                public void onClick(View view) {
+                    if(getApp().getSubjects().size() == 0){
+                        Tools.toast(getApplicationContext(), getString(R.string.no_subjects));
+                    }else {
+                        Intent intent = new Intent(ExamsListActivity.this, ExamEditorActivity.class);
+                        startActivity(intent);
+                    }
+                }
 
-        });
+            });
+        }
 
         //back toolbar imageView go to main menu activity
         ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
-        backToolbarButton.setOnClickListener(new View.OnClickListener() {
+        if (backToolbarButton != null) {
+            backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExamsListActivity.this, MainMenuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ExamsListActivity.this, MainMenuActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
 
-            }
+                }
 
-        });
+            });
+        }
 
     }
 

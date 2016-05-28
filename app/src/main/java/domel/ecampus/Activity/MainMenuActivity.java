@@ -8,9 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import domel.ecampus.R;
+import com.fasterxml.jackson.databind.deser.Deserializers;
 
-public class MainMenuActivity extends AppCompatActivity {
+import domel.ecampus.Base.BaseActivity;
+import domel.ecampus.R;
+import domel.ecampus.Tools;
+
+public class MainMenuActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +41,15 @@ public class MainMenuActivity extends AppCompatActivity {
                         startActivity(intent_sbj);
                         return true;
                     case R.id.add_exam:
-                        Intent intent_ex = new Intent(MainMenuActivity.this, ExamEditorActivity.class);
-                        startActivity(intent_ex);
-                        return true;
+
+                        if(getApp().getSubjects().size() == 0){
+                            Tools.toast(getApplicationContext(), getString(R.string.no_subjects));
+                            return false;
+                        }else {
+                            Intent intent_ex = new Intent(MainMenuActivity.this, ExamEditorActivity.class);
+                            startActivity(intent_ex);
+                            return true;
+                        }
                     case R.id.exit:
                         //close the app
                         finish();

@@ -28,6 +28,7 @@ import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domel.ecampus.Activity.MainMenuActivity;
@@ -289,6 +290,8 @@ public class MyApplication extends Application{
         return exams;
     }
 
+
+
     public   void setExams(ArrayList<Exam> exams) {
         MyApplication.exams = exams;
         persist();
@@ -332,6 +335,7 @@ public class MyApplication extends Application{
 
     public   void addExam(Exam exam){
         exams.add(exam);
+        Collections.sort(exams);
         persist();
     }
 

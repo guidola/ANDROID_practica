@@ -70,7 +70,6 @@ public class SubjectManagerAdapter extends ArrayAdapter {
         AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.subject_image);
         AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) row.findViewById(R.id.subject_description);
-        AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_subject);
         Subject subject = getItem(position);
 
         image.setImageResource(subject.getImage());
@@ -92,7 +91,8 @@ public class SubjectManagerAdapter extends ArrayAdapter {
                 //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
             }
         });
-
+        //delete subject
+        AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_subject);
         bin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import domel.ecampus.Adapters.SubjectThemeAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Component.NoStartSpaceInputFilter;
 import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.R;
@@ -27,6 +28,7 @@ public class AddSubjectThirdStepFragment extends Fragment {
 
     SubjectThemeAdapter adapter;
     AppCompatEditText input;
+    AppCompatTextView numberEdit;
 
 
     public AddSubjectThirdStepFragment() {
@@ -40,13 +42,17 @@ public class AddSubjectThirdStepFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_subject_third_step, container, false);
 
+        numberEdit = (AppCompatTextView) view.findViewById(R.id.add_theme_enumeration);
+
         ListViewCompat list = (ListViewCompat) view.findViewById(R.id.list_themes);
-        adapter = new SubjectThemeAdapter(getContext(), R.layout.adapter_subject_themes);
+        adapter = new SubjectThemeAdapter(getContext(), R.layout.adapter_subject_themes, (BaseActivity)getActivity());
         list.setAdapter(adapter);
 
         AppCompatImageButton but = (AppCompatImageButton) view.findViewById(R.id.add_theme_button);
         input = (AppCompatEditText) view.findViewById(R.id.add_theme_input);
         input.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(input)});
+        numberEdit.setText((getActivity().getString(R.string.theme_numeration, adapter.getCount() + 1)));
+
 
         but.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +63,10 @@ public class AddSubjectThirdStepFragment extends Fragment {
                 }else{
                     adapter.add(new SubjectTheme(input.getText().toString()));
                     adapter.notifyDataSetChanged();
+                    if ((getActivity().findViewById(R.id.add_theme_enumeration)) != null) {
+                        ((AppCompatTextView)getActivity().findViewById(R.id.add_theme_enumeration))
+                                .setText(getActivity().getString(R.string.theme_numeration, adapter.getCount() + 1));
+                    }
                     input.getText().clear();
                 }
             }

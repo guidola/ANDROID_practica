@@ -16,7 +16,7 @@ import java.util.Date;
 import domel.ecampus.R;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-public class Exam {
+public class Exam implements Comparable<Exam>  {
 
     private static int auto_inc_id = 0;
 
@@ -48,6 +48,9 @@ public class Exam {
         this.hour = hour;
     }
 
+    public DateTime getDateTime(){
+        return date;
+    }
 
     public void setDate(DateTime date) {
         this.date = date;
@@ -121,5 +124,15 @@ public class Exam {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    @Override
+    public int compareTo(Exam exam) {
+       if( this.date.compareTo(exam.getDateTime()) == 0){
+           return 1;
+
+       }else{
+           return -1;
+       }
     }
 }
