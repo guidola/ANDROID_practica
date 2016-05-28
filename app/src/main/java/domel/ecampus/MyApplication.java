@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 //import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import net.danlew.android.joda.JodaTimeAndroid;
@@ -111,6 +112,12 @@ public class MyApplication extends Application{
         @Override
         protected Boolean doInBackground(Void... params) {
             ObjectMapper obm = new ObjectMapper();
+            obm.registerModule(new JodaModule());
+            obm.setVisibilityChecker(obm.getSerializationConfig().getDefaultVisibilityChecker()
+                    .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withCreatorVisibility(JsonAutoDetect.Visibility.ANY));
 
             try {
                 OutputStreamWriter osw = new OutputStreamWriter(
@@ -144,14 +151,19 @@ public class MyApplication extends Application{
         if(Tools.isExternalStorageReadable()){
 
             ObjectMapper obm = new ObjectMapper();
-            //obm.registerModule(new JodaModule());
+            obm.registerModule(new JodaModule());
+            obm.setVisibilityChecker(obm.getSerializationConfig().getDefaultVisibilityChecker()
+                    .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withCreatorVisibility(JsonAutoDetect.Visibility.ANY));
 
-            File dir = getFilesDir();
+            /*File dir = getFilesDir();
             File file = new File(dir, APP_STATUS_FILENAME);
             file.delete();
-            return;
+            return;*/
 
-           /* if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
+            if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
                 //load previous data
 
                 try{
@@ -183,7 +195,7 @@ public class MyApplication extends Application{
                 } catch (IOException e) {
                     Log.w("LOAD DATA", "Default status file not found");
                 }
-            }*/
+            }
 
         }
     }
