@@ -1,6 +1,7 @@
 package domel.ecampus.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,7 +47,7 @@ public class StudentActivity extends BaseActivity {
         setContentView(R.layout.activity_student);
 
 
-        Student st = MyApplication.getStudentById((int)getIntent().getExtras().getInt("id"));
+        Student st = getApp().getStudentById((int)getIntent().getExtras().getInt("id"));
 
 
         //id of the info to the layout
@@ -61,7 +63,7 @@ public class StudentActivity extends BaseActivity {
         if(st.getPath() == null){
             if(image != null) image.setImageResource(st.getImage());
         }else{
-            if(image != null) image.setImageURI(st.getPath());
+            if(image != null) image.setImageURI(Uri.parse(st.getPath()));
         }
 
         if(name != null) name.setText(StringUtils.capitalize(st.getName()));

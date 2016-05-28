@@ -2,18 +2,22 @@ package domel.ecampus;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,7 +30,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import domel.ecampus.Activity.MainMenuActivity;
 import domel.ecampus.Model.Exam;
+import domel.ecampus.Model.StatusInstance;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.User;
@@ -35,20 +41,16 @@ import domel.ecampus.Model.User;
 public class MyApplication extends Application{
 
 
-    private transient static final String APP_STATUS_FILENAME = "persisted_data.json";
-    private transient static final String APP_STATUS_DEFAULT_FILENAME = "default_data.json";
+    private static final String APP_STATUS_FILENAME = "persisted_data.json";
+    private static final String APP_STATUS_DEFAULT_FILENAME = "default_data.json";
 
-    @SerializedName("su")
     private static ArrayList<Subject> subjects;
 
-    @SerializedName("st")
     private static ArrayList<Student> students;
 
-    @SerializedName("ex")
     private static ArrayList<Exam> exams;
 
-    @SerializedName("us")
-    private static User user;
+    private static boolean remembered;
 
 
     public MyApplication() {
@@ -67,8 +69,9 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
         JodaTimeAndroid.init(this);
+        remembered = false;
         //for now initializing model with ahrdcoded information to start working with it the good way
-        for (int i = 0 ; i < 4; i++){
+        /*for (int i = 0 ; i < 4; i++){
             addStudent(new Student("Menganito", R.mipmap.la_salle_logo, new DateTime("1990-12-12"), "Magisterio", "Mucho"));
         }
         for (int i = 0 ; i < 4; i++){
@@ -82,42 +85,82 @@ public class MyApplication extends Application{
             for (Student student : getStudents()){
                 enroll(student, s);
             }
-        }
+        }*/
+        loadStatusFromDisk();
     }
 
     public void persist(){
         //here we define persisting logic of MyApplication information.
+
         if(Tools.isExternalStorageWritable()){
 
-            Gson g = new Gson();
+            new PersistanceTask(new StatusInstance(subjects, students, exams, remembered))
+                    .execute((Void)null);
+
+        }
+    }
+
+    public class PersistanceTask extends AsyncTask<Void, Void, Boolean> {
+
+        private StatusInstance statusInstance;
+
+        PersistanceTask(StatusInstance si) {
+            this.statusInstance = si;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ObjectMapper obm = new ObjectMapper();
+
             try {
                 OutputStreamWriter osw = new OutputStreamWriter(
                         openFileOutput(APP_STATUS_FILENAME, 0),
                         "UTF-8"
                 );
 
-                osw.write(g.toJson(this));
+
+                obm.writeValue(osw, statusInstance);
+                Log.d("persisting", obm.writeValueAsString(statusInstance));
                 osw.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
             }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            Log.d("write_result", success.toString());
+        }
+
+        @Override
+        protected void onCancelled() {
         }
     }
 
     public void loadStatusFromDisk(){
         if(Tools.isExternalStorageReadable()){
 
-            if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
+            ObjectMapper obm = new ObjectMapper();
+            //obm.registerModule(new JodaModule());
+
+            File dir = getFilesDir();
+            File file = new File(dir, APP_STATUS_FILENAME);
+            file.delete();
+            return;
+
+           /* if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
                 //load previous data
+
                 try{
-                    Gson g = new Gson();
                     InputStreamReader isr = new InputStreamReader(
                             openFileInput(APP_STATUS_FILENAME),
                             "UTF-8"
                     );
 
-                    initializeData(g.fromJson(isr, MyApplication.class));
+                    initializeData(obm.readValue(isr, StatusInstance.class));
                     isr.close();
 
                 }catch (FileNotFoundException e){
@@ -129,116 +172,128 @@ public class MyApplication extends Application{
             }else{
                 //load default data
                 try{
-                    Gson g = new Gson();
                     InputStreamReader isr = new InputStreamReader(
                             getAssets().open(APP_STATUS_DEFAULT_FILENAME),
                             "UTF-8"
                     );
 
-                    initializeData(g.fromJson(isr, MyApplication.class));
+                    initializeData(obm.readValue(isr, StatusInstance.class));
                     isr.close();
 
                 } catch (IOException e) {
                     Log.w("LOAD DATA", "Default status file not found");
                 }
-            }
+            }*/
 
         }
     }
 
-    private static void initializeData(MyApplication myApplication) {
-        MyApplication.students = myApplication.getStudents();
-        MyApplication.subjects = myApplication.getSubjects();
-        MyApplication.exams = myApplication.getExams();
+    private   void initializeData(StatusInstance si) {
+        MyApplication.students = si.getStudents();
+        MyApplication.subjects = si.getSubjects();
+        MyApplication.exams = si.getExams();
+        MyApplication.remembered = si.isRemember();
     }
 
 
-    public static void addStudent(Student student){
+    public   void addStudent(Student student){
         students.add(student);
+        persist();
     }
 
-    public static void deleteStudent(Student student){
+    public   void deleteStudent(Student student){
         for (Subject s : student.getSubjects()){
             s.unrollStudent(student);
         }
         students.remove(student);
+        persist();
     }
 
-    public static void addSubject(Subject subject){
+    public   void addSubject(Subject subject){
         subjects.add(subject);
     }
 
-    public static void suspendExams(Subject subject){
+    public   void suspendExams(Subject subject){
         for (Exam e: subject.getExams()){
             exams.remove(e);
         }
         subject.suspendExams();
+        persist();
     }
 
-    public static void unroll(Student student, Subject subject){
+    public void unroll(Student student, Subject subject){
         student.unrollSubject(subject);
         subject.unrollStudent(student);
+        persist();
     }
 
-    public static void enroll(Student student, Subject subject){
+    public   void enroll(Student student, Subject subject){
         student.enrollSubject(subject);
         subject.enrollStudent(student);
+        persist();
     }
 
-    public static void deleteSubject(Subject subject){
+    public   void deleteSubject(Subject subject){
         for (Student s: subject.getStudents()){
             s.unrollSubject(subject);
         }
         suspendExams(subject);
         subjects.remove(subject);
+        persist();
     }
 
-    public static void addExam(Exam exam, Subject subject){
+    public   void addExam(Exam exam, Subject subject){
         exams.add(exam);
         exam.setSubject(subject);
         subject.scheduleExam(exam);
+        persist();
     }
 
-    public static void deleteExam(Exam exam){
+    public   void deleteExam(Exam exam){
         exam.getSubject().getExams().remove(exam);
         exam.setSubject(null);
         exams.remove(exam);
+        persist();
     }
 
 
-    public static ArrayList<Subject> getSubjects() {
+    public   ArrayList<Subject> getSubjects() {
         return subjects;
     }
 
-    public static void setSubjects(ArrayList<Subject> subjects) {
+    public   void setSubjects(ArrayList<Subject> subjects) {
         MyApplication.subjects = subjects;
+        persist();
     }
 
-    public static ArrayList<Student> getStudents() {
+    public   ArrayList<Student> getStudents() {
         return students;
     }
 
-    public static void setStudents(ArrayList<Student> students) {
+    public   void setStudents(ArrayList<Student> students) {
         MyApplication.students = students;
+        persist();
     }
 
-    public static ArrayList<Exam> getExams() {
+    public   ArrayList<Exam> getExams() {
         return exams;
     }
 
-    public static void setExams(ArrayList<Exam> exams) {
+    public   void setExams(ArrayList<Exam> exams) {
         MyApplication.exams = exams;
+        persist();
     }
 
-    public static User getUser() {
-        return user;
+    public   boolean isRemembered() {
+        return remembered;
     }
 
-    public static void setUser(User user) {
-        MyApplication.user = user;
+    public   void setRemembered(boolean remembered) {
+        MyApplication.remembered = remembered;
+        persist();
     }
 
-    public static Subject getSubjectById(int id) {
+    public   Subject getSubjectById(int id) {
 
         for (Subject s : subjects){
             if(s.getId() == id) return s;
@@ -247,7 +302,7 @@ public class MyApplication extends Application{
         return null;
     }
 
-    public static Student getStudentById(int id) {
+    public   Student getStudentById(int id) {
         for (Student s : students){
             if(s.getId() == id) return s;
         }
@@ -256,7 +311,7 @@ public class MyApplication extends Application{
     }
 
 
-    public static Exam getExamById(int id) {
+    public   Exam getExamById(int id) {
 
         for (Exam s : exams){
             if(s.getId() == id) return s;
@@ -265,8 +320,9 @@ public class MyApplication extends Application{
         return null;
     }
 
-    public static void addExam(Exam exam){
+    public   void addExam(Exam exam){
         exams.add(exam);
+        persist();
     }
 
 }

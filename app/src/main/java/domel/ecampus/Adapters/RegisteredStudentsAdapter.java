@@ -1,6 +1,8 @@
 package domel.ecampus.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -14,6 +16,7 @@ import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
@@ -25,11 +28,13 @@ public class RegisteredStudentsAdapter extends ArrayAdapter<Student> {
 
     private ArrayList<Student> students;
     private ArrayList<Student> selected_students;
+    private BaseActivity activity;
 
-    public RegisteredStudentsAdapter(Context context, int resource) {
+    public RegisteredStudentsAdapter(Context context, int resource, BaseActivity activity) {
 
         super(context, resource);
-        students = MyApplication.getStudents();
+        this.activity = activity;
+        students = activity.getApp().getStudents();
         selected_students = new ArrayList<>();
     }
 
@@ -74,7 +79,7 @@ public class RegisteredStudentsAdapter extends ArrayAdapter<Student> {
         if(student.getPath() == null){
             if(image != null) image.setImageResource(student.getImage());
         }else{
-            if(image != null) image.setImageURI(student.getPath());
+            if(image != null) image.setImageURI(Uri.parse(student.getPath()));
         }
         name.setText(student.getName());
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

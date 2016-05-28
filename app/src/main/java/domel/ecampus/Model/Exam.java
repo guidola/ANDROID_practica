@@ -3,6 +3,10 @@ package domel.ecampus.Model;
 
 import android.content.Context;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -11,6 +15,7 @@ import java.util.Date;
 
 import domel.ecampus.R;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Exam {
 
     private static int auto_inc_id = 0;
@@ -18,6 +23,8 @@ public class Exam {
     private int id;
     private DateTime date;
     private String assigned_class;
+
+    //@JsonBackReference
     private Subject subject;
     private String speciality;
     private String hour;

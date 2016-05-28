@@ -2,6 +2,7 @@ package domel.ecampus.Activity;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,13 +24,14 @@ import java.util.GregorianCalendar;
 import java.util.zip.Inflater;
 
 import domel.ecampus.Adapters.StudentManagerAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
-public class SubjectActivity extends AppCompatActivity {
+public class SubjectActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class SubjectActivity extends AppCompatActivity {
 
         AppCompatTextView name = (AppCompatTextView) findViewById(R.id.subject_name);
         AppCompatTextView description = (AppCompatTextView) findViewById(R.id.subject_description);
-        Subject subject = MyApplication.getSubjectById((int)getIntent().getExtras().getInt("id"));
+        Subject subject = getApp().getSubjectById((int)getIntent().getExtras().getInt("id"));
 
         if (name != null) {
             name.setText(StringUtils.capitalize(subject.getName()));
@@ -120,7 +122,7 @@ public class SubjectActivity extends AppCompatActivity {
                 if(student.getPath() == null){
                     if(student_image != null) student_image.setImageResource(student.getImage());
                 }else{
-                    if(student_image != null) student_image.setImageURI(student.getPath());
+                    if(student_image != null) student_image.setImageURI(Uri.parse(student.getPath()));
                 }
                 student_name.setText(student.getName());
                 student_spec.setText(student.getSpecialty());

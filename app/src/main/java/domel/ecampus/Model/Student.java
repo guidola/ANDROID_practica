@@ -4,6 +4,8 @@ package domel.ecampus.Model;
 import android.net.Uri;
 import android.util.Log;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
@@ -29,7 +31,9 @@ public class Student{
     private DateTime birthdate;
     private String specialty;
     private String gender;
-    private Uri path;
+    private String path;
+
+//    @JsonBackReference
     private ArrayList<Subject> subjects;
 
 
@@ -121,15 +125,15 @@ public class Student{
         this.birthdate = birthdate;
     }
 
-    public Uri getPath() {
+    public String getPath() {
         return path;
     }
 
-    public void setPath(Uri path) {
+    public void setPath(String path) {
         this.path = path;
     }
 
-/*
+   /*
     public static ArrayList<Student> getTestCollection(){
         ArrayList<Student> s = new ArrayList<>();
 

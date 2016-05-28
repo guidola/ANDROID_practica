@@ -41,7 +41,7 @@ public class SubjectManagerActivity extends BaseActivity {
         SubjectManagerAdapter subjectAdapter = new SubjectManagerAdapter(
                 SubjectManagerActivity.this,
                 R.layout.adapter_subject_manager,
-                getApp().getSubjects()
+                getApp().getSubjects(), this
         );
 
         if (listView != null) {

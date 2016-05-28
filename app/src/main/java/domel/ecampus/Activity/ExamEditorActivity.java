@@ -49,7 +49,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         Boolean editor = true;
 
         try{
-            editorExam = MyApplication.getExamById((int)getIntent().getExtras().getInt("id"));
+            editorExam = getApp().getExamById((int)getIntent().getExtras().getInt("id"));
             setDateEditText = (EditText) findViewById(R.id.exam_date);
             setDateEditText.setText(editorExam.getDate());
             setHourEditText = (EditText) findViewById(R.id.exam_hour);
@@ -95,8 +95,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         spinnerDegree.setAdapter(adapterDegree);
 
         ArrayList<String> subjectsName = new ArrayList<>();
-        for(int i = 0; i<MyApplication.getSubjects().size(); i++){
-            subjectsName.add(MyApplication.getSubjects().get(i).getName());
+        for(int i = 0; i < getApp().getSubjects().size(); i++){
+            subjectsName.add(getApp().getSubjects().get(i).getName());
         }
 
         //subject spinner
@@ -203,7 +203,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         //found the subject
         Subject subjectToAdd = new Subject();
         ArrayList<Subject> subjects = new ArrayList<>();
-        subjects = MyApplication.getSubjects();
+        subjects = getApp().getSubjects();
         for(int i = 0; i< subjects.size(); i++){
             if (subjects.get(i).getName().equals(subjectName)){
                 subjectToAdd = subjects.get(i);
@@ -214,8 +214,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         exam.setHour(hour);
 
-        MyApplication.addExam(exam);
-        MyApplication.getExams().remove(editorExam);
+        getApp().addExam(exam);
+        getApp().getExams().remove(editorExam);
 
 
 

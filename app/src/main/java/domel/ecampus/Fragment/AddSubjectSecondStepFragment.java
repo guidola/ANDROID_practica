@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import domel.ecampus.Adapters.RegisteredStudentsAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.R;
 
 /**
@@ -29,7 +30,7 @@ public class AddSubjectSecondStepFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_subject_second_step, container, false);
 
         ListViewCompat list = (ListViewCompat) view.findViewById(R.id.list_students);
-        RegisteredStudentsAdapter adapter = new RegisteredStudentsAdapter(getContext(), R.layout.adapter_registered_students);
+        RegisteredStudentsAdapter adapter = new RegisteredStudentsAdapter(getContext(), R.layout.adapter_registered_students, (BaseActivity)getActivity() );
         list.setAdapter(adapter);
 
         return view;

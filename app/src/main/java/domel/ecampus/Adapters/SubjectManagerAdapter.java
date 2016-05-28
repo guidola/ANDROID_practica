@@ -30,10 +30,12 @@ import domel.ecampus.R;
 public class SubjectManagerAdapter extends ArrayAdapter {
 
     private ArrayList<Subject> subjects;
+    private BaseActivity activity;
 
-    public SubjectManagerAdapter(Context context, int resource, ArrayList<Subject> arraySubjects) {
+    public SubjectManagerAdapter(Context context, int resource, ArrayList<Subject> arraySubjects, BaseActivity activity) {
 
         super(context, resource);
+        this.activity = activity;
         subjects = arraySubjects;
     }
 
@@ -102,7 +104,7 @@ public class SubjectManagerAdapter extends ArrayAdapter {
                 builder.setPositiveButton(getContext().getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MyApplication.deleteSubject(getItem(position));
+                        activity.getApp().deleteSubject(getItem(position));
                         notifyDataSetChanged();
                         dialog.cancel();
                     }

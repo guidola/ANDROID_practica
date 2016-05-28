@@ -1,11 +1,16 @@
 package domel.ecampus.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import domel.ecampus.R;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Subject {
 
     private static int auto_inc_id = 0;
@@ -15,8 +20,11 @@ public class Subject {
     private int image;
     private  String description;
 
+    //@JsonManagedReference
     private ArrayList<Student> students;
+    //@JsonManagedReference
     private ArrayList<SubjectTheme> themes;
+    //@JsonManagedReference
     private ArrayList<Exam> exams;
 
 

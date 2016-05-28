@@ -31,6 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.joda.time.DateTime;
 
@@ -49,16 +52,12 @@ import domel.ecampus.Model.Student;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
-public class AddStudentActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener{
+public class AddStudentActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener {
 
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
     private EditText setDateEditText;
-    private final static int SELECT_PHOTO = 12345;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    public static File _file;
-    public static File _dir;
-    public static Bitmap bitmap;
-    private String photo_temp_path;
+    private boolean picker_on;
     private int year;
     private int monthOfYear;
     private int dayOfMonth;
@@ -70,77 +69,88 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         setContentView(R.layout.activity_add_student);
 
         //set name
-        EditText setNameEditText = (EditText) findViewById(R.id.name);
+        EditText setNameEditText = (EditText) findViewById(R.id.birthdate);
+        picker_on = false;
 
         //Set the birthdate
         setDateEditText = (EditText) findViewById(R.id.birthdate);
         setDateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
-                        .setOnDateSetListener(AddStudentActivity.this);
-                cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
+                if (hasFocus && !picker_on) {
+                    CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
+                            .setOnDateSetListener(AddStudentActivity.this);
+                    cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
+                }
+            }
+
+        });
+
+        setDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!picker_on) {
+                    CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
+                            .setOnDateSetListener(AddStudentActivity.this);
+                    cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
+                }
             }
         });
 
-        //degree spinner
-        Spinner spinner = (Spinner) findViewById(R.id.student_degree);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        //setDateEditText.setShowSoftInputOnFocus(false);
 
-        //radio buttons of gender
-        RadioGroup checked = (RadioGroup) findViewById(R.id.gender_radiogroup);
+            //degree spinner
+            Spinner spinner = (Spinner) findViewById(R.id.student_degree);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-        //choose image of the galery
-        final ImageView chooseImage = (ImageView) findViewById(R.id.photo);
-        /*if (chooseImage != null) {
-            chooseImage.setOnClickListener(new View.OnClickListener() {
+            //radio buttons of gender
+            RadioGroup checked = (RadioGroup) findViewById(R.id.gender_radiogroup);
 
-                @Override
-                public void onClick(View view) {
-                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                    photoPickerIntent.setType("image/*");
-                    startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-                }
-            });
-        }*/
-
-        //add photo of the camara
-        ImageButton newPhoto = (ImageButton) findViewById(R.id.photo_button);
-        if (newPhoto != null) {
-            newPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent takePictureIntent = ImagePicker.getPickImageIntent(AddStudentActivity.this);
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                    //dispatchTakePictureIntent(takePictureIntent);
-
-                }
-            });
-        }
+            //choose image of the galery
+            ImageView chooseImage = (ImageView) findViewById(R.id.photo);
 
 
-        //create student
-        Button createButton = (Button) findViewById(R.id.submit_button);
-        if (createButton != null) {
-            createButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            //add photo of the camara
+            ImageButton newPhoto = (ImageButton) findViewById(R.id.photo_button);
+            if(newPhoto!=null)
 
-                    //if all good
-                    Student student = processForm();
-                    if(student != null) {
+            {
+                newPhoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent takePictureIntent = ImagePicker.getPickImageIntent(AddStudentActivity.this);
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                        //dispatchTakePictureIntent(takePictureIntent);
 
-                        // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
-                        Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
                     }
+                });
+            }
 
-                }
-            });
-        }
+
+            //create student
+            Button createButton = (Button) findViewById(R.id.submit_button);
+            if(createButton!=null)
+
+            {
+                createButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        //if all good
+                        Student student = processForm();
+                        if (student != null) {
+
+                            // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
+                            Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    }
+                });
+            }
 
 
         //back tolbar button
@@ -160,21 +170,21 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         }
     }
 
-    public Student processForm(){
+    public Student processForm() {
 
         AppCompatEditText name = (AppCompatEditText) findViewById(R.id.name);
         AppCompatEditText date = (AppCompatEditText) findViewById(R.id.birthdate);
-        AppCompatSpinner  carreer = (AppCompatSpinner) findViewById(R.id.student_degree);
+        AppCompatSpinner carreer = (AppCompatSpinner) findViewById(R.id.student_degree);
         RadioGroup sex = (RadioGroup) findViewById(R.id.gender_radiogroup);
         AppCompatImageView photo = (AppCompatImageView) findViewById(R.id.photo);
 
-        if(name.getText().toString().length() == 0){
+        if (name.getText().toString().length() == 0) {
             name.setError(getString(R.string.error_field_required));
             name.requestFocus();
             return null;
         }
 
-        if(date.getText().toString().length() == 0){
+        if (date.getText().toString().length() == 0) {
             date.setError(getString(R.string.error_field_required));
             date.requestFocus();
             return null;
@@ -189,11 +199,11 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         student.setBirthdate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         student.setSpecialty(carreer.getSelectedItem().toString());
 
-        if(photo.getTag() != null){
-            student.setPath((Uri)photo.getTag());
+        if (photo.getTag() != null) {
+            student.setPath((String)photo.getTag());
         }
 
-        MyApplication.addStudent(student);
+        getApp().addStudent(student);
 
         return student;
     }
@@ -223,7 +233,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        photo_temp_path = image.getAbsolutePath();
+        //photo_temp_path = image.getAbsolutePath();
         return image;
     }
 
@@ -231,14 +241,15 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
     public void onResume() {
         super.onResume();
         CalendarDatePickerDialogFragment calendarDatePickerDialogFragment = (CalendarDatePickerDialogFragment) getSupportFragmentManager().findFragmentByTag(FRAG_TAG_DATE_PICKER);
-        if (calendarDatePickerDialogFragment != null) calendarDatePickerDialogFragment.setOnDateSetListener(this);
+        if (calendarDatePickerDialogFragment != null)
+            calendarDatePickerDialogFragment.setOnDateSetListener(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(resultCode == RESULT_OK){
-            switch(requestCode) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
                 case REQUEST_IMAGE_CAPTURE:
                     Bitmap bitmap = ImagePicker.getImageFromResult(this, resultCode, data);
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -252,7 +263,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
                         AppCompatImageView photo_preview = (AppCompatImageView) findViewById(R.id.photo);
                         if (photo_preview != null) {
                             photo_preview.setImageBitmap(bitmap);
-                            photo_preview.setTag(Uri.fromFile(f));
+                            photo_preview.setTag(f.getAbsolutePath());
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -264,6 +275,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
             }
         }
     }
+
     //finish this activity going back
     @Override
     public void onBackPressed() {

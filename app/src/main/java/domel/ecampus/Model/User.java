@@ -1,6 +1,5 @@
 package domel.ecampus.Model;
 
-import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Guillermo on 14/5/16.
@@ -11,13 +10,10 @@ public class User {
 
     private int id;
 
-    @SerializedName("email")
     private String email;
 
-    @SerializedName("pass")
     private String password;
 
-    @SerializedName("in")
     private boolean remembered;
 
     public User() {

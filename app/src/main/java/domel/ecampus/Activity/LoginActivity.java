@@ -222,7 +222,6 @@ public class LoginActivity  extends BaseActivity {
             if (success) {
                 // we store a user with all the info but on a real situation that would be just a
                 // UserPasswordToken to authenticate against DB
-                MyApplication.setUser(new User(this.email, this.password, this.remembered));
                 Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                 startActivity(intent);
                 finish();

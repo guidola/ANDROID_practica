@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 import domel.ecampus.Activity.StudentActivity;
 import domel.ecampus.Activity.SubjectActivity;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
@@ -31,11 +33,13 @@ public class StudentManagerAdapter extends ArrayAdapter{
 
 
     private ArrayList<Student> students;
+    private BaseActivity activity;
 
-    public StudentManagerAdapter(Context context, int resource) {
+    public StudentManagerAdapter(Context context, int resource, BaseActivity activity) {
 
         super(context, resource);
-        students = MyApplication.getStudents();
+        this.activity = activity;
+        students = activity.getApp().getStudents();
     }
 
     public int getCount(){
@@ -71,7 +75,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
         if(student.getPath() == null){
             if(image != null) image.setImageResource(student.getImage());
         }else{
-            if(image != null) image.setImageURI(student.getPath());
+            if(image != null) image.setImageURI(Uri.parse(student.getPath()));
         }
 
         name.setText(StringUtils.capitalize(student.getName()));

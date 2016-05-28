@@ -29,7 +29,8 @@ public class StudentManagerActivity extends BaseActivity {
 
         StudentManagerAdapter studentAdapter = new StudentManagerAdapter(
                 StudentManagerActivity.this,
-                R.layout.adapter_subject_manager
+                R.layout.adapter_subject_manager,
+                this
         );
 
         if (listView != null) {

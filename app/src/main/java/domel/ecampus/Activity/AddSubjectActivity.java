@@ -24,6 +24,7 @@ import domel.ecampus.Adapters.AddStudentFragmentAdapter;
 import domel.ecampus.Adapters.RegisteredStudentsAdapter;
 import domel.ecampus.Adapters.SubjectManagerAdapter;
 import domel.ecampus.Adapters.SubjectThemeAdapter;
+import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Component.RestrictiveViewPager;
 import domel.ecampus.Fragment.AddSubjectFirstStepFragment;
 import domel.ecampus.Fragment.AddSubjectSecondStepFragment;
@@ -34,7 +35,7 @@ import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 import domel.ecampus.Tools;
 
-public class AddSubjectActivity extends AppCompatActivity {
+public class AddSubjectActivity extends BaseActivity {
 
     private final static int LAST_PAGE = 2;
     private int last_page = -1;
@@ -171,7 +172,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         subject.addThemes(theme_adapter.getThemes());
 
         //At this point the subject itself is fully filled. Persist
-        MyApplication.addSubject(subject);
+        getApp().addSubject(subject);
 
         //process data from second fragment
         RegisteredStudentsAdapter adapter = (RegisteredStudentsAdapter)
@@ -180,7 +181,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         ArrayList<Student> reg_students = adapter.getSelectedStudents();
         for (Student s : reg_students) {
-            MyApplication.enroll(s, subject);
+            getApp().enroll(s, subject);
         }
     }
 
