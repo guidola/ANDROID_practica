@@ -13,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import domel.ecampus.Adapters.SubjectThemeAdapter;
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Component.NoStartSpaceInputFilter;

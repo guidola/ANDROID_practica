@@ -20,8 +20,6 @@ import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 
 public class StudentActivity extends BaseActivity {
-    private boolean zoomOut =  false;
-    private boolean back_fullscreen =  false;
 
 
     @Override
@@ -114,8 +112,6 @@ public class StudentActivity extends BaseActivity {
                         v.setVisibility(View.GONE);
                     }*/
                     v.setVisibility(View.GONE);
-                    back_fullscreen = false;
-
                 }
             });
         }
@@ -146,13 +142,12 @@ public class StudentActivity extends BaseActivity {
     //finish this activity going back
     @Override
     public void onBackPressed() {
-       if(!back_fullscreen) {
+        View v = findViewById(R.id.full_screen_wrapper);
+        if(v.getVisibility() == View.GONE) {
            super.onBackPressed();
            finish();
        }else{
-           View v = findViewById(R.id.full_screen_wrapper);
            v.setVisibility(View.GONE);
-           back_fullscreen = false;
        }
     }
 

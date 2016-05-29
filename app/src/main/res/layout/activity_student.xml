@@ -100,7 +100,6 @@
                         android:layout_margin="@dimen/simple_padding"
                         android:layout_width="0dp"
                         android:layout_weight="2"
-                        android:background="@color/black_15"
                         android:layout_height="wrap_content">
 
                         <android.support.v7.widget.AppCompatTextView
@@ -108,13 +107,17 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="left|start"
                             android:id="@+id/student_name" />
 
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="left|start"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_marginBottom="@dimen/xs"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
                             android:id="@+id/student_career" />
 
                         <android.support.v7.widget.AppCompatTextView
@@ -122,6 +125,9 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_marginBottom="@dimen/xs"
+                            android:gravity="left|start"
+                            android:paddingLeft="@dimen/xs"
+                            android:paddingRight="@dimen/xs"
                             android:id="@+id/student_birthdate" />
 
                         <android.support.v7.widget.AppCompatTextView
@@ -129,6 +135,9 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:layout_marginBottom="@dimen/xs"
+                            android:gravity="left|start"
+                            android:paddingLeft="@dimen/xs"
+                            android:paddingRight="@dimen/xs"
                             android:id="@+id/student_gender" />
                     </LinearLayout>
                 </LinearLayout>
