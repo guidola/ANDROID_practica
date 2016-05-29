@@ -205,7 +205,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         student.setName(name.getText().toString());
         student.setGender(gender.getText().toString());
 
-        student.setBirthdate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
+        student.setBirthdate(new DateTime(year+"-"+(monthOfYear+1)+"-"+dayOfMonth));
         student.setSpecialty(carreer.getSelectedItem().toString());
 
         if(photo.getTag() != null){
@@ -222,7 +222,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
     //set date text the date to the edit text
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-        setDateEditText.setText(getString(R.string.student_date, year, monthOfYear, dayOfMonth));
+        setDateEditText.setText(getString(R.string.student_date, year, (monthOfYear + 1), dayOfMonth));
         this.year = year;
         this.monthOfYear = monthOfYear;
         this.dayOfMonth = dayOfMonth;
