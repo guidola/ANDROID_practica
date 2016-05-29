@@ -26,6 +26,7 @@ import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class ExamEditorActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener, TimePickerDialogFragment.TimePickerDialogHandler{
     private EditText setDateEditText;
@@ -36,7 +37,6 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     private String hour;
     private Spinner spinnerDegree;
     private Spinner spinnerSubject;
-
     private Exam editorExam;
 
 
@@ -123,8 +123,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                         spinnerSubject.setAdapter(adapterSubject);
                     }
 
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
+                    public void onNothingSelected(AdapterView<?> parent) {}
                 });
 
         //class spinner
@@ -152,16 +151,15 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                 @Override
                 public void onClick(View view) {
 
-                    //if all good
+                    //if all good, exam have info and the spinner of subjects is the only one that can be null
                     Exam exam = processForm();
                     if(exam != null) {
-
                         Intent intent = new Intent(ExamEditorActivity.this, ExamsListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        Tools.toast(getApplicationContext(), getString(R.string.exam_created));
                         finish();
                     }
-
                 }
             });
         }
@@ -223,9 +221,21 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
         exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         exam.setHour(hour);
-        exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
+        if (spinnerDegree != null) {
+            exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
+        }
 
-        String subjectName = spinnerSubject.getSelectedItem().toString();
+        String subjectName = null;
+        if (spinnerSubject != null) {
+            if (spinnerSubject.getSelectedItem() != null) {
+                subjectName = spinnerSubject.getSelectedItem().toString();
+            }else{
+                Tools.toast(getApplicationContext(), getString(R.string.no_subjects_selected));
+                return null;
+            }
+        }else{
+            return null;
+        }
 
 
         //found the subject

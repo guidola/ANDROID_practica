@@ -103,6 +103,10 @@
 
     <string name="action_settings"> Settings </string>
     <string name="no_subjects"> Para crear un examen primero crea una asignatura </string>
+    <string name="no_subjects_selected"> Selecciona una asignatura</string>
+    <string name="exam_created"> Examen creado satisfactóriamente</string>
+
+
 
 
 
