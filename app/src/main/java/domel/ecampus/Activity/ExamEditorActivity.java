@@ -31,6 +31,7 @@ import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class ExamEditorActivity extends BaseActivity implements CalendarDatePickerDialogFragment.OnDateSetListener, TimePickerDialogFragment.TimePickerDialogHandler{
     private EditText setDateEditText;
@@ -41,8 +42,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     private String hour;
     private Spinner spinnerDegree;
     private Spinner spinnerSubject;
-
     private Exam editorExam;
+    private boolean noSubjects = false;
 
 
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
@@ -143,14 +144,18 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                         for (int i = 0; i < getApp().getSubjects().size(); i++) {
                             if (spinnerDegree.getSelectedItem().toString().equals(getApp().getSubjects().get(i).getDegree())){
                                 subjectsName.add(getApp().getSubjects().get(i).getName());
+                                noSubjects = false;
                             }
                         }
                         ArrayAdapter<CharSequence> adapterSubject = new ArrayAdapter(ExamEditorActivity.this, android.R.layout.simple_spinner_dropdown_item, subjectsName);
                         spinnerSubject.setAdapter(adapterSubject);
+                        if(subjectsName.size() == 0){
+                            subjectsName.add(getString(R.string.degree_without_subjects));
+                            noSubjects = true;
+                        }
                     }
 
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
+                    public void onNothingSelected(AdapterView<?> parent) {}
                 });
 
         //class spinner
@@ -166,16 +171,20 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             createButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    //if all good
-                    if(processForm() != null) {
-
+                    Exam exam = null;
+                    //if all good, exam have info and the spinner of subjects is the only one that can be null
+                   if (!noSubjects){
+                       exam = processForm();
+                   }else{
+                       Tools.toast(getApplicationContext(), getString(R.string.no_subjects_selected));
+                   }
+                    if(exam != null) {
                         Intent intent = new Intent(ExamEditorActivity.this, ExamsListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        Tools.toast(getApplicationContext(), getString(R.string.exam_created));
                         finish();
                     }
-
                 }
             });
         }
@@ -281,9 +290,21 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
         exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         exam.setHour(hour);
-        exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
+        if (spinnerDegree != null) {
+            exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
+        }
 
-        String subjectName = spinnerSubject.getSelectedItem().toString();
+        String subjectName = null;
+        if (spinnerSubject != null) {
+            if (spinnerSubject.getSelectedItem() != null) {
+                subjectName = spinnerSubject.getSelectedItem().toString();
+            }else{
+                Tools.toast(getApplicationContext(), getString(R.string.no_subjects_selected));
+                return null;
+            }
+        }else{
+            return null;
+        }
 
 
         //found the subject
