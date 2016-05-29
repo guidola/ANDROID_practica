@@ -53,7 +53,7 @@ public class LoginActivity  extends BaseActivity {
         v_form = findViewById(R.id.login_form);
         v_progress = findViewById(R.id.login_progress);
         et_email = (AppCompatEditText) findViewById(R.id.email);
-        et_password = (AppCompatEditText) findViewById(R.id.password);
+        et_password = (AppCompatEditText) findViewById(R.id.password_et);
         et_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -160,7 +160,7 @@ public class LoginActivity  extends BaseActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            AppCompatCheckBox checkbox = (AppCompatCheckBox)findViewById(R.id.rememberme);
+            AppCompatCheckBox checkbox = (AppCompatCheckBox)findViewById(R.id.remember);
             showProgress(true);
             mAuthTask = new UserLoginTask(user, password,
                     checkbox != null && checkbox.isChecked());
@@ -219,6 +219,7 @@ public class LoginActivity  extends BaseActivity {
             if (success) {
                 // we store a user with all the info but on a real situation that would be just a
                 // UserPasswordToken to authenticate against DB
+                getApp().setRemembered(remembered);
                 Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                 startActivity(intent);
                 finish();

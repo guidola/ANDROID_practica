@@ -130,4 +130,24 @@ public class Exam implements Comparable<Exam>  {
     public int compareTo(Exam exam) {
        return this.date.compareTo(exam.getDateTime());
     }
+
+    public static int getAuto_inc_id() {
+        return auto_inc_id;
+    }
+
+    public static void setAuto_inc_id(int auto_inc_id) {
+        Exam.auto_inc_id = auto_inc_id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
 }

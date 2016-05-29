@@ -235,15 +235,21 @@ public class AddSubjectActivity extends BaseActivity {
                     AppCompatEditText input = (AppCompatEditText)(thirdStepFragment.getView().findViewById(R.id.add_theme_input));
                     input.setError(getString(R.string.error_theme_required));
                     input.requestFocus();
-                    not_processing = true;
                 }
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
         builder.setNegativeButton(this.getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                dialog.dismiss();
+            }
+        });
+
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                not_processing = true;
             }
         });
 

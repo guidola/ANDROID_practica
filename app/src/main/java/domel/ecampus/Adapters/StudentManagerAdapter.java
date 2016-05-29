@@ -98,9 +98,10 @@ public class StudentManagerAdapter extends ArrayAdapter{
 
 
         //delete button
+        bin.setTag(student.getId());
         bin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 //launch alert dialog to ask for deletion.
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(getContext().getResources().getString(R.string.alert_delete_title));
@@ -110,7 +111,8 @@ public class StudentManagerAdapter extends ArrayAdapter{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //MyApplication.deleteSubject(getItem(position)); //this is what should go for data consistance and stuff
-                        students.remove(position);
+                        int item = (int)v.getTag();
+                        activity.getApp().deleteStudent(getItem(item));
                         notifyDataSetChanged();
                         dialog.cancel();
                     }

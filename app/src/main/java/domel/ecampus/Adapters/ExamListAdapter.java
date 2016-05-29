@@ -52,7 +52,6 @@ public class ExamListAdapter extends ArrayAdapter {
         return exams.get(i);
     }
 
-
     public View getView(final int position, View convertView, ViewGroup parent){
 
         View row = convertView;

@@ -1,8 +1,10 @@
 package domel.ecampus.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +21,10 @@ import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import domel.ecampus.Adapters.ExamListAdapter;
+import domel.ecampus.Adapters.SubjectThemeAdapter;
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Exam;
 import domel.ecampus.Model.Student;
@@ -47,31 +52,27 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_editor);
-
+        editorExam = null;
         AppCompatTextView title = (AppCompatTextView) findViewById(R.id.editor_or_new);
-        Boolean editor = true;
 
-        try{
-            editorExam = getApp().getExamById((int)getIntent().getExtras().getInt("id"));
-            setDateEditText = (EditText) findViewById(R.id.exam_date);
-            setDateEditText.setText(editorExam.getDate());
-            setHourEditText = (EditText) findViewById(R.id.exam_hour);
-            setHourEditText.setText(editorExam.getHour());
-
-            year = editorExam.getYear();
-            monthOfYear = editorExam.getMonth();
-            dayOfMonth = editorExam.getDay();
-
-        }catch (NullPointerException e){
-            editor =false;
-        }
-
-
-        //Set exam date
         setDateEditText = (EditText) findViewById(R.id.exam_date);
+        setHourEditText = (EditText) findViewById(R.id.exam_hour);
+
+
         setDateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
+                            .setOnDateSetListener(ExamEditorActivity.this);
+                    cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
+                }
+            }
+        });
+
+        setDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
                         .setOnDateSetListener(ExamEditorActivity.this);
                 cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
@@ -84,6 +85,17 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         setHourEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    TimePickerBuilder tpb = new TimePickerBuilder()
+                            .setFragmentManager(getSupportFragmentManager())
+                            .setStyleResId(R.style.BetterPickersDialogFragment);
+                    tpb.show();
+                }
+            }
+        });
+        setHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 TimePickerBuilder tpb = new TimePickerBuilder()
                         .setFragmentManager(getSupportFragmentManager())
                         .setStyleResId(R.style.BetterPickersDialogFragment);
@@ -91,23 +103,37 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             }
         });
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setDateEditText.setShowSoftInputOnFocus(false);
+            setHourEditText.setShowSoftInputOnFocus(false);
+        }else{
+            setDateEditText.setInputType(InputType.TYPE_NULL);
+            setHourEditText.setInputType(InputType.TYPE_NULL);
+        }
+
+
 
         //degree spinner
         spinnerDegree = (Spinner) findViewById(R.id.career_spinner);
         ArrayAdapter<CharSequence> adapterDegree = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
-        spinnerDegree.setAdapter(adapterDegree);
+        if (spinnerDegree != null) {
+            spinnerDegree.setAdapter(adapterDegree);
+        }
 
-        //subject spinner
         spinnerSubject = (Spinner) findViewById(R.id.subject_spinner);
+        int sel_subject = -1;
+        //subject spinner
         ArrayList<String> subjectsName = new ArrayList<>();
-        for (int i = 0; i < getApp().getSubjects().size(); i++) {
-            if (spinnerDegree.getSelectedItem().toString().equals(getApp().getSubjects().get(i).getDegree())){
-                subjectsName.add(getApp().getSubjects().get(i).getName());
+        for(Subject s : getApp().getSubjects()){
+            subjectsName.add(s.getName());
+            if(editorExam != null && s.getName().equals(editorExam.getSubject().getName())){
+                sel_subject = subjectsName.indexOf(s.getName());
             }
         }
 
         ArrayAdapter<CharSequence> adapterSubject = new ArrayAdapter(ExamEditorActivity.this, android.R.layout.simple_spinner_dropdown_item, subjectsName);
         spinnerSubject.setAdapter(adapterSubject);
+        if(sel_subject != -1) spinnerSubject.setSelection(sel_subject);
 
         //filter subjects for the degree selected
         spinnerDegree.setOnItemSelectedListener(
@@ -130,19 +156,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         //class spinner
         Spinner spinnerClass = (Spinner) findViewById(R.id.class_spinner);
         ArrayAdapter<CharSequence> adapterClass = ArrayAdapter.createFromResource(this, R.array.assigned_class, android.R.layout.simple_spinner_dropdown_item);
-        spinnerClass.setAdapter(adapterClass);
-
-
-
-        //view if we are going to edit or create an exam
-        if(editor){
-            //editor exam
-            title.setText(getString(R.string.exam_editor_title));
-
-        }else{
-            //create exam
-            title.setText(getString(R.string.exam_new_title));
-
+        if (spinnerClass != null) {
+            spinnerClass.setAdapter(adapterClass);
         }
 
         //create student
@@ -153,8 +168,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                 public void onClick(View view) {
 
                     //if all good
-                    Exam exam = processForm();
-                    if(exam != null) {
+                    if(processForm() != null) {
 
                         Intent intent = new Intent(ExamEditorActivity.this, ExamsListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -184,8 +198,52 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             });
         }
 
+        if(getIntent().hasExtra("id")){
+            editorExam = getApp().getExamById((int)getIntent().getExtras().getInt("id"));
+        }
 
+        if(editorExam != null){
+            if (title != null) {
+                title.setText(getString(R.string.exam_editor_title));
+            }
+            setDateEditText.setText(editorExam.getDate());
+            setHourEditText.setText(editorExam.getHour());
+
+            if (spinnerDegree != null) {
+                int index = 0;
+                String[] l = getResources().getStringArray(R.array.degrees);
+                for(String s : l){
+                    if(s.compareTo(editorExam.getSpeciality()) == 0) break;
+                    index++;
+                }
+                if(index < l.length){
+                    spinnerDegree.setSelection(index);
+                }
+            }
+
+            if (spinnerClass != null) {
+                int index = 0;
+                String[] l = getResources().getStringArray(R.array.assigned_class);
+                for(String s : l){
+                    if(s.compareTo(editorExam.getAssigned_class()) == 0) break;
+                    index++;
+                }
+                if(index < l.length){
+                    spinnerClass.setSelection(index);
+                }
+            }
+
+            year = editorExam.getYear();
+            monthOfYear = editorExam.getMonth();
+            dayOfMonth = editorExam.getDay();
+        }else{
+            if (title != null) {
+                title.setText(getString(R.string.exam_new_title));
+            }
+        }
     }
+
+
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
         setDateEditText.setText(getString(R.string.exam_date, year, monthOfYear, dayOfMonth));
@@ -240,7 +298,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         exam.setSubject(subjectToAdd);
         exam.setAssigned_class(spinnerClass.getSelectedItem().toString());
         exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
-        exam.setHour(hour);
+        exam.getDateTime();
 
         getApp().addExam(exam);
         getApp().getExams().remove(editorExam);

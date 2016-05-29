@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="3">
+    android:layout_height="wrap_content">
     <!--Date - hour-->
 
     <LinearLayout
@@ -12,31 +11,29 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="2"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+        android:layout_marginTop="@dimen/half_padding">
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:paddingLeft="8dp"
+            android:paddingLeft="@dimen/simple_padding"
             android:layout_weight="1"
             android:id="@+id/exam_date"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"/>
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/exam_hour"
-            android:paddingRight="8dp"
+            android:paddingRight="@dimen/simple_padding"
             android:gravity="right"
             android:layout_weight="1"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
     <!--subject-->
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:gravity="center|center_vertical|center_horizontal"
         android:id="@+id/exam_subject"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -47,22 +44,21 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="2"
-        android:layout_weight="1"
-        android:layout_margin="10dp">
+        android:layout_marginBottom="@dimen/half_padding">
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
+            android:paddingLeft="@dimen/simple_padding"
             android:id="@+id/exam_class"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_gravity="left"
             android:layout_weight="1"/>
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="8dp"
+            android:paddingRight="@dimen/simple_padding"
             android:id="@+id/exam_number_students"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:gravity="right"
             android:layout_weight="1"/>
     </LinearLayout>

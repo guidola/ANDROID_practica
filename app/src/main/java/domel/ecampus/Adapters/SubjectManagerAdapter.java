@@ -91,11 +91,13 @@ public class SubjectManagerAdapter extends ArrayAdapter {
                 //not changing transition just yet cause it goes really slow even tho im lowing the time of the animation.
             }
         });
+
         //delete subject
         AppCompatImageButton bin = (AppCompatImageButton) row.findViewById(R.id.delete_subject);
+        bin.setTag(subject.getId());
         bin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 //launch alert dialog to ask for deletion.
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(getContext().getResources().getString(R.string.alert_delete_title));

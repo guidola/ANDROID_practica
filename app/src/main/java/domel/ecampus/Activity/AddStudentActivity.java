@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -98,9 +100,14 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
             }
         });
 
-        //setDateEditText.setShowSoftInputOnFocus(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setDateEditText.setShowSoftInputOnFocus(false);
+        }else{
+            setDateEditText.setInputType(InputType.TYPE_NULL);
+        }
 
-            //degree spinner
+
+        //degree spinner
             Spinner spinner = (Spinner) findViewById(R.id.student_degree);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);

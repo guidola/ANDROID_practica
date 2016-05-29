@@ -10,6 +10,7 @@ import android.util.JsonReader;
 import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
@@ -70,23 +71,6 @@ public class MyApplication extends Application{
     public void onCreate() {
         super.onCreate();
         remembered = false;
-        //for now initializing model with ahrdcoded information to start working with it the good way
-        /*for (int i = 0 ; i < 4; i++){
-            addStudent(new Student("Menganito", R.mipmap.la_salle_logo, new DateTime("1990-12-12"), "Magisterio", "Mucho"));
-        }
-        for (int i = 0 ; i < 4; i++){
-            addSubject(new Subject("Pinta y colorea", R.mipmap.la_salle_logo, "Pinta dentro de los bordes, no te salgas!"));
-        }
-        for(Subject s : getSubjects()){
-            addExam(new Exam(new DateTime("2016-08-22"), "20:00", "Aula 1", s, "Multimedia"), s);
-
-        }
-        for (Subject s: getSubjects()){
-            for (Student student : getStudents()){
-                enroll(student, s);
-            }
-        }*/
-        loadStatusFromDisk();
     }
 
     public void persist(){
@@ -112,6 +96,7 @@ public class MyApplication extends Application{
         protected Boolean doInBackground(Void... params) {
             ObjectMapper obm = new ObjectMapper();
             obm.registerModule(new JodaModule());
+            obm.enable(MapperFeature.USE_STATIC_TYPING);
             obm.setVisibilityChecker(obm.getSerializationConfig().getDefaultVisibilityChecker()
                     .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
                     .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
@@ -151,6 +136,7 @@ public class MyApplication extends Application{
 
             ObjectMapper obm = new ObjectMapper();
             obm.registerModule(new JodaModule());
+            obm.enable(MapperFeature.USE_STATIC_TYPING);
             obm.setVisibilityChecker(obm.getSerializationConfig().getDefaultVisibilityChecker()
                     .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
                     .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
@@ -222,6 +208,7 @@ public class MyApplication extends Application{
 
     public   void addSubject(Subject subject){
         subjects.add(subject);
+        persist();
     }
 
     public   void suspendExams(Subject subject){

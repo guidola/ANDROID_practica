@@ -51,7 +51,6 @@ public class MainMenuActivity extends BaseActivity {
                             return true;
                         }
                     case R.id.exit:
-                        //close the app
                         finish();
                         return true;
                     default:
@@ -105,6 +104,7 @@ public class MainMenuActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     //logout
+                    getApp().setRemembered(false);
                     Intent intent_log = new Intent(MainMenuActivity.this, LoginActivity.class);
                     intent_log.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent_log);

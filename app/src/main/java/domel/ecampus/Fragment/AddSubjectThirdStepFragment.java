@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.ListViewCompat;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class AddSubjectThirdStepFragment extends Fragment {
         AppCompatImageButton but = (AppCompatImageButton) view.findViewById(R.id.add_theme_button);
         input = (AppCompatEditText) view.findViewById(R.id.add_theme_input);
         input.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(input)});
+        input.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         numberEdit.setText((getActivity().getString(R.string.theme_numeration, adapter.getCount() + 1)));
 
 

@@ -140,6 +140,14 @@ public class Subject {
         this.id = id;
     }
 
+    public static int getAuto_inc_id() {
+        return auto_inc_id;
+    }
+
+    public static void setAuto_inc_id(int auto_inc_id) {
+        Subject.auto_inc_id = auto_inc_id;
+    }
+
     public String getDegree() {
         return degree;
     }

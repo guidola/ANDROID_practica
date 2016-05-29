@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import org.joda.time.DateTime;
 import org.joda.time.Years;
@@ -21,6 +23,7 @@ import java.util.GregorianCalendar;
 
 import domel.ecampus.R;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Student{
 
     private static int auto_inc_id = 0;
@@ -133,7 +136,15 @@ public class Student{
         this.path = path;
     }
 
-   /*
+    public static int getAuto_inc_id() {
+        return auto_inc_id;
+    }
+
+    public static void setAuto_inc_id(int auto_inc_id) {
+        Student.auto_inc_id = auto_inc_id;
+    }
+
+    /*
     public static ArrayList<Student> getTestCollection(){
         ArrayList<Student> s = new ArrayList<>();
 

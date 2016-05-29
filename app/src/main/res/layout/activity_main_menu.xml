@@ -138,8 +138,9 @@
             android:gravity="center">
             <android.support.v7.widget.AppCompatImageView
                 android:src="@drawable/exit"
-                android:layout_width="100dp"
+                android:layout_width="124dp"
                 android:layout_height="100dp"
+                android:paddingLeft="24dp"
                 android:layout_margin="10dp"></android.support.v7.widget.AppCompatImageView>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
