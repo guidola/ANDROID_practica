@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,7 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 
 import com.codetroopers.betterpickers.timepicker.TimePickerDialogFragment;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -67,6 +69,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                     CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment()
                             .setOnDateSetListener(ExamEditorActivity.this);
                     cdp.show(getSupportFragmentManager(), FRAG_TAG_DATE_PICKER);
+                }else{
+                    setDateEditText.setError(null);
                 }
             }
         });
@@ -91,6 +95,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                             .setFragmentManager(getSupportFragmentManager())
                             .setStyleResId(R.style.BetterPickersDialogFragment);
                     tpb.show();
+                }else{
+                    setHourEditText.setError(null);
                 }
             }
         });
@@ -173,11 +179,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                 public void onClick(View view) {
                     Exam exam = null;
                     //if all good, exam have info and the spinner of subjects is the only one that can be null
-                   if (!noSubjects){
-                       exam = processForm();
-                   }else{
-                       Tools.toast(getApplicationContext(), getString(R.string.no_subjects_selected));
-                   }
+                    exam = processForm();
                     if(exam != null) {
                         Intent intent = new Intent(ExamEditorActivity.this, ExamsListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -285,19 +287,29 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         Spinner spinnerSubject = (Spinner) findViewById(R.id.subject_spinner);
         Spinner spinnerClass = (Spinner) findViewById(R.id.class_spinner);
 
-        if(setDateEditText.getText().toString().length() == 0){
+        if(StringUtils.isEmpty(setDateEditText.getText())){
             setDateEditText.setError(getString(R.string.error_field_required));
             setDateEditText.requestFocus();
             return null;
         }
-        if(setHourEditText.getText().toString().length() == 0){
+
+        String[] time = hour.split(":");
+        DateTime dateTime = new DateTime(year, monthOfYear, dayOfMonth,
+                Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+        if( new DateTime().isAfter(dateTime) ){
+            setDateEditText.setError(getString(R.string.error_past_time));
+            setDateEditText.requestFocus();
+            return null;
+        }
+
+        if(StringUtils.isEmpty(setHourEditText.getText())){
             setHourEditText.setError(getString(R.string.error_field_required));
             setHourEditText.requestFocus();
             return null;
         }
+        Log.d("date", setDateEditText.getText().toString());
+        Log.d("hour", setHourEditText.getText().toString());
 
-        exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
-        exam.setHour(hour);
         if (spinnerDegree != null) {
             exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
         }
@@ -326,8 +338,10 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         }
         exam.setSubject(subjectToAdd);
         exam.setAssigned_class(spinnerClass.getSelectedItem().toString());
-        exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
-        exam.getDateTime();
+        exam.setDate(new DateTime(year, monthOfYear, dayOfMonth,
+                Integer.parseInt(time[0]),
+                Integer.parseInt(time[1])
+        ));
 
         if(editorExam != null){
             getApp().persist();

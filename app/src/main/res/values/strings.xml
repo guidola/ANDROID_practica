@@ -106,18 +106,7 @@
     <string name="no_subjects_selected"> Selecciona una asignatura</string>
     <string name="exam_created"> Examen creado satisfactóriamente</string>
     <string name="degree_without_subjects"> No hay asignaturas</string>
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="error_past_time">La fecha debe ser una fecha futura</string>
 
 
 </resources>

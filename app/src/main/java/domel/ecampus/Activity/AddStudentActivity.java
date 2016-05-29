@@ -108,58 +108,58 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
 
 
         //degree spinner
-            Spinner spinner = (Spinner) findViewById(R.id.student_degree);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+        Spinner spinner = (Spinner) findViewById(R.id.student_degree);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.degrees, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
-            //radio buttons of gender
-            RadioGroup checked = (RadioGroup) findViewById(R.id.gender_radiogroup);
+        //radio buttons of gender
+        RadioGroup checked = (RadioGroup) findViewById(R.id.gender_radiogroup);
 
-            //choose image of the galery
-            ImageView chooseImage = (ImageView) findViewById(R.id.photo);
-
-
-            //add photo of the camara
-            ImageButton newPhoto = (ImageButton) findViewById(R.id.photo_button);
-            if(newPhoto!=null)
-
-            {
-                newPhoto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent takePictureIntent = ImagePicker.getPickImageIntent(AddStudentActivity.this);
-                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                        //dispatchTakePictureIntent(takePictureIntent);
-
-                    }
-                });
-            }
+        //choose image of the galery
+        ImageView chooseImage = (ImageView) findViewById(R.id.photo);
 
 
-            //create student
-            Button createButton = (Button) findViewById(R.id.submit_button);
-            if(createButton!=null)
+        //add photo of the camara
+        ImageButton newPhoto = (ImageButton) findViewById(R.id.photo_button);
+        if(newPhoto!=null)
 
-            {
-                createButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+        {
+            newPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent takePictureIntent = ImagePicker.getPickImageIntent(AddStudentActivity.this);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    //dispatchTakePictureIntent(takePictureIntent);
 
-                        //if all good
-                        Student student = processForm();
-                        if (student != null) {
+                }
+            });
+        }
 
-                        // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
-                        Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
-                        finish();
-                    }
 
-                    }
-                });
-            }
+        //create student
+        Button createButton = (Button) findViewById(R.id.submit_button);
+        if(createButton!=null)
+
+        {
+            createButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    //if all good
+                    Student student = processForm();
+                    if (student != null) {
+
+                    // getApp().addStudent(new Student(10000 ,"test student",R.mipmap.la_salle_logo,new DateTime(1991,11,30,0,0), "Magisterio", "Hombre"));
+                    Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
+                    finish();
+                }
+
+                }
+            });
+        }
 
 
         //back tolbar button

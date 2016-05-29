@@ -89,7 +89,16 @@ public class Exam implements Comparable<Exam>  {
         return date.getYear();
     }
 
-    public String getHour(){ return hour;}
+    public String getHour(){
+        String _hour = "";
+        String _minute = "";
+
+        if(date.getHourOfDay() < 10) _hour = "0";
+        if(date.getMinuteOfHour() < 10) _minute = "0";
+        _hour = _hour.concat(Integer.toString(date.getHourOfDay()));
+        _minute = _minute.concat(Integer.toString(date.getMinuteOfHour()));
+        return _hour + ":" + _minute;
+    }
 
     public void setHour(String hour){ this.hour = hour;}
 
