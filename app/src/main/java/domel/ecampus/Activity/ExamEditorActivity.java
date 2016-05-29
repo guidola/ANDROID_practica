@@ -38,6 +38,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     private Spinner spinnerDegree;
     private Spinner spinnerSubject;
     private Exam editorExam;
+    private boolean noSubjects = false;
 
 
     private static final String FRAG_TAG_DATE_PICKER = "fragment_date_picker_name";
@@ -117,10 +118,15 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                         for (int i = 0; i < getApp().getSubjects().size(); i++) {
                             if (spinnerDegree.getSelectedItem().toString().equals(getApp().getSubjects().get(i).getDegree())){
                                 subjectsName.add(getApp().getSubjects().get(i).getName());
+                                noSubjects = false;
                             }
                         }
                         ArrayAdapter<CharSequence> adapterSubject = new ArrayAdapter(ExamEditorActivity.this, android.R.layout.simple_spinner_dropdown_item, subjectsName);
                         spinnerSubject.setAdapter(adapterSubject);
+                        if(subjectsName.size() == 0){
+                            subjectsName.add(getString(R.string.degree_without_subjects));
+                            noSubjects = true;
+                        }
                     }
 
                     public void onNothingSelected(AdapterView<?> parent) {}
@@ -150,9 +156,13 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             createButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Exam exam = null;
                     //if all good, exam have info and the spinner of subjects is the only one that can be null
-                    Exam exam = processForm();
+                   if (!noSubjects){
+                       exam = processForm();
+                   }else{
+                       Tools.toast(getApplicationContext(), getString(R.string.no_subjects_selected));
+                   }
                     if(exam != null) {
                         Intent intent = new Intent(ExamEditorActivity.this, ExamsListActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

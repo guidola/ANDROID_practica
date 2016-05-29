@@ -105,6 +105,8 @@
     <string name="no_subjects"> Para crear un examen primero crea una asignatura </string>
     <string name="no_subjects_selected"> Selecciona una asignatura</string>
     <string name="exam_created"> Examen creado satisfactóriamente</string>
+    <string name="degree_without_subjects"> No hay asignaturas</string>
+
 
 
 
