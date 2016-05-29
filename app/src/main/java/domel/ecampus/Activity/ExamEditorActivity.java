@@ -270,7 +270,15 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
 
     public Exam processForm(){
-        Exam exam = new Exam();
+
+        Exam exam;
+
+        if (editorExam != null){
+            exam = editorExam;
+        }else{
+            exam = new Exam();
+        }
+
         setDateEditText = (EditText) findViewById(R.id.exam_date);
         setHourEditText = (EditText) findViewById(R.id.exam_hour);
         Spinner spinnerDegree = (Spinner) findViewById(R.id.career_spinner);
@@ -321,10 +329,11 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         exam.setDate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         exam.getDateTime();
 
-        getApp().addExam(exam);
-        getApp().getExams().remove(editorExam);
-
-
+        if(editorExam != null){
+            getApp().persist();
+        }else{
+            getApp().addExam(exam, subjectToAdd);
+        }
 
         return exam;
     }
