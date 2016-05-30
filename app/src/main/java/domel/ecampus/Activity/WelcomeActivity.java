@@ -38,6 +38,7 @@ public class WelcomeActivity  extends BaseActivity {
     protected void onResume(){
         super.onResume();
         getApp().loadStatusFromDisk();
+        getApp().updateIndexs();
         if(getApp().isRemembered()){
             task = new TimerTask(){
                 @Override

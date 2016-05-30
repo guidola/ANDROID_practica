@@ -195,6 +195,32 @@ public class MyApplication extends Application{
         }
     }
 
+    public void updateIndexs(){
+        int greater = 0;
+        for(Student s: students){
+            if(greater < s.getId()){
+                greater = s.getId();
+            }
+        }
+        Student.setAuto_inc_id(greater + 1);
+
+        greater = 0;
+        for(Subject s: subjects){
+            if(greater < s.getId()){
+                greater = s.getId();
+            }
+        }
+        Subject.setAuto_inc_id(greater + 1);
+
+        greater = 0;
+        for(Exam s: exams){
+            if(greater < s.getId()){
+                greater = s.getId();
+            }
+        }
+        Exam.setAuto_inc_id(greater + 1);
+    }
+
     private   void initializeData(StatusInstance si) {
         MyApplication.students = si.getStudents();
         MyApplication.subjects = si.getSubjects();
@@ -254,6 +280,7 @@ public class MyApplication extends Application{
         exams.add(exam);
         exam.setSubject(subject);
         subject.scheduleExam(exam);
+        Collections.sort(exams);
         persist();
     }
 

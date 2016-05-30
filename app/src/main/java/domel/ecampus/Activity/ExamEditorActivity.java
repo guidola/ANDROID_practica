@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domel.ecampus.Adapters.ExamListAdapter;
@@ -41,7 +42,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     private int year;
     private int monthOfYear;
     private int dayOfMonth;
-    private String hour;
+    private int hour;
+    private int minute;
     private Spinner spinnerDegree;
     private Spinner spinnerSubject;
     private Exam editorExam;
@@ -218,6 +220,11 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
                 title.setText(getString(R.string.exam_editor_title));
             }
             setDateEditText.setText(editorExam.getDate());
+            this.hour = editorExam.getDateTime().getHourOfDay();
+            this.minute = editorExam.getDateTime().getMinuteOfHour();
+            this.dayOfMonth = editorExam.getDateTime().getDayOfMonth();
+            this.monthOfYear = editorExam.getDateTime().getMonthOfYear();
+            this.year = editorExam.getDateTime().getYear();
             setHourEditText.setText(editorExam.getHour());
 
             if (spinnerDegree != null) {
@@ -257,9 +264,9 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
 
     @Override
     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-        setDateEditText.setText(getString(R.string.exam_date, year, monthOfYear, dayOfMonth));
+        setDateEditText.setText(getString(R.string.exam_date, year, (monthOfYear + 1), dayOfMonth));
         this.year = year;
-        this.monthOfYear = monthOfYear;
+        this.monthOfYear = monthOfYear + 1;
         this.dayOfMonth = dayOfMonth;
 
     }
@@ -267,7 +274,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
     @Override
     public void onDialogTimeSet(int reference, int hourOfDay, int minute) {
         setHourEditText.setText(getString(R.string.time_picker_result_value, String.format("%02d", hourOfDay), String.format("%02d", minute)));
-        hour = getString(R.string.time_picker_result_value, String.format("%02d", hourOfDay), String.format("%02d", minute));
+        this.hour = hourOfDay;
+        this.minute = minute;
     }
 
 
@@ -293,9 +301,7 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             return null;
         }
 
-        String[] time = hour.split(":");
-        DateTime dateTime = new DateTime(year, monthOfYear, dayOfMonth,
-                Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+        DateTime dateTime = new DateTime(year, monthOfYear, dayOfMonth, hour, minute);
         if( new DateTime().isAfter(dateTime) ){
             setDateEditText.setError(getString(R.string.error_past_time));
             setDateEditText.requestFocus();
@@ -338,10 +344,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
         }
         exam.setSubject(subjectToAdd);
         exam.setAssigned_class(spinnerClass.getSelectedItem().toString());
-        exam.setDate(new DateTime(year, monthOfYear, dayOfMonth,
-                Integer.parseInt(time[0]),
-                Integer.parseInt(time[1])
-        ));
+        exam.setDate(new DateTime(year, monthOfYear, dayOfMonth, hour, minute));
+
 
         if(editorExam != null){
             getApp().persist();
