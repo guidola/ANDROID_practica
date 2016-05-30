@@ -30,7 +30,6 @@ android {
 
     sourceSets {
         main {
-            assets.srcDirs = ['assets']
         }
     }
     defaultConfig {

@@ -2,6 +2,7 @@ package domel.ecampus.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
@@ -14,12 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 /**
  * Created by Guillermo on 8/5/16.
@@ -79,8 +82,18 @@ public class RegisteredStudentsAdapter extends ArrayAdapter<Student> {
         if(student.getPath() == null){
             if(image != null) image.setImageResource(student.getImage());
         }else{
-            if(image != null) image.setImageURI(Uri.parse(student.getPath()));
+            if(student.getPath().startsWith(Tools.ASSETS_PREFIX)){
+                String path = student.getPath().substring(Tools.ASSETS_PREFIX_LEN);
+                try {
+                    image.setImageDrawable(Drawable.createFromStream(getContext().getAssets().open(path), null));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                if(image != null) image.setImageURI(Uri.parse(student.getPath()));
+            }
         }
+
         name.setText(student.getName());
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

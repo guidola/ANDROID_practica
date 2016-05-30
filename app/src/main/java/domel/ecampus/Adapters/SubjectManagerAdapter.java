@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
@@ -19,6 +21,8 @@ import android.widget.ImageView;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import domel.ecampus.Activity.SubjectActivity;
@@ -26,6 +30,7 @@ import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class SubjectManagerAdapter extends ArrayAdapter {
 
@@ -69,13 +74,22 @@ public class SubjectManagerAdapter extends ArrayAdapter {
 
         AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.subject_image);
         AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.subject_name);
-       // AppCompatTextView description = (AppCompatTextView) row.findViewById(R.id.subject_description);
+        AppCompatTextView description = (AppCompatTextView) row.findViewById(R.id.subject_description);
         Subject subject = getItem(position);
 
-        //image.setImageResource(subject.getImage());
-        //image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        if(subject.getImage() == null){
+            image.setImageResource(R.mipmap.la_salle_logo);
+        }else{
+            try {
+                String image_path = subject.getImage().substring(Tools.ASSETS_PREFIX_LEN);
+                image.setImageDrawable(Drawable.createFromStream(getContext().getAssets().open(image_path), null));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         name.setText(StringUtils.capitalize(subject.getName()));
-        //description.setText(StringUtils.capitalize(subject.getDescription()));
+        description.setText(StringUtils.capitalize(subject.getDescription()));
 
         row.setClickable(true);
         row.setTag(subject.getId());

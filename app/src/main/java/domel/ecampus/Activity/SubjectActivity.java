@@ -3,6 +3,7 @@ package domel.ecampus.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,6 +35,7 @@ import domel.ecampus.Model.Subject;
 import domel.ecampus.Model.SubjectTheme;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class SubjectActivity extends BaseActivity {
 
@@ -124,10 +127,15 @@ public class SubjectActivity extends BaseActivity {
                 AppCompatTextView student_spec = (AppCompatTextView) v.findViewById(R.id.textView3);
 
                 //for compatibily while whole app refactor is done
-                if(student.getPath() == null){
-                    if(student_image != null) student_image.setImageResource(student.getImage());
+                if(subject.getImage() == null){
+                    student_image.setImageResource(R.mipmap.la_salle_logo);
                 }else{
-                    if(student_image != null) student_image.setImageURI(Uri.parse(student.getPath()));
+                    try {
+                        String image_path = subject.getImage().substring(Tools.ASSETS_PREFIX_LEN);
+                        student_image.setImageDrawable(Drawable.createFromStream(getAssets().open(image_path), null));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 student_name.setText(student.getName());
                 student_spec.setText(student.getSpecialty());

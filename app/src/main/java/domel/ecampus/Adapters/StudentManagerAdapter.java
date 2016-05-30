@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import domel.ecampus.Activity.StudentActivity;
@@ -27,6 +29,7 @@ import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 
 public class StudentManagerAdapter extends ArrayAdapter{
@@ -75,7 +78,16 @@ public class StudentManagerAdapter extends ArrayAdapter{
         if(student.getPath() == null){
             if(image != null) image.setImageResource(student.getImage());
         }else{
-            if(image != null) image.setImageURI(Uri.parse(student.getPath()));
+            if(student.getPath().startsWith(Tools.ASSETS_PREFIX)){
+                String path = student.getPath().substring(Tools.ASSETS_PREFIX_LEN);
+                try {
+                    image.setImageDrawable(Drawable.createFromStream(getContext().getAssets().open(path), null));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                if(image != null) image.setImageURI(Uri.parse(student.getPath()));
+            }
         }
 
         name.setText(StringUtils.capitalize(student.getName()));

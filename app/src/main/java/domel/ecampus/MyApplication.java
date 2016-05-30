@@ -160,7 +160,7 @@ public class MyApplication extends Application{
 
             if(Tools.fileExists(getApplicationContext(), APP_STATUS_FILENAME)){
                 //load previous data
-
+                Log.d("loading", "status_data");
                 try{
                     InputStreamReader isr = new InputStreamReader(
                             openFileInput(APP_STATUS_FILENAME),
@@ -178,6 +178,7 @@ public class MyApplication extends Application{
 
             }else{
                 //load default data
+                Log.d("loading", "default_data");
                 try{
                     InputStreamReader isr = new InputStreamReader(
                             getAssets().open(APP_STATUS_DEFAULT_FILENAME),

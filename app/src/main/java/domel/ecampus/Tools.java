@@ -10,6 +10,9 @@ import java.io.File;
 
 public class Tools{
 
+    public final static String ASSETS_PREFIX = "//android_asset/";
+    public final static int ASSETS_PREFIX_LEN = 16;
+
     /* Checks if external storage is available for read and write */
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();

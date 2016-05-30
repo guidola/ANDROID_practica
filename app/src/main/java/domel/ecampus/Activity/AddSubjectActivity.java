@@ -186,7 +186,7 @@ public class AddSubjectActivity extends BaseActivity {
         subject.addThemes(theme_adapter.getThemes());
 
         //add image
-        //subject.setImage(R.mipmap.la_salle_logo);
+        subject.setImage(null);
 
         //At this point the subject itself is fully filled. Persist
         getApp().addSubject(subject);

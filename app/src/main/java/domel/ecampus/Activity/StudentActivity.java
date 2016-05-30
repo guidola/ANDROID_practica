@@ -1,6 +1,7 @@
 package domel.ecampus.Activity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
@@ -13,11 +14,14 @@ import android.widget.ImageView;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
+
 import domel.ecampus.Base.BaseActivity;
 import domel.ecampus.Model.Student;
 import domel.ecampus.Model.Subject;
 import domel.ecampus.MyApplication;
 import domel.ecampus.R;
+import domel.ecampus.Tools;
 
 public class StudentActivity extends BaseActivity {
 
@@ -44,7 +48,16 @@ public class StudentActivity extends BaseActivity {
         if(st.getPath() == null){
             if(image != null) image.setImageResource(st.getImage());
         }else{
-            if(image != null) image.setImageURI(Uri.parse(st.getPath()));
+            if(st.getPath().startsWith(Tools.ASSETS_PREFIX)){
+                String path = st.getPath().substring(Tools.ASSETS_PREFIX_LEN);
+                try {
+                    image.setImageDrawable(Drawable.createFromStream(getAssets().open(path), null));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                if(image != null) image.setImageURI(Uri.parse(st.getPath()));
+            }
         }
 
         if(name != null) name.setText(StringUtils.capitalize(st.getName()));
