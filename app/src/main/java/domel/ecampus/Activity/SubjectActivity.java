@@ -127,14 +127,18 @@ public class SubjectActivity extends BaseActivity {
                 AppCompatTextView student_spec = (AppCompatTextView) v.findViewById(R.id.textView3);
 
                 //for compatibily while whole app refactor is done
-                if(subject.getImage() == null){
-                    student_image.setImageResource(R.mipmap.la_salle_logo);
+                if(student.getPath() == null){
+                    if(student_image != null) student_image.setImageResource(student.getImage());
                 }else{
-                    try {
-                        String image_path = subject.getImage().substring(Tools.ASSETS_PREFIX_LEN);
-                        student_image.setImageDrawable(Drawable.createFromStream(getAssets().open(image_path), null));
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(student.getPath().startsWith(Tools.ASSETS_PREFIX)){
+                        String path = student.getPath().substring(Tools.ASSETS_PREFIX_LEN);
+                        try {
+                            student_image.setImageDrawable(Drawable.createFromStream(getAssets().open(path), null));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }else{
+                        if(student_image != null) student_image.setImageURI(Uri.parse(student.getPath()));
                     }
                 }
                 student_name.setText(student.getName());
