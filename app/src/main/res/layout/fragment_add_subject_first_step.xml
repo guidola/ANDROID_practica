@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
+            android:inputType="text|textNoSuggestions"
             android:singleLine="true"
-            android:inputType="text"
             android:hint="@string/subject_name"
             android:id="@+id/subject_name" />
 
@@ -35,7 +35,7 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textMultiLine"
+            android:inputType="textFilter|textMultiLine|textNoSuggestions"
             android:lines="8"
             android:maxLines="9"
             android:minLines="2"
