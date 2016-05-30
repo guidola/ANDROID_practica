@@ -12,9 +12,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
-/**
- * Created by Guillermo on 22/5/16.
- */
+
 public class TouchImageView extends AppCompatImageView {
 
 

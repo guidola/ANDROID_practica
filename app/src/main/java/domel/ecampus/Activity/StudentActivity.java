@@ -137,11 +137,7 @@ public class StudentActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View view) {
-                    //logout
-                    Intent intent = new Intent(StudentActivity.this, StudentManagerActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
+                    onBackPressed();
 
                 }
 

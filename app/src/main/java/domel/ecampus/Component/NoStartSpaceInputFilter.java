@@ -5,9 +5,6 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
 
-/**
- * Created by Guillermo on 21/5/16.
- */
 public class NoStartSpaceInputFilter implements InputFilter {
 
     boolean canEnterSpace = false;

@@ -148,10 +148,7 @@ public class AddSubjectActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(AddSubjectActivity.this, SubjectManagerActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
+                    onBackPressed();
 
                 }
 

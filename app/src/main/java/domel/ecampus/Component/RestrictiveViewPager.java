@@ -20,9 +20,7 @@ import domel.ecampus.Adapters.SmartFragmentStatePagerAdapter;
 import domel.ecampus.Fragment.AddSubjectFirstStepFragment;
 import domel.ecampus.R;
 
-/**
- * TODO: document your custom view class.
- */
+
 public class RestrictiveViewPager extends ViewPager {
     
     private float last_position = -1;

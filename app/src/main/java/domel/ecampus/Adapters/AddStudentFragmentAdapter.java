@@ -9,9 +9,6 @@ import domel.ecampus.Fragment.AddSubjectFirstStepFragment;
 import domel.ecampus.Fragment.AddSubjectSecondStepFragment;
 import domel.ecampus.Fragment.AddSubjectThirdStepFragment;
 
-/**
- * Created by Guillermo on 16/5/16.
- */
 public class AddStudentFragmentAdapter extends SmartFragmentStatePagerAdapter {
 
     private static int NUM_ITEMS = 3;
