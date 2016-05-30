@@ -17,7 +17,7 @@ public class Subject {
 
     private int id;
     private String name;
-    private int image;
+    private String image;
     private  String description;
     private String degree;
 
@@ -37,7 +37,7 @@ public class Subject {
         this.themes = new ArrayList<>();
     }
 
-    public Subject(String name, int image, String description, String degree){
+    public Subject(String name, String image, String description, String degree){
         this.id = auto_inc_id++;
         this.name = name;
         this.image = image;
@@ -56,11 +56,11 @@ public class Subject {
         this.name = name;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

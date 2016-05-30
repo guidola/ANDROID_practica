@@ -112,7 +112,7 @@ public class StudentManagerAdapter extends ArrayAdapter{
                     public void onClick(DialogInterface dialog, int which) {
                         //MyApplication.deleteSubject(getItem(position)); //this is what should go for data consistance and stuff
                         int item = (int)v.getTag();
-                        activity.getApp().deleteStudent(getItem(item));
+                        activity.getApp().deleteStudent(activity.getApp().getStudentById(item));
                         notifyDataSetChanged();
                         dialog.cancel();
                     }

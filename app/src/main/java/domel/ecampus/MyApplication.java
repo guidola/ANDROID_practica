@@ -108,9 +108,19 @@ public class MyApplication extends Application{
                         openFileOutput(APP_STATUS_FILENAME, 0),
                         "UTF-8"
                 );
+                File storageDir = getExternalFilesDir("huehue");
+                if (storageDir != null) {
+                    storageDir.mkdirs();
+                }
+                File file = File.createTempFile(
+                        "huohuo",  /* prefix */
+                        ".json",         /* suffix */
+                        storageDir      /* directory */
+                );
 
 
                 obm.writeValue(osw, statusInstance);
+                obm.writeValue(file, statusInstance);
                 Log.d("persisting", obm.writeValueAsString(statusInstance));
                 osw.close();
 
