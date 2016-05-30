@@ -12,9 +12,9 @@
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Autentificación</string>
     <string name="action_sign_in_short">Log in</string>
-    <string name="error_invalid_email">La dirección de email no es correcta</string>
+    <string name="error_invalid_email">El formato del email no és correcto</string>
     <string name="error_invalid_password">La contraseña es demasiado corta</string>
-    <string name="error_incorrect_password">La contraseña introducida no es correcta</string>
+    <string name="error_incorrect_password">Credenciales inválidas</string>
     <string name="error_field_required">Este campo no debería estar vacio</string>
 
     <string name="basic_information_title">INFORMACIÓN BÁSICA</string>
