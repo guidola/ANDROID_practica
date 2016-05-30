@@ -37,6 +37,8 @@
             android:layout_height="match_parent"
             android:inputType="textFilter|textMultiLine|textNoSuggestions"
             android:lines="8"
+            android:layout_below="@id/view1"
+            android:layout_above="@+id/degree_wrapper"
             android:maxLines="9"
             android:minLines="2"
             android:gravity="top|left"

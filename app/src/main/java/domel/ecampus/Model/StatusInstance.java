@@ -2,9 +2,7 @@ package domel.ecampus.Model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Guillermo on 27/5/16.
- */
+
 public class StatusInstance {
 
     private ArrayList<Subject> subjects;

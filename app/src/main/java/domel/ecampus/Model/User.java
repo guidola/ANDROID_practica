@@ -1,9 +1,6 @@
 package domel.ecampus.Model;
 
 
-/**
- * Created by Guillermo on 14/5/16.
- */
 public class User {
 
     private static int auto_inc_id = 0;
