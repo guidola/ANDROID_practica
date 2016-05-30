@@ -153,7 +153,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
                     Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
+                    //Tools.toast(getApplicationContext(), getString(R.string.student_create_success));
                     finish();
                 }
 
@@ -204,6 +204,17 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
         Student student = new Student();
         student.setName(name.getText().toString());
         student.setGender(gender.getText().toString());
+
+        //comprobar niño del futuro
+        Calendar c = Calendar.getInstance();
+        DateTime actualDate = new DateTime(c.getTime());
+
+
+        if(year>=actualDate.getYear() && monthOfYear>= actualDate.getMonthOfYear() && dayOfMonth >= actualDate.getDayOfMonth() ) {
+            Tools.toast(getApplicationContext(),getString(R.string.error_future_date));
+            return null;
+        }
+
 
         student.setBirthdate(new DateTime(year+"-"+monthOfYear+"-"+dayOfMonth));
         student.setSpecialty((String)carreer.getSelectedItem());
