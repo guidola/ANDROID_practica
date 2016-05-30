@@ -4,10 +4,11 @@
     <string-array name="degrees">
         <item>Informàtica</item>
         <item>Telemàtica</item>
-        <item>Telecomunicaciones</item>
+        <item>ADE</item>
         <item>Multimedia</item>
         <item>Animación</item>
         <item>Magisterio</item>
+        <item>Electronica</item>
     </string-array>
 
     <string-array name="assigned_class">
@@ -16,6 +17,7 @@
         <item>Aula 2</item>
         <item>Aula 3</item>
         <item>Aula 4</item>
+        <item>Aula 5</item>
     </string-array>
 
 

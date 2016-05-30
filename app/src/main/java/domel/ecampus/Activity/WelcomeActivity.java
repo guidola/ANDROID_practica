@@ -54,7 +54,7 @@ public class WelcomeActivity  extends BaseActivity {
                 @Override
                 public void run() {
                     //Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
                     startActivity(intent);
                     finish();
                 }

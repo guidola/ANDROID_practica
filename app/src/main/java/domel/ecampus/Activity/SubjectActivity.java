@@ -42,14 +42,14 @@ public class SubjectActivity extends BaseActivity {
         setContentView(R.layout.activity_subject);
 
 
-        //go to main menu activity
+        //go to subject menu activity
         ImageView backToolbarButton = (ImageView) findViewById(R.id.back_toolbar);
         if (backToolbarButton != null) {
             backToolbarButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(SubjectActivity.this, MainMenuActivity.class);
+                    Intent intent = new Intent(SubjectActivity.this, SubjectManagerActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

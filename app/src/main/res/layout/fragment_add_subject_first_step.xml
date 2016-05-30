@@ -36,7 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
-            android:gravity="top"
+            android:lines="8"
+            android:maxLines="9"
+            android:minLines="2"
+            android:gravity="top|left"
             android:hint="@string/subject_description"
             android:id="@+id/subject_description"
             />

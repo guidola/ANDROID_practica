@@ -69,13 +69,13 @@ public class SubjectManagerAdapter extends ArrayAdapter {
 
         AppCompatImageView image = (AppCompatImageView) row.findViewById(R.id.subject_image);
         AppCompatTextView name = (AppCompatTextView) row.findViewById(R.id.subject_name);
-        AppCompatTextView description = (AppCompatTextView) row.findViewById(R.id.subject_description);
+       // AppCompatTextView description = (AppCompatTextView) row.findViewById(R.id.subject_description);
         Subject subject = getItem(position);
 
-        image.setImageResource(subject.getImage());
-        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        //image.setImageResource(subject.getImage());
+        //image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         name.setText(StringUtils.capitalize(subject.getName()));
-        description.setText(StringUtils.capitalize(subject.getDescription()));
+        //description.setText(StringUtils.capitalize(subject.getDescription()));
 
         row.setClickable(true);
         row.setTag(subject.getId());

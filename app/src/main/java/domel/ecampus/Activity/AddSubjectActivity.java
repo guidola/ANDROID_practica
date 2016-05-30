@@ -148,7 +148,7 @@ public class AddSubjectActivity extends BaseActivity {
 
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(AddSubjectActivity.this, MainMenuActivity.class);
+                    Intent intent = new Intent(AddSubjectActivity.this, SubjectManagerActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
@@ -186,7 +186,7 @@ public class AddSubjectActivity extends BaseActivity {
         subject.addThemes(theme_adapter.getThemes());
 
         //add image
-        subject.setImage(R.mipmap.la_salle_logo);
+        //subject.setImage(R.mipmap.la_salle_logo);
 
         //At this point the subject itself is fully filled. Persist
         getApp().addSubject(subject);

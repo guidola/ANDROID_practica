@@ -170,7 +170,7 @@ public class AddStudentActivity extends BaseActivity implements CalendarDatePick
 
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(AddStudentActivity.this, MainMenuActivity.class);
+                    Intent intent = new Intent(AddStudentActivity.this, StudentManagerActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

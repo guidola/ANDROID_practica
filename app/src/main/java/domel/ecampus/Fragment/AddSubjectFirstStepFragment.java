@@ -45,7 +45,7 @@ public class AddSubjectFirstStepFragment extends Fragment {
         name.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(name)});
         name.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         description.setFilters(new InputFilter[]{new NoStartSpaceInputFilter(description)});
-        description.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        //description.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         return view;
     }
