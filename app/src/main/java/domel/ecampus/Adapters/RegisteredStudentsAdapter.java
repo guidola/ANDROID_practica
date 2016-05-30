@@ -24,9 +24,7 @@ import domel.ecampus.MyApplication;
 import domel.ecampus.R;
 import domel.ecampus.Tools;
 
-/**
- * Created by Guillermo on 8/5/16.
- */
+
 public class RegisteredStudentsAdapter extends ArrayAdapter<Student> {
 
     private ArrayList<Student> students;
