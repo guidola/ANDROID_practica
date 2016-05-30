@@ -313,8 +313,8 @@ public class ExamEditorActivity extends BaseActivity implements CalendarDatePick
             setHourEditText.requestFocus();
             return null;
         }
-        Log.d("date", setDateEditText.getText().toString());
-        Log.d("hour", setHourEditText.getText().toString());
+        //Log.d("date", setDateEditText.getText().toString());
+        //Log.d("hour", setHourEditText.getText().toString());
 
         if (spinnerDegree != null) {
             exam.setSpecialty(spinnerDegree.getSelectedItem().toString());
